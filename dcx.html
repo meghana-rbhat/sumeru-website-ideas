@@ -1,0 +1,2983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Customer Experience Excellence | Sumeru</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #282828;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        /* Header - Minimal, clean navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 187, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #4B1E67;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #282828;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a:hover {
+            color: #FFBB00;
+        }
+
+        .nav-cta {
+            background: #FFBB00;
+            color: #4B1E67;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-cta:hover {
+            background: #e6a600;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section - Bold, editorial style */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 187, 0, 0.02) 0%, rgba(255, 187, 0, 0.08) 100%);
+            clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero-text h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: white;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+
+        .btn-primary {
+            background: #FFBB00;
+            color: #4B1E67;
+            padding: 1.1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary:hover {
+            background: #e6a600;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1.1rem 0;
+            border-bottom: 2px solid white;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary:hover {
+            border-bottom-color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .data-visualization {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .chart-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .experience-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            flex: 1;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4B1E67;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .metric-trend {
+            font-size: 0.8rem;
+            color: #22c55e;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* DCX Trifecta Section */
+        .dcx-trifecta {
+            padding: 8rem 3rem;
+            background: #f8fafc;
+        }
+
+        .dcx-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .trifecta-visual {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .trifecta-pillar {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+        }
+
+        .trifecta-center {
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            color: white;
+            padding: 4rem 3rem;
+        }
+
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            background: #4B1E67;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .trifecta-center .pillar-icon {
+            background: rgba(255, 187, 0, 0.2);
+        }
+
+        .pillar-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .trifecta-center .pillar-title {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .pillar-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .trifecta-center .pillar-desc {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Services Section - Clean, structured */
+        .services {
+            padding: 8rem 3rem;
+            background: white;
+        }
+
+        .services-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 6rem;
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: #fafbfc;
+            padding: 3rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4B1E67 0%, #FFBB00 100%);
+        }
+
+        .service-card:hover {
+            background: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-number {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            letter-spacing: -0.01em;
+        }
+
+        .service-card p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 0.75rem 0;
+            color: #2d3748;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .service-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #4B1E67;
+            font-weight: 600;
+        }
+
+        /* Case Studies - Editorial layout */
+        .case-studies {
+            padding: 8rem 3rem;
+            background: #f8fafc;
+        }
+
+        .case-studies-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 6rem;
+        }
+
+        .featured-case {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            margin-bottom: 4rem;
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .featured-text {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .case-category {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .featured-text h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .featured-text p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .case-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .metric {
+            text-align: left;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4B1E67;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-desc {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .featured-visual {
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .case-image {
+            height: 220px;
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .case-content {
+            padding: 2rem;
+        }
+
+        .case-content h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .case-content p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .case-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4B1E67;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 3rem;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .cta-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-white {
+            background: #FFBB00;
+            color: #4B1E67;
+            padding: 1.1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-white:hover {
+            background: #e6a600;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1.1rem 0;
+            border-bottom: 2px solid white;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-outline:hover {
+            border-bottom-color: #ccc;
+            color: #ccc;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111;
+            color: white;
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-brand p {
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Customer Journey Flow Styles */
+        .customer-journey {
+            padding: 8rem 3rem;
+            background: white;
+        }
+
+        .journey-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .journey-flow {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 4rem 0;
+            position: relative;
+            gap: 1rem;
+        }
+
+        .journey-stage {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            max-width: 200px;
+        }
+
+        .stage-header {
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            color: white;
+            padding: 1.2rem 1.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(75, 30, 103, 0.3);
+        }
+
+        .stage-header::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid #6B2D87;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            z-index: 2;
+        }
+
+        .journey-stage:last-child .stage-header::after {
+            display: none;
+        }
+
+        .stage-header.awareness {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        .stage-header.awareness::after {
+            border-left-color: #3b82f6;
+        }
+
+        .stage-header.consideration {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        }
+
+        .stage-header.consideration::after {
+            border-left-color: #14b8a6;
+        }
+
+        .stage-header.purchase {
+            background: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%);
+        }
+
+        .stage-header.purchase::after {
+            border-left-color: #ea580c;
+        }
+
+        .stage-header.service {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        }
+
+        .stage-header.service::after {
+            border-left-color: #a855f7;
+        }
+
+        .stage-header.loyalty {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        }
+
+        .stage-touchpoints {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .touchpoint {
+            background: white;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+            min-width: 140px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .touchpoint:hover {
+            background: #f8fafc;
+            border-color: #4B1E67;
+            box-shadow: 0 6px 20px rgba(75, 30, 103, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .touchpoint::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 16px;
+            background: #e5e7eb;
+        }
+
+        .touchpoint:first-child::before {
+            display: none;
+        }
+
+        .journey-foundation {
+            margin-top: 5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .foundation-layer {
+            padding: 1.2rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white;
+            position: relative;
+        }
+
+        .foundation-layer::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .foundation-layer.agentic {
+            background: linear-gradient(135deg, #FFBB00 0%, #f59e0b 100%);
+            color: #1a1a1a;
+            font-size: 1.1rem;
+        }
+
+        .foundation-layer.cdp {
+            background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%);
+        }
+
+        .foundation-layers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .layer {
+            padding: 1.2rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: white;
+            position: relative;
+        }
+
+        .layer.marketing {
+            background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+        }
+
+        .layer.technology {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+
+        .layer.analytics {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        .foundation-layer.operational {
+            background: linear-gradient(135deg, #1a1a1a 0%, #374151 100%);
+        }
+
+        .foundation-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Innovation Slider Styles */
+        .innovation-slider {
+            padding: 8rem 3rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+
+        .slide-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            height: 100%;
+            align-items: center;
+            padding: 4rem;
+            gap: 4rem;
+        }
+
+        .slide-text {
+            z-index: 2;
+        }
+
+        .slide-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #FFBB00;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .slide h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .slide p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .ai-features, .leadership-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .ai-feature, .highlight {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .ai-feature .feature-icon, .highlight .highlight-icon {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 187, 0, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4, .highlight-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .feature-content p, .highlight-content p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .company-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFBB00;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .company-values {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .value {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .upcoming-events {
+            margin-bottom: 2rem;
+        }
+
+        .upcoming-events h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #FFBB00;
+        }
+
+        .event {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .slide-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            position: relative;
+        }
+
+        .ai-visual {
+            perspective: 1000px;
+        }
+
+        .ai-network {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .ai-node {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 187, 0, 0.2);
+            border: 2px solid #FFBB00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .ai-node.central {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #FFBB00;
+            color: #4B1E67;
+            width: 100px;
+            height: 100px;
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        .ai-node:nth-child(2) { top: 0; left: 50%; transform: translateX(-50%); animation-delay: -0.5s; }
+        .ai-node:nth-child(3) { top: 25%; right: 0; animation-delay: -1s; }
+        .ai-node:nth-child(4) { bottom: 25%; right: 0; animation-delay: -1.5s; }
+        .ai-node:nth-child(5) { bottom: 0; left: 50%; transform: translateX(-50%); animation-delay: -2s; }
+
+        .conference-showcase {
+            text-align: center;
+        }
+
+        .conference-badge {
+            background: rgba(255, 187, 0, 0.2);
+            border: 2px solid #FFBB00;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFBB00;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-subtext {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .expertise-areas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .expertise {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .awards-showcase {
+            text-align: center;
+        }
+
+        .award {
+            font-size: 4rem;
+            margin: 1rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        .award:nth-child(2) { animation-delay: -0.5s; }
+        .award:nth-child(3) { animation-delay: -1s; }
+
+        .recognition-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #FFBB00;
+            margin-top: 1rem;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .slider-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 187, 0, 0.2);
+            border-color: #FFBB00;
+            color: #FFBB00;
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #FFBB00;
+            transform: scale(1.2);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .dcx-framework {
+            padding: 8rem 3rem;
+            background: #f8fafc;
+        }
+
+        .framework-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .framework-flow {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .framework-phase {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .phase-header {
+            background: #4B1E67;
+            color: white;
+            padding: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        .phase-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .phase-item {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .main-phase .phase-header {
+            background: #1a1a1a;
+        }
+
+        .phase-grid {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .phase-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .phase-row.tech-stack {
+            grid-template-columns: 1fr;
+            margin-top: 1rem;
+        }
+
+        .phase-item-wide {
+            background: #4B1E67;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .phase-item-wide small {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* Technology Solutions Styles */
+        .tech-solutions {
+            padding: 8rem 3rem;
+            background: #f8fafc;
+        }
+
+        .solutions-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+            margin-top: 6rem;
+        }
+
+        .solution-category {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .solution-category h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            border-bottom: 2px solid #4B1E67;
+            padding-bottom: 1rem;
+        }
+
+        .solution-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .solution-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .solution-item:hover {
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .solution-item.featured {
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            color: white;
+        }
+
+        .solution-item.featured:hover {
+            background: linear-gradient(135deg, #6B2D87 0%, #8B4FA7 100%);
+        }
+
+        .solution-logo {
+            width: 60px;
+            height: 60px;
+            background: #4B1E67;
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .solution-item.featured .solution-logo {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .solution-info h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .solution-item.featured .solution-info h4 {
+            color: white;
+        }
+
+        .solution-info p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .solution-item.featured .solution-info p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .solution-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .solution-features span {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .contact-section {
+            padding: 8rem 3rem;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        .contact-features {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-feature {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #f8fafc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .feature-text p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .contact-form-wrapper {
+            background: #f8fafc;
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4B1E67;
+            box-shadow: 0 0 0 3px rgba(75, 30, 103, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit {
+            background: #4B1E67;
+            color: white;
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: #6B2D87;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(75, 30, 103, 0.3);
+        }
+
+                .case-studies {
+            padding: 8rem 3rem;
+            background: #f8fafc;
+        }
+
+        .case-studies-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 6rem;
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 6rem;
+        }
+
+        .featured-case {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            margin-bottom: 4rem;
+            transition: all 0.3s ease;
+        }
+
+        .featured-case:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .featured-text {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .case-category {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+        }
+
+        .case-category::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: #4B1E67;
+            border-radius: 2px;
+        }
+
+        .featured-text h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .featured-text p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .case-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .metric {
+            text-align: left;
+            padding: 1.5rem 0;
+            border-left: 3px solid #4B1E67;
+            padding-left: 1rem;
+            background: rgba(75, 30, 103, 0.02);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4B1E67;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .metric-desc {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .featured-visual {
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 187, 0, 0.1);
+            border-radius: 50%;
+            transform: translate(50px, -50px);
+        }
+
+        .featured-visual::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            transform: translate(-50px, 50px);
+        }
+
+        .visual-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .visual-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #FFBB00;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .case-image {
+            height: 220px;
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-image.telecom {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        }
+
+        .case-image.retail {
+            background: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%);
+        }
+
+        .case-image.aviation {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        .case-image.tech {
+            background: linear-gradient(135deg, #581c87 0%, #7c3aed 100%);
+        }
+
+        .case-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .image-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .image-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .case-content {
+            padding: 2.5rem;
+        }
+
+        .case-content h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+
+        .case-content p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .case-stat {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: #4B1E67;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4B1E67;
+            margin-bottom: 0.25rem;
+            line-height: 1;
+        }
+
+        .stat-item:hover .stat-number {
+            color: #FFBB00;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .stat-item:hover .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .view-case-study {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4B1E67;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-case-study:hover {
+            color: #6B2D87;
+            transform: translateX(5px);
+        }
+
+        .view-case-study::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .view-case-study:hover::after {
+            transform: translateX(3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+
+            .case-metrics {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .case-studies {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .featured-text {
+                padding: 2rem;
+            }
+
+            .featured-text h3 {
+                font-size: 1.8rem;
+            }
+
+            .case-content {
+                padding: 2rem;
+            }
+
+            .metric-value {
+                font-size: 2rem;
+            }
+
+            .case-stat {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        /* Animation styles */
+        .case-card, .featured-case {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .case-card:nth-child(1) { animation-delay: 0.2s; }
+        .case-card:nth-child(2) { animation-delay: 0.4s; }
+        .case-card:nth-child(3) { animation-delay: 0.6s; }
+        .case-card:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Counter animation */
+        .metric-value, .stat-number {
+            overflow: hidden;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .trifecta-visual {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .framework-flow {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .journey-flow {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .stage-header::after {
+                display: none;
+            }
+
+            .stage-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content,
+            .services-container,
+            .case-studies-container,
+            .cta-container,
+            .dcx-container,
+            .journey-container,
+            .framework-container,
+            .contact-container {
+                padding: 0 1.5rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .case-metrics {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .solution-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .solution-logo {
+                margin: 0 auto;
+            }
+        }
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .trifecta-visual {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content,
+            .services-container,
+            .case-studies-container,
+            .cta-container,
+            .dcx-container {
+                padding: 0 1.5rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .case-metrics {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">Sumeru</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#customer-journey">Customer Journey</a></li>
+                    <li><a href="#dcx-trifecta">DCX Framework</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#contact-form">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#contact-form" class="nav-cta">Start a Conversation</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-eyebrow">Digital Customer Experience Excellence</div>
+                <h1>Where Customer Obsession Meets Technology Innovation</h1>
+                <p>We architect end-to-end digital experiences that transform how your customers engage with your brand. From first touch to advocacy, every interaction is designed to drive measurable business outcomes.</p>
+                <div class="hero-cta">
+                    <a href="#contact-form" class="btn-primary">Transform Your CX Strategy</a>
+                    <a href="#case-studies" class="btn-secondary">View Our Work</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="data-visualization">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <div class="chart-title">Real-Time Marketing Impact</div>
+                            <div class="chart-subtitle">Accelerated customer engagement outcomes</div>
+                        </div>
+                        <div class="experience-metrics">
+                            <div class="metric-card">
+                                <div class="metric-number">42%</div>
+                                <div class="metric-label">Increase in Customer Satisfaction</div>
+                                <div class="metric-trend">↗ MarTech Implementation</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-number">27%</div>
+                                <div class="metric-label">Increase in Digital Adoption</div>
+                                <div class="metric-trend">↗ Telecom Optimization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-number">25%</div>
+                                <div class="metric-label">Increase in Customer Intelligence</div>
+                                <div class="metric-trend">↗ International Retailer</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-number">18%</div>
+                                <div class="metric-label">Increase in Access Devices</div>
+                                <div class="metric-trend">↗ Healthcare Innovation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovation Showcase Slider -->
+    <section class="innovation-slider" id="innovation">
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <!-- Slide 1: AI-Powered DCX -->
+                <div class="slide active" data-slide="1">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <div class="slide-eyebrow">AI-Powered DCX Innovation</div>
+                            <h2>Agentic AI: The Future of Customer Experience</h2>
+                            <p>Sumeru leverages cutting-edge Agentic AI to create autonomous customer experience systems that learn, adapt, and optimize in real-time. Our AI-driven approach enables personalized customer journeys at scale, predictive customer behavior modeling, and intelligent automation across all touchpoints.</p>
+                            <div class="ai-features">
+                                <div class="ai-feature">
+                                    <div class="feature-icon">🤖</div>
+                                    <div class="feature-content">
+                                        <h4>Autonomous Decision Making</h4>
+                                        <p>AI agents that make real-time decisions to optimize customer experiences</p>
+                                    </div>
+                                </div>
+                                <div class="ai-feature">
+                                    <div class="feature-icon">🧠</div>
+                                    <div class="feature-content">
+                                        <h4>Predictive Intelligence</h4>
+                                        <p>Machine learning models that anticipate customer needs and behaviors</p>
+                                    </div>
+                                </div>
+                                <div class="ai-feature">
+                                    <div class="feature-icon">⚡</div>
+                                    <div class="feature-content">
+                                        <h4>Real-Time Personalization</h4>
+                                        <p>Dynamic content and experience adaptation based on customer context</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#contact-form" class="btn-primary">Explore AI Solutions</a>
+                        </div>
+                        <div class="slide-visual ai-visual">
+                            <div class="ai-network">
+                                <div class="ai-node central">AI</div>
+                                <div class="ai-node">Data</div>
+                                <div class="ai-node">Learn</div>
+                                <div class="ai-node">Adapt</div>
+                                <div class="ai-node">Optimize</div>
+                                <div class="connection-lines"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: About Sumeru -->
+                <div class="slide" data-slide="2">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <div class="slide-eyebrow">About Sumeru</div>
+                            <h2>Leading Digital Customer Experience Innovation</h2>
+                            <p>Founded with a vision to transform how businesses connect with their customers, Sumeru has become a trusted partner for Fortune 500 companies seeking to excel in the experience economy. Our team of certified Salesforce experts, marketing automation engineers, and customer experience strategists brings deep industry knowledge across healthcare, telecommunications, retail, and aviation.</p>
+                            <div class="company-stats">
+                                <div class="stat">
+                                    <div class="stat-number">15+</div>
+                                    <div class="stat-label">Years of Experience</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">200+</div>
+                                    <div class="stat-label">Successful Implementations</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">50+</div>
+                                    <div class="stat-label">Certified Experts</div>
+                                </div>
+                            </div>
+                            <div class="company-values">
+                                <div class="value">
+                                    <strong>Customer Obsession:</strong> We put your customers at the center of everything we do
+                                </div>
+                                <div class="value">
+                                    <strong>Innovation Leadership:</strong> We stay ahead of technology trends to deliver cutting-edge solutions
+                                </div>
+                                <div class="value">
+                                    <strong>Results-Driven:</strong> Every strategy is designed to deliver measurable business outcomes
+                                </div>
+                            </div>
+                            <a href="#case-studies" class="btn-primary">See Our Impact</a>
+                        </div>
+                        <div class="slide-visual company-visual">
+                            <div class="conference-showcase">
+                                <div class="conference-badge">
+                                    <div class="badge-text">CNX2025</div>
+                                    <div class="badge-subtext">Salesforce Experts</div>
+                                </div>
+                                <div class="expertise-areas">
+                                    <div class="expertise">Agentforce</div>
+                                    <div class="expertise">Data Cloud</div>
+                                    <div class="expertise">Marketing Cloud</div>
+                                    <div class="expertise">Personalization</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Industry Leadership -->
+                <div class="slide" data-slide="3">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <div class="slide-eyebrow">Industry Leadership</div>
+                            <h2>Thought Leaders in Customer Experience</h2>
+                            <p>Sumeru is recognized as a thought leader in the customer experience space, regularly speaking at industry conferences, publishing research on DCX trends, and contributing to the advancement of marketing technology best practices. Our insights help shape the future of customer engagement.</p>
+                            <div class="leadership-highlights">
+                                <div class="highlight">
+                                    <div class="highlight-icon">🎤</div>
+                                    <div class="highlight-content">
+                                        <h4>Conference Speakers</h4>
+                                        <p>Regular speakers at Salesforce events, MarTech conferences, and industry summits</p>
+                                    </div>
+                                </div>
+                                <div class="highlight">
+                                    <div class="highlight-icon">📊</div>
+                                    <div class="highlight-content">
+                                        <h4>Research & Insights</h4>
+                                        <p>Publishing original research on DCX trends and customer experience optimization</p>
+                                    </div>
+                                </div>
+                                <div class="highlight">
+                                    <div class="highlight-icon">🏆</div>
+                                    <div class="highlight-content">
+                                        <h4>Industry Recognition</h4>
+                                        <p>Awarded for excellence in customer experience transformation and innovation</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="upcoming-events">
+                                <h4>Upcoming Events</h4>
+                                <div class="event">
+                                    <strong>CNX2025 Conference</strong> - Hosting Salesforce expert sessions on Agentforce and Data Cloud
+                                </div>
+                                <div class="event">
+                                    <strong>DCX Summit 2025</strong> - Keynote on AI-Powered Customer Experiences
+                                </div>
+                            </div>
+                            <a href="#contact-form" class="btn-primary">Partner With Us</a>
+                        </div>
+                        <div class="slide-visual leadership-visual">
+                            <div class="awards-showcase">
+                                <div class="award">🏆</div>
+                                <div class="award">🎖️</div>
+                                <div class="award">⭐</div>
+                                <div class="recognition-text">Industry Recognition</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Navigation -->
+            <div class="slider-nav">
+                <button class="slider-btn prev" onclick="changeSlide(-1)">‹</button>
+                <div class="slider-dots">
+                    <button class="dot active" onclick="currentSlide(1)"></button>
+                    <button class="dot" onclick="currentSlide(2)"></button>
+                    <button class="dot" onclick="currentSlide(3)"></button>
+                </div>
+                <button class="slider-btn next" onclick="changeSlide(1)">›</button>
+            </div>
+        </div>
+    </section>
+    <section class="dcx-trifecta" id="dcx-trifecta">
+        <div class="dcx-container">
+            <div class="section-header">
+                <div class="section-eyebrow">The DCX Framework</div>
+                <h2>The DCX Trifecta: Our Proven Methodology</h2>
+                <p>Real-time marketing accelerates customer engagement through our comprehensive three-pillar approach that delivers measurable business outcomes.</p>
+            </div>
+            <div class="trifecta-visual">
+                <div class="trifecta-pillar">
+                    <div class="pillar-icon">📢</div>
+                    <h3 class="pillar-title">Marketing Expertise</h3>
+                    <p class="pillar-desc">A strategic marketing and human-centered design approach helps organizations become truly customer-centric by leveraging data insights, analytics and strategy.</p>
+                </div>
+                <div class="trifecta-pillar trifecta-center">
+                    <div class="pillar-icon">⚙️</div>
+                    <h3 class="pillar-title">Operational Excellence</h3>
+                    <p class="pillar-desc">We bring together marketing strategy, technology and operational excellence to drive performance, and support clients with results-oriented implementation and managed services.</p>
+                </div>
+                <div class="trifecta-pillar">
+                    <div class="pillar-icon">📊</div>
+                    <h3 class="pillar-title">Analytics Expertise</h3>
+                    <p class="pillar-desc">A strong measurement analytics framework as the foundation behind marketing and technology. Certified marketing automation engineers help clients "Sweat the Assets".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Journey Flow Section -->
+    <section class="customer-journey" id="customer-journey">
+        <div class="journey-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Customer Journey Excellence</div>
+                <h2>Real Time Marketing Accelerates Customer Engagement</h2>
+                <p>Our comprehensive approach spans the entire customer lifecycle, integrating multiple touchpoints for seamless experiences.</p>
+            </div>
+            
+            <div class="journey-flow">
+                <div class="journey-stage">
+                    <div class="stage-header awareness">Awareness</div>
+                    <div class="stage-touchpoints">
+                        <div class="touchpoint">Online Display</div>
+                        <div class="touchpoint">Word of Mouth</div>
+                        <div class="touchpoint">Radio, TV, Print Ads</div>
+                        <div class="touchpoint">PR</div>
+                    </div>
+                </div>
+                
+                <div class="journey-stage">
+                    <div class="stage-header consideration">Consideration</div>
+                    <div class="stage-touchpoints">
+                        <div class="touchpoint">Email</div>
+                        <div class="touchpoint">Landing Page</div>
+                        <div class="touchpoint">Direct Mail</div>
+                        <div class="touchpoint">Store/Branch</div>
+                    </div>
+                </div>
+                
+                <div class="journey-stage">
+                    <div class="stage-header purchase">Purchase</div>
+                    <div class="stage-touchpoints">
+                        <div class="touchpoint">Chat</div>
+                        <div class="touchpoint">Community</div>
+                        <div class="touchpoint">Mobile App</div>
+                    </div>
+                </div>
+                
+                <div class="journey-stage">
+                    <div class="stage-header service">Service</div>
+                    <div class="stage-touchpoints">
+                        <div class="touchpoint">Retargeting</div>
+                        <div class="touchpoint">Social</div>
+                        <div class="touchpoint">Call Centre</div>
+                        <div class="touchpoint">Promotion</div>
+                    </div>
+                </div>
+                
+                <div class="journey-stage">
+                    <div class="stage-header loyalty">Loyalty</div>
+                    <div class="stage-touchpoints">
+                        <div class="touchpoint">Survey</div>
+                        <div class="touchpoint">Loyalty Program</div>
+                        <div class="touchpoint">Newsletter</div>
+                        <div class="touchpoint">Blog</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="foundation-title">Technology Foundation</div>
+            <div class="journey-foundation">
+                <div class="foundation-layer agentic">Agentic AI</div>
+                <div class="foundation-layer cdp">Customer 360 (CDP)</div>
+                <div class="foundation-layers">
+                    <div class="layer marketing">Marketing</div>
+                    <div class="layer technology">Technology</div>
+                    <div class="layer analytics">Analytics</div>
+                </div>
+                <div class="foundation-layer operational">Operational Excellence</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DCX Framework Section -->
+    <section class="dcx-framework" id="dcx-framework">
+        <div class="framework-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Our Methodology</div>
+                <h2>DCX Framework</h2>
+                <p>A comprehensive approach from consulting through implementation to ongoing operations.</p>
+            </div>
+            
+            <div class="framework-flow">
+                <div class="framework-phase">
+                    <div class="phase-header">CONSULTING</div>
+                    <div class="phase-content">
+                        <div class="phase-item">Customer Journey Mapping</div>
+                        <div class="phase-item">Customer Marketing Maturity Assessment</div>
+                        <div class="phase-item">Infrastructure and Technology Readiness</div>
+                    </div>
+                </div>
+                
+                <div class="framework-phase main-phase">
+                    <div class="phase-header">DESIGN AND BUILD</div>
+                    <div class="phase-grid">
+                        <div class="phase-row">
+                            <div class="phase-item">Website</div>
+                            <div class="phase-item">eMail</div>
+                            <div class="phase-item">SMS</div>
+                            <div class="phase-item">Call Centre</div>
+                        </div>
+                        <div class="phase-row">
+                            <div class="phase-item">Mobile App</div>
+                            <div class="phase-item">Store/ Kiosk</div>
+                            <div class="phase-item">Social Media</div>
+                            <div class="phase-item">Others</div>
+                        </div>
+                        <div class="phase-row">
+                            <div class="phase-item">Omnichannel Marketing</div>
+                            <div class="phase-item">Personalization</div>
+                            <div class="phase-item">Measurement And ROI</div>
+                            <div class="phase-item">Contextual Marketing</div>
+                        </div>
+                        <div class="phase-row tech-stack">
+                            <div class="phase-item-wide">Marketing Stacks<br>
+                                <small>Salesforce Cloud, Adobe Cloud, CDP, Oracle, Hubspot, Braze</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="framework-phase">
+                    <div class="phase-header">OPERATE</div>
+                    <div class="phase-content">
+                        <div class="phase-item">Business Services</div>
+                        <div class="phase-item">Sales and Marketing</div>
+                        <div class="phase-item">Customer Service</div>
+                        <div class="phase-item">Service and Support</div>
+                        <div class="phase-item">Operations</div>
+                        <div class="phase-item">Digital</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="services" id="services">
+        <div class="services-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Our Capabilities</div>
+                <h2>End-to-End Digital Experience Solutions</h2>
+                <p>We combine strategy, technology, and creativity to deliver connected experiences that drive measurable business outcomes across healthcare, telecommunications, retail, and financial services.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">Experience Strategy</div>
+                    <h3>Customer Journey Optimization</h3>
+                    <p>Define and design customer-centric experiences that align with your business objectives and drive meaningful engagement across all touchpoints.</p>
+                    <ul class="service-features">
+                        <li>Customer Journey Mapping & Analysis</li>
+                        <li>Experience Architecture Design</li>
+                        <li>Service Design & Optimization</li>
+                        <li>Digital Strategy Development</li>
+                        <li>Salesforce Marketing Cloud Suite</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">Technology Implementation</div>
+                    <h3>MarTech & Platform Solutions</h3>
+                    <p>Deploy and integrate cutting-edge marketing technology platforms that enable real-time customer engagement and personalized experiences.</p>
+                    <ul class="service-features">
+                        <li>Marketing Technology Stack Integration</li>
+                        <li>Customer Data Platform Implementation</li>
+                        <li>Real-time Personalization Engines</li>
+                        <li>API Development & System Integration</li>
+                        <li>Salesforce Marketing Cloud Suite</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">Data & Analytics</div>
+                    <h3>Customer Intelligence & Insights</h3>
+                    <p>Unlock the power of customer data to create personalized experiences and drive intelligent decision-making across your organization.</p>
+                    <ul class="service-features">
+                        <li>Advanced Customer Analytics</li>
+                        <li>Predictive Intelligence Models</li>
+                        <li>Real-time Behavioral Insights</li>
+                        <li>Performance Measurement & KPIs</li>
+                        <li>Salesforce Marketing Cloud Suite</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">Optimization & Growth</div>
+                    <h3>Continuous Experience Enhancement</h3>
+                    <p>Continuously improve performance through testing, optimization, and data-driven insights to maximize customer lifetime value.</p>
+                    <ul class="service-features">
+                        <li>A/B Testing & Experimentation</li>
+                        <li>Conversion Rate Optimization</li>
+                        <li>Customer Experience Analytics</li>
+                        <li>Growth Strategy Development</li>
+                        <li>Salesforce Marketing Cloud Suite</li>
+                </ul>
+                </div>
+</div></section>
+                <section class="case-studies" id="case-studies">
+        <div class="case-studies-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Client Success</div>
+                <h2>Proven Results Across Industries</h2>
+                <p>Real transformation stories from healthcare, telecommunications, retail, and aviation that deliver measurable business impact through our proven DCX framework.</p>
+            </div>
+
+            <!-- Featured Case Study -->
+            <div class="featured-case">
+                <div class="featured-content">
+                    <div class="featured-text">
+                        <div class="case-category">Healthcare</div>
+                        <h3>Maximizing Access to Diabetes Care Management Devices</h3>
+                        <p>We helped a leading healthcare company create and implement a comprehensive marketing technology solution that significantly improved access to diabetes care management devices through targeted digital campaigns and omnichannel customer experiences.</p>
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <div class="metric-value">18%</div>
+                                <div class="metric-desc">Increase in Customer Satisfaction</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">42%</div>
+                                <div class="metric-desc">Improvement in Email Deliverability</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">25%</div>
+                                <div class="metric-desc">Increase in Open Rate</div>
+                            </div>
+                        </div>
+                        <a href="#" class="view-case-study">View Full Case Study</a>
+                    </div>
+                    <div class="featured-visual">
+                        <div class="visual-content">
+                            <div class="visual-icon">🏥</div>
+                            <div>Healthcare Technology Innovation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study Grid -->
+            <div class="case-study-grid">
+                <div class="case-card">
+                    <div class="case-image telecom">
+                        <div class="image-content">
+                            <div class="image-icon">📡</div>
+                            <div>Telecom Optimization</div>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">Telecommunications</div>
+                        <h4>Optimizing Broadband Customer Experience</h4>
+                        <p>Sumeru helped a top Canadian telecom optimize their broadband customer experience and onboarding process, delivering significant improvements in customer satisfaction and digital adoption rates.</p>
+                        <a href="#" class="view-case-study">View Case Study</a>
+                        <div class="case-stat">
+                            <div class="stat-item">
+                                <div class="stat-number">27%</div>
+                                <div class="stat-label">Digital Adoption</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">11%</div>
+                                <div class="stat-label">Customer Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image retail">
+                        <div class="image-content">
+                            <div class="image-icon">🛍️</div>
+                            <div>Retail Intelligence</div>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">International Retail</div>
+                        <h4>Driving Customer Intelligence for Leading Retailer</h4>
+                        <p>Enhanced customer intelligence capabilities for an international retailer, enabling data-driven decision making and personalized customer experiences across multiple channels.</p>
+                        <a href="#" class="view-case-study">View Case Study</a>
+                        <div class="case-stat">
+                            <div class="stat-item">
+                                <div class="stat-number">25%</div>
+                                <div class="stat-label">Customer Intelligence</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">8%</div>
+                                <div class="stat-label">Operational Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image aviation">
+                        <div class="image-content">
+                            <div class="image-icon">✈️</div>
+                            <div>Aviation MarTech</div>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">Aviation</div>
+                        <h4>Transforming MarTech for Top LATAM Airline</h4>
+                        <p>Comprehensive marketing technology transformation that enhanced customer engagement and streamlined marketing operations for a leading Latin American airline carrier.</p>
+                        <a href="#" class="view-case-study">View Case Study</a>
+                        <div class="case-stat">
+                            <div class="stat-item">
+                                <div class="stat-number">35%</div>
+                                <div class="stat-label">Marketing Efficiency</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">28%</div>
+                                <div class="stat-label">Customer Engagement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image tech">
+                        <div class="image-content">
+                            <div class="image-icon">⚙️</div>
+                            <div>Tech Stack Innovation</div>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">Technology</div>
+                        <h4>Advanced Tech Stack Implementation</h4>
+                        <p>Deployed cutting-edge technology solutions that enabled real-time customer insights and personalized experiences across multiple touchpoints and channels.</p>
+                        <a href="#" class="view-case-study">View Case Study</a>
+                        <div class="case-stat">
+                            <div class="stat-item">
+                                <div class="stat-number">45%</div>
+                                <div class="stat-label">Processing Speed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">32%</div>
+                                <div class="stat-label">Data Accuracy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Counter animation for metrics
+        function animateCounters() {
+            const counters = document.querySelectorAll('.metric-value, .stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
+                if (target > 0) {
+                    const increment = target / 50;
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.textContent = counter.textContent.replace(/\d+/, target);
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
+                        }
+                    }, 30);
+                }
+            });
+        }
+
+        // Intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Trigger counter animation for this element
+                    const counters = entry.target.querySelectorAll('.metric-value, .stat-number');
+                    if (counters.length > 0) {
+                        setTimeout(() => {
+                            counters.forEach(counter => {
+                                const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
+                                if (target > 0) {
+                                    const increment = target / 50;
+                                    let current = 0;
+                                    
+                                    const timer = setInterval(() => {
+                                        current += increment;
+                                        if (current >= target) {
+                                            counter.textContent = counter.textContent.replace(/\d+/, target);
+                                            clearInterval(timer);
+                                        } else {
+                                            counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
+                                        }
+                                    }, 30);
+                                }
+                            });
+                        }, 500);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe case study elements
+        document.querySelectorAll('.case-card, .featured-case').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Add hover effect for case study cards
+        document.querySelectorAll('.case-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
+
+                    
