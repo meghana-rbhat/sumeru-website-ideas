@@ -1,0 +1,2626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesforce Excellence | Sumeru</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #282828;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 187, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #4B1E67;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #282828;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #FFBB00;
+        }
+
+        .nav-cta {
+            background: #FFBB00;
+            color: #4B1E67;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-cta:hover {
+            background: #e6a600;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="100" fill="rgba(255,187,0,0.05)"/><circle cx="800" cy="300" r="150" fill="rgba(255,187,0,0.03)"/><circle cx="600" cy="700" r="120" fill="rgba(255,187,0,0.04)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .btn-primary {
+            background: #FFBB00;
+            color: #4B1E67;
+            padding: 1.1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary:hover {
+            background: #e6a600;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 187, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1.1rem 2.5rem;
+            border: 2px solid white;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #4B1E67;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 600px;
+        }
+
+        .salesforce-ecosystem {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .central-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            background: #FFBB00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #4B1E67;
+            box-shadow: 0 15px 40px rgba(255, 187, 0, 0.3);
+            z-index: 10;
+            font-size: 1.1rem;
+        }
+
+        .orbit-item {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-align: center;
+            animation: orbit 20s linear infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .orbit-item:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .orbit-item:nth-child(2) { animation-delay: 0s; }
+        .orbit-item:nth-child(3) { animation-delay: -5s; }
+        .orbit-item:nth-child(4) { animation-delay: -10s; }
+        .orbit-item:nth-child(5) { animation-delay: -15s; }
+
+        /* Client Showcase */
+        .client-showcase {
+            padding: 3rem 0;
+            background: #f8fafc;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .client-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 3rem;
+        }
+
+        .client-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .client-slider {
+            overflow: hidden;
+            position: relative;
+            height: 80px;
+        }
+
+        .client-track {
+            display: flex;
+            align-items: center;
+            animation: scroll 30s linear infinite;
+            height: 100%;
+            gap: 4rem;
+        }
+
+        .client-logo {
+            flex-shrink: 0;
+            height: 40px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            filter: grayscale(100%);
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        /* Expertise Section */
+        .expertise {
+            padding: 8rem 3rem;
+            background: #ffffff;
+        }
+
+        .expertise-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #FFBB00;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #282828;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .expertise-card {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 25px rgba(75, 30, 103, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 187, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FFBB00 0%, #4B1E67 100%);
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(75, 30, 103, 0.15);
+        }
+
+        .expertise-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FFBB00 0%, #4B1E67 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .expertise-card h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #282828;
+            letter-spacing: -0.01em;
+        }
+
+        .expertise-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .expertise-features {
+            list-style: none;
+        }
+
+        .expertise-features li {
+            padding: 0.5rem 0;
+            color: #282828;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .expertise-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #FFBB00;
+            font-weight: 600;
+        }
+
+        /* Cloud Solutions */
+        .cloud-solutions {
+            padding: 8rem 3rem;
+            background: white;
+        }
+
+        .expertise-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #FFBB00;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #282828;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .cloud-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cloud-card {
+            background: #f8fafc;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .cloud-card:hover {
+            border-color: #0070f3;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 112, 243, 0.1);
+            background: white;
+        }
+
+        .cloud-card.expanded {
+            border-color: #0070f3;
+            background: white;
+            box-shadow: 0 20px 50px rgba(0, 112, 243, 0.15);
+        }
+
+        .cloud-card-header {
+            position: relative;
+        }
+
+        .cloud-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .cloud-card:hover .cloud-icon,
+        .cloud-card.expanded .cloud-icon {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 112, 243, 0.3);
+        }
+
+        .cloud-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .cloud-description {
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .expand-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 112, 243, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0070f3;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .cloud-card:hover .expand-indicator {
+            opacity: 1;
+        }
+
+        .cloud-card.expanded .expand-indicator {
+            opacity: 1;
+            background: #0070f3;
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        .cloud-features {
+            list-style: none;
+            text-align: left;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .cloud-card.expanded .cloud-features {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+
+        .cloud-features li {
+            padding: 0.6rem 0;
+            color: #2d3748;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 1.5rem;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .cloud-card.expanded .cloud-features li {
+            transform: translateY(0);
+        }
+
+        .cloud-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0070f3;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .cloud-features li:nth-child(1) { transition-delay: 0.1s; }
+        .cloud-features li:nth-child(2) { transition-delay: 0.15s; }
+        .cloud-features li:nth-child(3) { transition-delay: 0.2s; }
+        .cloud-features li:nth-child(4) { transition-delay: 0.25s; }
+        .cloud-features li:nth-child(5) { transition-delay: 0.3s; }
+        .cloud-features li:nth-child(6) { transition-delay: 0.35s; }
+
+        .learn-more-hint {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: #0070f3;
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .cloud-card:hover .learn-more-hint {
+            opacity: 1;
+        }
+
+        .cloud-card.expanded .learn-more-hint {
+            opacity: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .cloud-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .cloud-card {
+                padding: 2rem;
+            }
+
+            .expand-indicator {
+                opacity: 1;
+            }
+        }
+
+        /* Animation for smooth expansion */
+        @keyframes expandCard {
+            from {
+                max-height: 0;
+                opacity: 0;
+            }
+            to {
+                max-height: 300px;
+                opacity: 1;
+            }
+        }
+
+        .cloud-card.expanding .cloud-features {
+            animation: expandCard 0.4s ease forwards;
+        }
+
+        /* AI Capabilities Section */
+        .ai-capabilities {
+            padding: 8rem 3rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .ai-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .ai-tab {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .ai-tab.active {
+            background: #0070f3;
+            color: white;
+            border-color: #0070f3;
+        }
+
+        .ai-content {
+            display: none;
+        }
+
+        .ai-content.active {
+            display: block;
+        }
+
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ai-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 112, 243, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 112, 243, 0.1);
+        }
+
+        .ai-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 112, 243, 0.15);
+        }
+
+        .ai-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .ai-card p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .ai-features {
+            list-style: none;
+        }
+
+        .ai-features li {
+            padding: 0.3rem 0;
+            color: #2d3748;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .ai-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #0070f3;
+            font-weight: 600;
+        }
+
+        /* Process Timeline */
+        .process {
+            padding: 8rem 3rem;
+            background: #f8fafc;
+        }
+
+        .process-timeline {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #0070f3 0%, #0051cc 100%);
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .process-step {
+            display: flex;
+            margin-bottom: 6rem;
+            position: relative;
+            align-items: center;
+        }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .process-step:nth-child(even) .process-content {
+            margin-right: 4rem;
+            margin-left: 0;
+        }
+
+        .process-content {
+            flex: 1;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 112, 243, 0.1);
+            margin-left: 4rem;
+            border: 1px solid rgba(0, 112, 243, 0.1);
+            max-width: 500px;
+        }
+
+        .process-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            z-index: 10;
+            box-shadow: 0 8px 25px rgba(0, 112, 243, 0.3);
+        }
+
+        .process-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .process-content p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-deliverables {
+            list-style: none;
+        }
+
+        .process-deliverables li {
+            padding: 0.5rem 0;
+            color: #2d3748;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .process-deliverables li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #0070f3;
+            font-weight: 600;
+        }
+
+        /* Certifications */
+        .certifications {
+            padding: 8rem 3rem;
+            background: white;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 112, 243, 0.1);
+        }
+
+        .cert-card:hover {
+            background: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 112, 243, 0.1);
+        }
+
+        .cert-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .cert-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        /* Success Stories */
+        .success-stories {
+            padding: 8rem 3rem;
+            background: #f8fafc;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .story-header {
+            height: 200px;
+            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .story-content {
+            padding: 2.5rem;
+        }
+
+        .story-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .story-content p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .story-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .metric-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0070f3;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            color: white;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #FFBB00;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 3rem;
+            background: #282828;
+            color: white;
+        }
+
+        .cta-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .cta-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 187, 0, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 187, 0, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-submit {
+            background: #FFBB00;
+            color: #4B1E67;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .form-submit:hover {
+            background: #e6a600;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #FFBB00;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            padding: 0.5rem 0;
+        }
+
+        .footer-section ul li a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FFBB00;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg) translateX(170px) rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg) translateX(170px) rotate(-360deg);
+            }
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-timeline::before {
+                left: 30px;
+            }
+
+            .process-step {
+                flex-direction: column !important;
+                margin-left: 60px;
+            }
+
+            .process-number {
+                left: 30px;
+            }
+
+            .process-content {
+                margin: 2rem 0 0 0 !important;
+                max-width: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ai-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .cloud-grid,
+            .cert-grid,
+            .stories-grid,
+            .ai-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-badges {
+                justify-content: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .client-track {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">Sumeru</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#expertise">Our Approach</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#ai-capabilities">AI Innovation</a></li>
+                    <li><a href="#success">Case Studies</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="nav-cta">Partner With Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Salesforce & Sumeru</h1>
+                <p>For over two decades, we've been the trusted technical partner for companies who need Salesforce solutions that actually work. As a full-service Marketing agency, we specialize
+in handling the end-to-end project life cycle for
+both B2B and B2C customers, ensuring implementations work flawlessly from day one while creating lasting competitive advantages that drive revenue, loyalty, and long-term success.</p>
+                
+                <div class="hero-badges">
+                    <span class="badge">Salesforce Partner Since 2018</span>
+                    <span class="badge">170+ Certified Specialists</span>
+                    <span class="badge">250+ Projects Delivered</span>
+                    <span class="badge">98% Customer Sucess Rate</span>
+                </div>
+                
+                <div class="hero-cta">
+                    <a href="#contact" class="btn-primary">Get In Touch</a>
+                    <a href="#success" class="btn-secondary">View Our Work</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="salesforce-ecosystem">
+                    <div class="central-hub">Salesforce</div>
+                    <div class="orbit-item">Marketing Cloud</div>
+                    <div class="orbit-item">Sales Cloud</div>
+                    <div class="orbit-item">Service Cloud</div>
+                    <div class="orbit-item">Data Cloud</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Showcase -->
+    <section class="client-showcase">
+        <div class="client-container">
+            <div class="client-title">Trusted by Leading Organizations</div>
+            <div class="client-slider">
+                <div class="client-track">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Upwork</text></svg>" alt="Upwork" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>USC Marshall</text></svg>" alt="USC Marshall" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>DIG</text></svg>" alt="DIG" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Penn Mutual</text></svg>" alt="Penn Mutual" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>IBM</text></svg>" alt="IBM" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>UC Riverside</text></svg>" alt="UC Riverside" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Snagajob</text></svg>" alt="Evolve" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Evolve</text></svg>" alt="S&C Electric Company" class="client-logo">
+                    <!-- Duplicate for seamless loop -->
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Quantitative</text></svg>" alt="Quantitative" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Ascencus</text></svg>" alt="Ascencus" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Jumpstart MD</text></svg>" alt="Jumpstart MD" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>The Art of Living</text></svg>" alt="The Art of Living" class="client-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise" id="expertise">
+        <div class="expertise-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Our Salesforce Expertise</div>
+                <h2>Digital Marketing, Sales Transformation, Service Excellence, Next-Gen Commerce</h2>
+                <p>We focus on four core areas where businesses see the most impact from Salesforce. Each solution is built to integrate seamlessly with your existing operations while positioning you for future growth.</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">📱</div>
+                    <h3>Digital Marketing</h3>
+                    <p>Leverage Salesforce Marketing Cloud to deliver targeted, data-driven campaigns that drive engagement and conversions.</p>
+                    <ul class="expertise-features">
+                        <li>Marketing Cloud implementation & optimization</li>
+                        <li>Customer journey orchestration</li>
+                        <li>Personalization at scale</li>
+                        <li>Multi-channel campaign management</li>
+                    </ul>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">💼</div>
+                    <h3>Sales Transformation</h3>
+                    <p>Optimize your sales processes with Sales Cloud workflows that streamline operations and accelerate deal closure.</p>
+                    <ul class="expertise-features">
+                        <li>Sales process automation</li>
+                        <li>Lead qualification & nurturing</li>
+                        <li>Pipeline management optimization</li>
+                        <li>Sales performance analytics</li>
+                    </ul>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🎧</div>
+                    <h3>Service Transformation</h3>
+                    <p>Enhance customer service with Service Cloud, improving case management, automation, and support effectiveness.</p>
+                    <ul class="expertise-features">
+                        <li>Case management optimization</li>
+                        <li>Knowledge base development</li>
+                        <li>Omnichannel support setup</li>
+                        <li>Service analytics & reporting</li>
+                    </ul>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🛒</div>
+                    <h3>Next-Gen Commerce</h3>
+                    <p>Create connected, personalized e-commerce experiences with Salesforce Commerce Cloud that drive customer loyalty.</p>
+                    <ul class="expertise-features">
+                        <li>Commerce Cloud implementation</li>
+                        <li>Personalized shopping experiences</li>
+                        <li>B2B & B2C commerce solutions</li>
+                        <li>Cross-selling & upselling automation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Capabilities Section -->
+    <section class="ai-capabilities" id="ai-capabilities">
+        <div class="expertise-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Salesforce AI Capabilities</div>
+                <h2>Get the Most of Your Salesforce AI Capabilities</h2>
+                <p>We help you implement and optimize Salesforce's AI technologies to automate processes, enhance customer experiences, and drive intelligent business decisions.</p>
+            </div>
+            
+            <div class="ai-tabs">
+                <div class="ai-tab active" data-tab="agentforce">Agentforce</div>
+                <div class="ai-tab" data-tab="einstein">Einstein AI</div>
+                <div class="ai-tab" data-tab="platform">Platform AI</div>
+                <div class="ai-tab" data-tab="industry">Industry AI</div>
+            </div>
+
+            <div class="ai-content active" id="agentforce">
+                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: #1a1a1a;">Agentforce: Autonomous AI Agents</h3>
+                <p style="text-align: center; margin-bottom: 3rem; color: #4a5568; max-width: 600px; margin-left: auto; margin-right: auto;">Deploy intelligent agents that work autonomously to handle customer interactions, automate processes, and drive business outcomes.</p>
+                <div class="ai-grid">
+                    <div class="ai-card">
+                        <h3>AgentForce for Service</h3>
+                        <p style="color: #0070f3; font-weight: 500; font-size: 0.9rem; margin-bottom: 1rem;">CUSTOMER SUPPORT AUTOMATION</p>
+                        <p>Intelligent service agents that resolve customer inquiries, escalate complex issues, and provide 24/7 support across all channels.</p>
+                        <ul class="ai-features">
+                            <li>Case Resolution</li>
+                            <li>Knowledge Integration</li>
+                            <li>Escalation Management</li>
+                            <li>Multi-channel support</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: #2d3748;">Typical Results:</p>
+                        <p style="color: #0070f3; font-weight: 600;">65% faster resolution</p>
+                    </div>
+                    <div class="ai-card">
+                        <h3>AgentForce for Sales</h3>
+                        <p style="color: #0070f3; font-weight: 500; font-size: 0.9rem; margin-bottom: 1rem;">SALES PROCESS AUTOMATION</p>
+                        <p>AI-powered sales agents that qualify leads, schedule meetings, update CRM records, and automate follow-ups automatically.</p>
+                        <ul class="ai-features">
+                            <li>Lead Qualification</li>
+                            <li>Meeting Scheduling</li>
+                            <li>Follow-up Automation</li>
+                            <li>Pipeline Management</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: #2d3748;">Typical Results:</p>
+                        <p style="color: #0070f3; font-weight: 600;">40% increase in conversions</p>
+                    </div>
+                    <div class="ai-card">
+                        <h3>AgentForce for Marketing</h3>
+                        <p style="color: #0070f3; font-weight: 500; font-size: 0.9rem; margin-bottom: 1rem;">CAMPAIGN AUTOMATION</p>
+                        <p>Marketing agents that personalize campaigns, nurture leads, optimize content, and analyze customer performance in real-time.</p>
+                        <ul class="ai-features">
+                            <li>Campaign Personalization</li>
+                            <li>Lead Nurturing</li>
+                            <li>Content Optimization</li>
+                            <li>Performance Analytics</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: #2d3748;">Typical Results:</p>
+                        <p style="color: #0070f3; font-weight: 600;">35% higher engagement</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-content" id="einstein">
+                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: #1a1a1a;">Einstein AI: Predictive Intelligence</h3>
+                <p style="text-align: center; margin-bottom: 3rem; color: #4a5568; max-width: 600px; margin-left: auto; margin-right: auto;">Harness Einstein's predictive capabilities to forecast outcomes, personalize experiences, and automate decision-making.</p>
+                <div class="ai-grid">
+                    <div class="ai-card">
+                        <h3>Einstein Lead Scoring</h3>
+                        <p>Automatically score and prioritize leads based on historical data and behavioral patterns.</p>
+                        <ul class="ai-features">
+                            <li>Predictive lead scoring</li>
+                            <li>Opportunity insights</li>
+                            <li>Win probability analysis</li>
+                            <li>Next best action recommendations</li>
+                        </ul>
+                    </div>
+                    <div class="ai-card">
+                        <h3>Einstein Analytics</h3>
+                        <p>Discover hidden insights in your data with AI-powered analytics and automated reporting.</p>
+                        <ul class="ai-features">
+                            <li>Automated insights discovery</li>
+                            <li>Predictive forecasting</li>
+                            <li>Smart data visualizations</li>
+                            <li>Anomaly detection</li>
+                        </ul>
+                    </div>
+                    <div class="ai-card">
+                        <h3>Einstein Personalization</h3>
+                        <p>Deliver personalized experiences across all customer touchpoints with AI-driven recommendations.</p>
+                        <ul class="ai-features">
+                            <li>Product recommendations</li>
+                            <li>Content personalization</li>
+                            <li>Dynamic pricing optimization</li>
+                            <li>Customer segmentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-content" id="platform">
+                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: #1a1a1a;">Platform AI: Custom Intelligence</h3>
+                <p style="text-align: center; margin-bottom: 3rem; color: #4a5568; max-width: 600px; margin-left: auto; margin-right: auto;">Build custom AI solutions tailored to your specific business needs using Salesforce's AI platform capabilities.</p>
+                <div class="ai-grid">
+                    <div class="ai-card">
+                        <h3>Custom AI Models</h3>
+                        <p>Develop and deploy custom machine learning models that address your unique business challenges.</p>
+                        <ul class="ai-features">
+                            <li>Custom prediction models</li>
+                            <li>Natural language processing</li>
+                            <li>Computer vision integration</li>
+                            <li>Automated model training</li>
+                        </ul>
+                    </div>
+                    <div class="ai-card">
+                        <h3>AI Builder</h3>
+                        <p>Create intelligent workflows and automation using Salesforce's low-code AI development tools.</p>
+                        <ul class="ai-features">
+                            <li>Drag-and-drop AI workflows</li>
+                            <li>Pre-built AI components</li>
+                            <li>Integration with external AI services</li>
+                            <li>Real-time AI processing</li>
+                        </ul>
+                    </div>
+                    <div class="ai-card">
+                        <h3>AI Integration</h3>
+                        <p>Connect third-party AI services and tools with your Salesforce environment for enhanced capabilities.</p>
+                        <ul class="ai-features">
+                            <li>API-based AI integrations</li>
+                            <li>Multi-cloud AI orchestration</li>
+                            <li>Data pipeline automation</li>
+                            <li>Compliance & governance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-content" id="industry">
+                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: #1a1a1a;">Industry AI: Specialized Solutions</h3>
+                <p style="text-align: center; margin-bottom: 3rem; color: #4a5568; max-width: 600px; margin-left: auto; margin-right: auto;">Leverage industry-specific AI capabilities designed for healthcare, financial services, retail, and manufacturing.</p>
+                <div class="ai-grid">
+                    <div class="ai-card">
+                        <h3>Healthcare AI</h3>
+                        <p>AI solutions designed for healthcare providers, payers, and life sciences organizations.</p>
+                        <ul class="ai-features">
+                            <li>Patient risk assessment</li>
+                            <li>Treatment recommendations</li>
+                            <li>Clinical decision support</li>
+                            <li>Regulatory compliance automation</li>
+                        </ul>
+                    </div>
+                    <div class="ai-card">
+                        <h3>Financial Services AI</h3>
+                        <p>Intelligent solutions for banking, insurance, and wealth management organizations.</p>
+                        <ul class="ai-features">
+                            <li>Fraud detection & prevention</li>
+                            <li>Risk assessment automation</li>
+                            <li>Customer lifetime value prediction</li>
+                            <li>Regulatory reporting automation</li>
+                        </ul>
+                    </div>
+                    <div class="ai-card">
+                        <h3>Retail & Manufacturing AI</h3>
+                        <p>AI-powered solutions for inventory management, demand forecasting, and supply chain optimization.</p>
+                        <ul class="ai-features">
+                            <li>Demand forecasting</li>
+                            <li>Inventory optimization</li>
+                            <li>Supply chain intelligence</li>
+                            <li>Quality control automation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud Solutions
+    <section class="cloud-solutions" id="solutions">
+        <div class="expertise-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Our Cloud Specializations</div>
+                <h2>Complete Salesforce Cloud Implementation & Optimization</h2>
+                <p>From Marketing Cloud to Data Cloud, we implement and optimize the full Salesforce ecosystem to create seamless, integrated experiences for your customers and teams.</p>
+            </div>
+            <div class="cloud-grid">
+                <div class="cloud-card">
+                    <div class="cloud-icon">📧</div>
+                    <h3>Marketing Cloud</h3>
+                    <p>Enterprise-grade marketing automation and customer journey orchestration</p>
+                    <ul class="cloud-features">
+                        <li>Journey Builder automation</li>
+                        <li>Email Studio optimization</li>
+                        <li>Mobile & social messaging</li>
+                        <li>Audience segmentation</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">🎯</div>
+                    <h3>Education Cloud</h3>
+                    <p>Specialized solutions for educational institutions and student lifecycle management</p>
+                    <ul class="cloud-features">
+                        <li>Student information systems</li>
+                        <li>Admissions process automation</li>
+                        <li>Alumni engagement platforms</li>
+                        <li>Academic performance tracking</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">🔮</div>
+                    <h3>Einstein AI</h3>
+                    <p>AI-powered insights and automation across all Salesforce clouds</p>
+                    <ul class="cloud-features">
+                        <li>Predictive analytics</li>
+                        <li>Automated recommendations</li>
+                        <li>Intelligent automation</li>
+                        <li>Natural language processing</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">🤖</div>
+                    <h3>Agentforce</h3>
+                    <p>Autonomous AI agents for service, sales, and marketing automation</p>
+                    <ul class="cloud-features">
+                        <li>Customer service automation</li>
+                        <li>Sales process optimization</li>
+                        <li>Marketing campaign management</li>
+                        <li>Intelligent routing & escalation</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">💾</div>
+                    <h3>Data Cloud</h3>
+                    <p>Unified customer data platform with real-time insights and activation</p>
+                    <ul class="cloud-features">
+                        <li>360-degree customer view</li>
+                        <li>Real-time data integration</li>
+                        <li>Identity resolution</li>
+                        <li>Privacy compliance tools</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">📋</div>
+                    <h3>Tableau</h3>
+                    <p>Advanced analytics and data visualization for business intelligence</p>
+                    <ul class="cloud-features">
+                        <li>Interactive dashboards</li>
+                        <li>Self-service analytics</li>
+                        <li>Data storytelling</li>
+                        <li>Mobile analytics</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">❤️</div>
+                    <h3>Service Cloud</h3>
+                    <p>Complete customer service platform with case management and automation</p>
+                    <ul class="cloud-features">
+                        <li>Case management optimization</li>
+                        <li>Knowledge base development</li>
+                        <li>Omnichannel support</li>
+                        <li>Service analytics</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">💰</div>
+                    <h3>Sales Cloud</h3>
+                    <p>Sales automation and pipeline management for revenue optimization</p>
+                    <ul class="cloud-features">
+                        <li>Lead & opportunity management</li>
+                        <li>Sales process automation</li>
+                        <li>Territory & quota management</li>
+                        <li>Sales performance analytics</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">💜</div>
+                    <h3>Sales Cloud</h3>
+                    <p>Advanced sales features and Einstein AI integration</p>
+                    <ul class="cloud-features">
+                        <li>Einstein lead scoring</li>
+                        <li>Predictive forecasting</li>
+                        <li>Automated activity capture</li>
+                        <li>Advanced analytics</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">📊</div>
+                    <h3>Sales Cloud</h3>
+                    <p>Enterprise sales management with advanced customization</p>
+                    <ul class="cloud-features">
+                        <li>Custom sales processes</li>
+                        <li>Advanced workflow automation</li>
+                        <li>Integration capabilities</li>
+                        <li>Scalable architecture</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">🛒</div>
+                    <h3>Commerce Cloud</h3>
+                    <p>E-commerce platform for B2B and B2C digital commerce experiences</p>
+                    <ul class="cloud-features">
+                        <li>Storefront optimization</li>
+                        <li>Order management</li>
+                        <li>Personalization engine</li>
+                        <li>Mobile commerce</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">☁️</div>
+                    <h3>Experience Cloud</h3>
+                    <p>Digital experience platforms for customers, partners, and employees</p>
+                    <ul class="cloud-features">
+                        <li>Community building</li>
+                        <li>Self-service portals</li>
+                        <li>Partner relationship management</li>
+                        <li>Content management</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">⚙️</div>
+                    <h3>Platform</h3>
+                    <p>Custom application development and integration platform</p>
+                    <ul class="cloud-features">
+                        <li>Custom app development</li>
+                        <li>API integration</li>
+                        <li>Workflow automation</li>
+                        <li>Security & compliance</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p>Business intelligence and reporting across all Salesforce data</p>
+                    <ul class="cloud-features">
+                        <li>Custom dashboards</li>
+                        <li>Real-time reporting</li>
+                        <li>Data modeling</li>
+                        <li>Mobile analytics</li>
+                    </ul>
+                </div>
+                <div class="cloud-card">
+                    <div class="cloud-icon">☁️</div>
+                    <h3>CPQ Cloud</h3>
+                    <p>Configure, price, and quote automation for complex sales processes</p>
+                    <ul class="cloud-features">
+                        <li>Product configuration</li>
+                        <li>Dynamic pricing</li>
+                        <li>Quote generation</li>
+                        <li>Approval workflows</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Cloud Solutions -->
+    <section class="cloud-solutions" id="solutions">
+        <div class="expertise-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Our Cloud Specializations</div>
+                <h2>Complete Salesforce Cloud Implementation & Optimization</h2>
+                <p>From Marketing Cloud to Data Cloud, we implement and optimize the full Salesforce ecosystem to create seamless, integrated experiences for your customers and teams.</p>
+            </div>
+            <div class="cloud-grid">
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">📧</div>
+                        <h3>Marketing Cloud</h3>
+                        <p class="cloud-description">Enterprise-grade marketing automation and customer journey orchestration</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Journey Builder automation & optimization</li>
+                        <li>Email Studio campaign management</li>
+                        <li>Mobile & social messaging integration</li>
+                        <li>Advanced audience segmentation</li>
+                        <li>Cross-channel personalization</li>
+                        <li>Real-time campaign analytics</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">🎓</div>
+                        <h3>Education Cloud</h3>
+                        <p class="cloud-description">Specialized solutions for educational institutions and student lifecycle management</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Student information systems integration</li>
+                        <li>Admissions process automation</li>
+                        <li>Alumni engagement platforms</li>
+                        <li>Academic performance tracking</li>
+                        <li>Faculty & staff management</li>
+                        <li>Campus event coordination</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">🧠</div>
+                        <h3>Einstein AI</h3>
+                        <p class="cloud-description">AI-powered insights and automation across all Salesforce clouds</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Predictive analytics & forecasting</li>
+                        <li>Automated recommendations engine</li>
+                        <li>Intelligent process automation</li>
+                        <li>Natural language processing</li>
+                        <li>Custom AI model development</li>
+                        <li>Machine learning optimization</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">🤖</div>
+                        <h3>Agentforce</h3>
+                        <p class="cloud-description">Autonomous AI agents for service, sales, and marketing automation</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Customer service automation agents</li>
+                        <li>Sales process optimization bots</li>
+                        <li>Marketing campaign management AI</li>
+                        <li>Intelligent routing & escalation</li>
+                        <li>24/7 customer support automation</li>
+                        <li>Multi-language support capabilities</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">💾</div>
+                        <h3>Data Cloud</h3>
+                        <p class="cloud-description">Unified customer data platform with real-time insights and activation</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>360-degree customer view creation</li>
+                        <li>Real-time data integration & sync</li>
+                        <li>Identity resolution & matching</li>
+                        <li>Privacy compliance tools</li>
+                        <li>Data governance frameworks</li>
+                        <li>Cross-platform data activation</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">📊</div>
+                        <h3>Tableau</h3>
+                        <p class="cloud-description">Advanced analytics and data visualization for business intelligence</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Interactive dashboard development</li>
+                        <li>Self-service analytics enablement</li>
+                        <li>Data storytelling & visualization</li>
+                        <li>Mobile analytics optimization</li>
+                        <li>Real-time data connections</li>
+                        <li>Advanced statistical analysis</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">❤️</div>
+                        <h3>Service Cloud</h3>
+                        <p class="cloud-description">Complete customer service platform with case management and automation</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Case management optimization</li>
+                        <li>Knowledge base development</li>
+                        <li>Omnichannel support setup</li>
+                        <li>Service analytics & reporting</li>
+                        <li>Field service management</li>
+                        <li>Customer community portals</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">💰</div>
+                        <h3>Sales Cloud</h3>
+                        <p class="cloud-description">Sales automation and pipeline management for revenue optimization</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Lead & opportunity management</li>
+                        <li>Sales process automation</li>
+                        <li>Territory & quota management</li>
+                        <li>Sales performance analytics</li>
+                        <li>Pipeline forecasting tools</li>
+                        <li>Activity tracking & reporting</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">💜</div>
+                        <h3>Sales Cloud</h3>
+                        <p class="cloud-description">Advanced sales features with Einstein AI integration</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Einstein lead scoring & insights</li>
+                        <li>Predictive forecasting models</li>
+                        <li>Automated activity capture</li>
+                        <li>Advanced sales analytics</li>
+                        <li>AI-powered recommendations</li>
+                        <li>Opportunity risk assessment</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">📈</div>
+                        <h3>Sales Cloud</h3>
+                        <p class="cloud-description">Enterprise sales management with advanced customization</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Custom sales process design</li>
+                        <li>Advanced workflow automation</li>
+                        <li>Complex integration capabilities</li>
+                        <li>Scalable architecture planning</li>
+                        <li>Multi-currency & multi-language</li>
+                        <li>Enterprise security controls</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">🛒</div>
+                        <h3>Commerce Cloud</h3>
+                        <p class="cloud-description">E-commerce platform for B2B and B2C digital commerce experiences</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Storefront optimization & design</li>
+                        <li>Order management automation</li>
+                        <li>Personalization engine setup</li>
+                        <li>Mobile commerce optimization</li>
+                        <li>Inventory management integration</li>
+                        <li>Payment gateway configuration</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">☁️</div>
+                        <h3>Experience Cloud</h3>
+                        <p class="cloud-description">Digital experience platforms for customers, partners, and employees</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Community building & management</li>
+                        <li>Self-service portal development</li>
+                        <li>Partner relationship management</li>
+                        <li>Content management systems</li>
+                        <li>User collaboration tools</li>
+                        <li>Mobile-first experience design</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">⚙️</div>
+                        <h3>Platform</h3>
+                        <p class="cloud-description">Custom application development and integration platform</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Custom app development</li>
+                        <li>API integration & management</li>
+                        <li>Workflow automation design</li>
+                        <li>Security & compliance setup</li>
+                        <li>DevOps & deployment tools</li>
+                        <li>Performance monitoring</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">📊</div>
+                        <h3>Analytics</h3>
+                        <p class="cloud-description">Business intelligence and reporting across all Salesforce data</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Custom dashboard development</li>
+                        <li>Real-time reporting setup</li>
+                        <li>Advanced data modeling</li>
+                        <li>Mobile analytics configuration</li>
+                        <li>Automated report generation</li>
+                        <li>Cross-platform data analysis</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">💼</div>
+                        <h3>CPQ Cloud</h3>
+                        <p class="cloud-description">Configure, price, and quote automation for complex sales processes</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Product configuration automation</li>
+                        <li>Dynamic pricing rule engine</li>
+                        <li>Quote generation & templates</li>
+                        <li>Approval workflow setup</li>
+                        <li>Contract management integration</li>
+                        <li>Revenue recognition tools</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-card" onclick="toggleCard(this)">
+                    <div class="cloud-card-header">
+                        <div class="expand-indicator">+</div>
+                        <div class="cloud-icon">🔧</div>
+                        <h3>Cross Cloud</h3>
+                        <p class="cloud-description">Integration and orchestration across multiple Salesforce clouds</p>
+                        
+                    </div>
+                    <ul class="cloud-features">
+                        <li>Multi-cloud integration strategy</li>
+                        <li>Data synchronization setup</li>
+                        <li>Cross-platform workflow design</li>
+                        <li>Unified user experience</li>
+                        <li>Single sign-on configuration</li>
+                        <li>Consolidated reporting dashboards</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Timeline -->
+    <section class="process" id="process">
+        <div class="expertise-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Our Approach</div>
+                <h2>How We Deliver Salesforce Projects That Actually Work</h2>
+                <p>Twenty-three years of experience has taught us that successful Salesforce implementations require more than technical skills—they need deep business understanding and a proven methodology.</p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="process-content">
+                        <h3>Discovery & Assessment (Weeks 1-2)</h3>
+                        <p>We start by understanding your business processes, current technology stack, and specific challenges. This isn't just a technical audit—it's a comprehensive business analysis.</p>
+                        <ul class="process-deliverables">
+                            <li>Current state assessment</li>
+                            <li>Business process mapping</li>
+                            <li>Technical architecture review</li>
+                            <li>Gap analysis & recommendations</li>
+                        </ul>
+                    </div>
+                    <div class="process-number">1</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-content">
+                        <h3>Strategy & Design (Weeks 3-4)</h3>
+                        <p>We design solutions that align with your business objectives and long-term growth plans. Every configuration decision is made with scalability and user adoption in mind.</p>
+                        <ul class="process-deliverables">
+                            <li>Solution architecture design</li>
+                            <li>User experience planning</li>
+                            <li>Integration strategy</li>
+                            <li>Change management plan</li>
+                        </ul>
+                    </div>
+                    <div class="process-number">2</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-content">
+                        <h3>Implementation & Configuration (Weeks 5-8)</h3>
+                        <p>Our certified specialists configure your Salesforce environment with best practices built in. We focus on clean data, proper governance, and sustainable processes.</p>
+                        <ul class="process-deliverables">
+                            <li>System configuration & customization</li>
+                            <li>Data migration & cleansing</li>
+                            <li>Integration development</li>
+                            <li>Security & permission setup</li>
+                        </ul>
+                    </div>
+                    <div class="process-number">3</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-content">
+                        <h3>Testing & Training (Weeks 9-10)</h3>
+                        <p>Comprehensive testing ensures everything works as expected, while our training programs prepare your team for successful adoption and ongoing success.</p>
+                        <ul class="process-deliverables">
+                            <li>System testing & quality assurance</li>
+                            <li>User acceptance testing</li>
+                            <li>Team training & documentation</li>
+                            <li>Go-live preparation</li>
+                        </ul>
+                    </div>
+                    <div class="process-number">4</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-content">
+                        <h3>Launch & Optimization (Week 11+)</h3>
+                        <p>We support your go-live and continue optimizing performance based on real usage data. Our relationship doesn't end at launch—we're here for the long term.</p>
+                        <ul class="process-deliverables">
+                            <li>Go-live support</li>
+                            <li>Performance monitoring</li>
+                            <li>Ongoing optimization</li>
+                            <li>Continuous improvement planning</li>
+                        </ul>
+                    </div>
+                    <div class="process-number">5</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications">
+        <div class="expertise-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Certified Salesforce Partner</div>
+                <h2>170+ Salesforce Certified Professionals</h2>
+                <p>Our team holds extensive Salesforce certifications across all clouds and specializations. We maintain these certifications not for the badges, but because they represent real expertise that benefits our clients.</p>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">🏆</div>
+                    <h3>Salesforce Partner Since 2018</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">📧</div>
+                    <h3>Marketing Cloud Email Specialists</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🎯</div>
+                    <h3>Marketing Cloud Consultants</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">⚡</div>
+                    <h3>Pardot Specialists</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🧠</div>
+                    <h3>Einstein Analytics Experts</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🔗</div>
+                    <h3>Integration Architects</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">📊</div>
+                    <h3>Tableau Specialists</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🔮</div>
+                    <h3>Experience Cloud Experts</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">💾</div>
+                    <h3>Data Cloud Specialists</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🤖</div>
+                    <h3>Agentforce Experts</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">☁️</div>
+                    <h3>Platform Developers</h3>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">💬</div>
+                    <h3>Service Cloud Consultants</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-stories" id="success">
+        <div class="expertise-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Success Stories</div>
+                <h2>Real Results from Real Implementations</h2>
+                <p>These aren't theoretical case studies—they're actual outcomes from Salesforce projects we've delivered. Every implementation is different, but the commitment to measurable results remains constant.</p>
+            </div>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-header">
+                        B2B SaaS Marketing Transformation
+                    </div>
+                    <div class="story-content">
+                        <h3>FinTech Startup Accelerates Growth with Marketing Cloud</h3>
+                        <p>Implemented comprehensive marketing automation including lead scoring, nurture campaigns, and sales alignment. Result: accelerated pipeline velocity and improved conversion rates across all funnel stages.</p>
+                        <div class="story-metrics">
+                            <div class="metric">
+                                <div class="metric-number">340%</div>
+                                <div class="metric-label">Pipeline Velocity Increase</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">67%</div>
+                                <div class="metric-label">Lead Quality Improvement</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">$2.4M</div>
+                                <div class="metric-label">Additional Annual Revenue</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-header">
+                        Enterprise E-commerce Optimization
+                    </div>
+                    <div class="story-content">
+                        <h3>Retail Chain Personalizes Customer Journeys at Scale</h3>
+                        <p>Marketing Cloud implementation with Einstein AI personalization, cross-channel orchestration, and real-time behavioral triggers for personalized customer experiences.</p>
+                        <div class="story-metrics">
+                            <div class="metric">
+                                <div class="metric-number">189%</div>
+                                <div class="metric-label">Email Revenue Increase</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">45%</div>
+                                <div class="metric-label">Cart Recovery Rate</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">23%</div>
+                                <div class="metric-label">Customer Lifetime Value Growth</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-header">
+                        Healthcare Data Integration
+                    </div>
+                    <div class="story-content">
+                        <h3>Medical Device Company Achieves Compliance & Efficiency</h3>
+                        <p>Secure Salesforce implementation with advanced data governance, regulatory compliance features, and automated reporting for healthcare industry requirements.</p>
+                        <div class="story-metrics">
+                            <div class="metric">
+                                <div class="metric-number">156%</div>
+                                <div class="metric-label">Process Efficiency Gain</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">99%</div>
+                                <div class="metric-label">Compliance Audit Score</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">$1.8M</div>
+                                <div class="metric-label">Annual Cost Savings</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <h2 style="margin-bottom: 1rem;">Proven Track Record Since 2002</h2>
+            <p style="margin-bottom: 2rem; opacity: 0.9;">Over two decades of Salesforce expertise delivering measurable business results</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">250+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                    <div class="stat-desc">Successful implementations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">170+</div>
+                    <div class="stat-label">Certified Professionals</div>
+                    <div class="stat-desc">Salesforce specialists</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Customer Success Rate</div>
+                    <div class="stat-desc">Client satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">23</div>
+                    <div class="stat-label">Years in Business</div>
+                    <div class="stat-desc">Technology expertise</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-container">
+            <h2>Ready to Discuss Your Salesforce Project?</h2>
+            <p>Whether you're considering Salesforce for the first time or looking to optimize an existing implementation, we'd like to understand your specific needs and share how we might help.</p>
+            
+            <div class="cta-form">
+                <h3 style="margin-bottom: 2rem; color: white;">Start a Conversation</h3>
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Business Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Company Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Tell us about your project or challenge" required>
+                </div>
+                <button class="form-submit">Request a Discussion</button>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="#success" class="btn-secondary" style="margin-right: 1rem;">View More Case Studies</a>
+                <a href="#process" class="btn-secondary">Learn About Our Process</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#">Salesforce Implementation</a></li>
+                        <li><a href="#">Marketing Cloud</a></li>
+                        <li><a href="#">Sales Cloud</a></li>
+                        <li><a href="#">Service Cloud</a></li>
+                        <li><a href="#">Data Cloud Integration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Specialized Solutions</h3>
+                    <ul>
+                        <li><a href="#">Einstein AI Implementation</a></li>
+                        <li><a href="#">Agentforce Deployment</a></li>
+                        <li><a href="#">Experience Cloud</a></li>
+                        <li><a href="#">Commerce Cloud</a></li>
+                        <li><a href="#">Analytics & Reporting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Industries</h3>
+                    <ul>
+                        <li><a href="#">Technology & SaaS</a></li>
+                        <li><a href="#">Healthcare & Life Sciences</a></li>
+                        <li><a href="#">Financial Services</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Retail & E-commerce</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Implementation Guide</a></li>
+                        <li><a href="#">Best Practices</a></li>
+                        <li><a href="#">Certification Training</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sumeru Inc. All rights reserved. | Salesforce Partner Since 2018 | Los Angeles, CA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effects to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(75, 30, 103, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // AI Capabilities Tab Functionality
+        document.querySelectorAll('.ai-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.ai-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.ai-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Show corresponding content
+                const targetContent = document.getElementById(this.dataset.tab);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animations
+        document.querySelectorAll('.expertise-card, .cloud-card, .story-card, .cert-card, .process-content, .ai-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Form submission handling
+        document.querySelector('.cta-form button').addEventListener('click', function(e) {
+            e.preventDefault();
+            const inputs = document.querySelectorAll('.cta-form input');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ff4757';
+                } else {
+                    input.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                }
+            });
+            
+            if (isValid) {
+                alert('Thank you! We will contact you shortly to discuss your project.');
+                inputs.forEach(input => input.value = '');
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Add hover effects to orbit items
+        document.querySelectorAll('.orbit-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.background = 'rgba(255, 255, 255, 0.25)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.background = 'rgba(255, 255, 255, 0.15)';
+            });
+        });
+
+        // Dynamic counter animation for metrics
+        function animateCounters() {
+            const counters = document.querySelectorAll('.metric-number, .stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
+                if (target > 0) {
+                    const increment = target / 100;
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.textContent = counter.textContent.replace(/\d+/, target);
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
+                        }
+                    }, 20);
+                }
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsSection = document.querySelector('.stats-section');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Enhanced form interactions
+        const formInputs = document.querySelectorAll('.cta-form input');
+        formInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#FFBB00';
+                this.style.background = 'rgba(255, 187, 0, 0.05)';
+            });
+            
+            input.addEventListener('blur', function() {
+                if (this.value.trim()) {
+                    this.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                    this.style.background = 'rgba(255, 255, 255, 0.1)';
+                } else {
+                    this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    this.style.background = 'rgba(255, 255, 255, 0.1)';
+                }
+            });
+
+            input.addEventListener('input', function() {
+                if (this.style.borderColor === 'rgb(255, 71, 87)') {
+                    this.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                }
+            });
+        });
+
+        // Client logo hover effects
+        document.querySelectorAll('.client-logo').forEach(logo => {
+            logo.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+            });
+            
+            logo.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        function toggleCard(card) {
+            const wasExpanded = card.classList.contains('expanded');
+            
+            // Close all other cards
+            document.querySelectorAll('.cloud-card').forEach(c => {
+                c.classList.remove('expanded', 'expanding');
+            });
+            
+            // If this card wasn't expanded, expand it
+            if (!wasExpanded) {
+                card.classList.add('expanding');
+                setTimeout(() => {
+                    card.classList.add('expanded');
+                    card.classList.remove('expanding');
+                }, 50);
+            }
+        }
+
+        // Add intersection observer for initial animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animations
+        document.querySelectorAll('.cloud-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Add keyboard support for accessibility
+        document.querySelectorAll('.cloud-card').forEach(card => {
+            card.setAttribute('tabindex', '0');
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleCard(this);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

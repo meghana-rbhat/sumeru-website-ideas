@@ -4,1522 +4,2606 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salesforce Excellence | Sumeru</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #282828;
-            overflow-x: hidden;
-            background: #ffffff;
-        }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 187, 0, 0.08);
-        }
-
-        .nav-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 3rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #4B1E67;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 3rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #282828;
-            font-weight: 400;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #FFBB00;
-        }
-
-        .nav-cta {
-            background: #FFBB00;
-            color: #4B1E67;
-            padding: 0.8rem 1.8rem;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .nav-cta:hover {
-            background: #e6a600;
-            transform: translateY(-1px);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="100" fill="rgba(255,187,0,0.05)"/><circle cx="800" cy="300" r="150" fill="rgba(255,187,0,0.03)"/><circle cx="600" cy="700" r="120" fill="rgba(255,187,0,0.04)"/></svg>');
-            background-size: cover;
-        }
-
-        .hero-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 6rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-text h1 {
-            font-size: 4.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.2s forwards;
-        }
-
-        .hero-text p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            line-height: 1.5;
-            animation: fadeInUp 1s ease 0.4s forwards;
-        }
-
-        .hero-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease 0.5s forwards;
-        }
-
-        .badge {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            animation: fadeInUp 1s ease 0.6s forwards;
-        }
-
-        .btn-primary {
-            background: #FFBB00;
-            color: #4B1E67;
-            padding: 1.1rem 2.5rem;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .btn-primary:hover {
-            background: #e6a600;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 187, 0, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            padding: 1.1rem 2.5rem;
-            border: 2px solid white;
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #4B1E67;
-        }
-
-        .hero-visual {
-            position: relative;
-            height: 600px;
-        }
-
-        .salesforce-ecosystem {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .central-hub {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 140px;
-            height: 140px;
-            background: #FFBB00;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #4B1E67;
-            box-shadow: 0 15px 40px rgba(255, 187, 0, 0.3);
-            z-index: 10;
-            font-size: 1.1rem;
-        }
-
-        .orbit-item {
-            position: absolute;
-            width: 90px;
-            height: 90px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-align: center;
-            animation: orbit 20s linear infinite;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .orbit-item:hover {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .orbit-item:nth-child(2) { animation-delay: 0s; }
-        .orbit-item:nth-child(3) { animation-delay: -5s; }
-        .orbit-item:nth-child(4) { animation-delay: -10s; }
-        .orbit-item:nth-child(5) { animation-delay: -15s; }
-
-        /* Expertise Section */
-        .expertise {
-            padding: 8rem 3rem;
-            background: #ffffff;
-        }
-
-        .expertise-container {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 6rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .section-eyebrow {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #FFBB00;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #282828;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-        }
-
-        .section-header p {
-            font-size: 1.2rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .expertise-card {
-            background: #ffffff;
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 25px rgba(75, 30, 103, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 187, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .expertise-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #FFBB00 0%, #4B1E67 100%);
-        }
-
-        .expertise-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(75, 30, 103, 0.15);
-        }
-
-        .expertise-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #FFBB00 0%, #4B1E67 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .expertise-card h3 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #282828;
-            letter-spacing: -0.01em;
-        }
-
-        .expertise-card p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .expertise-features {
-            list-style: none;
-        }
-
-        .expertise-features li {
-            padding: 0.5rem 0;
-            color: #282828;
-            position: relative;
-            padding-left: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .expertise-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #FFBB00;
-            font-weight: 600;
-        }
-
-        /* Cloud Solutions */
-        .cloud-solutions {
-            padding: 8rem 3rem;
-            background: white;
-        }
-
-        .cloud-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .cloud-card {
-            background: #f8fafc;
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-        }
-
-        .cloud-card:hover {
-            border-color: #0070f3;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 112, 243, 0.1);
-            background: white;
-        }
-
-        .cloud-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-        }
-
-        .cloud-card h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .cloud-card p {
-            color: #4a5568;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-        }
-
-        .cloud-features {
-            list-style: none;
-            text-align: left;
-        }
-
-        .cloud-features li {
-            padding: 0.3rem 0;
-            color: #666;
-            font-size: 0.9rem;
-            position: relative;
-            padding-left: 1.2rem;
-        }
-
-        .cloud-features li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #0070f3;
-            font-weight: 600;
-        }
-
-        /* Agentforce Section */
-        .agentforce {
-            padding: 8rem 3rem;
-            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
-            color: white;
-        }
-
-        .agentforce-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .agentforce h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .agentforce p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .agentforce-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .agentforce-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .agentforce-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .agentforce-card h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .agentforce-card p {
-            margin-bottom: 1.5rem;
-            opacity: 0.8;
-        }
-
-        /* Process Timeline - Roadmap Style */
-        .process {
-            padding: 8rem 3rem;
-            background: #f8fafc;
-        }
-
-        .process-timeline {
-            max-width: 1400px;
-            margin: 3rem auto 0;
-            position: relative;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, #0070f3 0%, #0051cc 100%);
-            transform: translateX(-50%);
-            border-radius: 3px;
-        }
-
-        .process-step {
-            display: flex;
-            margin-bottom: 6rem;
-            position: relative;
-            align-items: center;
-        }
-
-        .process-step:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .process-step:nth-child(even) .process-content {
-            margin-right: 4rem;
-            margin-left: 0;
-        }
-
-        .process-content {
-            flex: 1;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 112, 243, 0.1);
-            margin-left: 4rem;
-            border: 1px solid rgba(0, 112, 243, 0.1);
-            max-width: 500px;
-        }
-
-        .process-number {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.5rem;
-            z-index: 10;
-            box-shadow: 0 8px 25px rgba(0, 112, 243, 0.3);
-        }
-
-        .process-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .process-content p {
-            color: #4a5568;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .process-deliverables {
-            list-style: none;
-        }
-
-        .process-deliverables li {
-            padding: 0.5rem 0;
-            color: #2d3748;
-            position: relative;
-            padding-left: 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        .process-deliverables li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #0070f3;
-            font-weight: 600;
-        }
-
-        /* Certifications */
-        .certifications {
-            padding: 8rem 3rem;
-            background: white;
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .cert-card {
-            background: #f8fafc;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 112, 243, 0.1);
-        }
-
-        .cert-card:hover {
-            background: white;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 112, 243, 0.1);
-        }
-
-        .cert-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .cert-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        /* Success Stories */
-        .success-stories {
-            padding: 8rem 3rem;
-            background: #f8fafc;
-        }
-
-        .stories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .story-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .story-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-        }
-
-        .story-header {
-            height: 200px;
-            background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .story-content {
-            padding: 2.5rem;
-        }
-
-        .story-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .story-content p {
-            color: #4a5568;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .story-metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .metric {
-            text-align: center;
-            padding: 1rem;
-            background: #f8fafc;
-            border-radius: 10px;
-        }
-
-        .metric-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #0070f3;
-            margin-bottom: 0.3rem;
-        }
-
-        .metric-label {
-            font-size: 0.85rem;
-            color: #666;
-            font-weight: 500;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            padding: 6rem 3rem;
-            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
-            color: white;
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #FFBB00;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-weight: 500;
-        }
-
-        .stat-desc {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-top: 0.5rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 8rem 3rem;
-            background: #282828;
-            color: white;
-        }
-
-        .cta-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-
-        .cta-form {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 187, 0, 0.2);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-top: 3rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(255, 187, 0, 0.3);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-        }
-
-        .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .form-submit {
-            background: #FFBB00;
-            color: #4B1E67;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            width: 100%;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .form-submit:hover {
-            background: #e6a600;
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 4rem 3rem 2rem;
-        }
-
-        .footer-container {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: #FFBB00;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            padding: 0.5rem 0;
-        }
-
-        .footer-section ul li a {
-            color: #999;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
-            color: #FFBB00;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-            color: #666;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes orbit {
-            from {
-                transform: rotate(0deg) translateX(170px) rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg) translateX(170px) rotate(-360deg);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                text-align: center;
-            }
-
-            .expertise-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .process-timeline::before {
-                left: 30px;
-            }
-
-            .process-step {
-                flex-direction: column !important;
-                margin-left: 60px;
-            }
-
-            .process-number {
-                left: 30px;
-            }
-
-            .process-content {
-                margin: 2rem 0 0 0 !important;
-                max-width: none;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-header h2 {
-                font-size: 2.2rem;
-            }
-
-            .cloud-grid,
-            .cert-grid,
-            .stories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero-badges {
-                justify-content: center;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
+        /* ===== RESET & BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: #282828;
+  overflow-x: hidden;
+  background: #ffffff;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 187, 0, 0.08);
+}
+
+.nav-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #4b1e67;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #282828;
+  font-weight: 400;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffbb00;
+}
+
+.nav-cta {
+  background: #ffbb00;
+  color: #4b1e67;
+  padding: 0.8rem 1.8rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.nav-cta:hover {
+  background: #e6a600;
+  transform: translateY(-1px);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #4b1e67 0%, #6b2d87 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="100" fill="rgba(255,187,0,0.05)"/><circle cx="800" cy="300" r="150" fill="rgba(255,187,0,0.03)"/><circle cx="600" cy="700" r="120" fill="rgba(255,187,0,0.04)"/></svg>');
+  background-size: cover;
+}
+
+.hero-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 6rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: 4.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.2s forwards;
+}
+
+.hero-text p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.5;
+  animation: fadeInUp 1s ease 0.4s forwards;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  animation: fadeInUp 1s ease 0.5s forwards;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.badge:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1.5rem;
+  animation: fadeInUp 1s ease 0.6s forwards;
+}
+
+.btn-primary {
+  background: #ffbb00;
+  color: #4b1e67;
+  padding: 1.1rem 2.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.btn-primary:hover {
+  background: #e6a600;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 187, 0, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  padding: 1.1rem 2.5rem;
+  border: 2px solid white;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.btn-secondary:hover {
+  background: white;
+  color: #4b1e67;
+}
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+  height: 600px;
+}
+
+.salesforce-ecosystem {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.central-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  background: #ffbb00;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #4b1e67;
+  box-shadow: 0 15px 40px rgba(255, 187, 0, 0.3);
+  z-index: 10;
+  font-size: 1.1rem;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.orbit-item {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-align: center;
+  animation: orbit 20s linear infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.orbit-item:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.orbit-item:nth-child(2) {
+  animation-delay: 0s;
+}
+
+.orbit-item:nth-child(3) {
+  animation-delay: -5s;
+}
+
+.orbit-item:nth-child(4) {
+  animation-delay: -10s;
+}
+
+.orbit-item:nth-child(5) {
+  animation-delay: -15s;
+}
+
+/* ===== CLIENT SHOWCASE ===== */
+.client-showcase {
+  padding: 3rem 0;
+  background: #f8fafc;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.client-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 3rem;
+}
+
+.client-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.client-slider {
+  overflow: hidden;
+  position: relative;
+  height: 80px;
+}
+
+.client-track {
+  display: flex;
+  align-items: center;
+  animation: scroll 30s linear infinite;
+  height: 100%;
+  gap: 4rem;
+}
+
+.client-logo {
+  flex-shrink: 0;
+  height: 40px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.client-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+/* ===== NEW COMBINED WHY US SECTION ===== */
+.why-sumeru {
+  padding: 10rem 3rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.why-sumeru::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 187, 0, 0.02) 0%, transparent 70%);
+  animation: rotate 60s linear infinite;
+}
+
+.why-sumeru-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.why-hero {
+  text-align: center;
+  margin-bottom: 8rem;
+}
+
+.why-hero .section-eyebrow {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffbb00;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.why-hero h2 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #282828;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.why-hero .hero-subtitle {
+  font-size: 1.4rem;
+  color: #666;
+  margin-bottom: 3rem;
+  line-height: 1.5;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trust-indicators {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  margin-bottom: 8rem;
+}
+
+.trust-item {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 187, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.trust-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(75, 30, 103, 0.1);
+}
+
+.trust-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #4b1e67;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.trust-label {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.value-statement {
+  background: linear-gradient(135deg, #4b1e67 0%, #6b2d87 100%);
+  border-radius: 30px;
+  padding: 6rem 4rem;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.value-statement::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="150" cy="150" r="80" fill="rgba(255,187,0,0.1)"/><circle cx="850" cy="200" r="120" fill="rgba(255,187,0,0.05)"/><circle cx="700" cy="800" r="100" fill="rgba(255,187,0,0.08)"/></svg>');
+  background-size: cover;
+}
+
+.value-content {
+  position: relative;
+  z-index: 2;
+}
+
+.value-statement h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  color: #ffbb00;
+}
+
+.value-statement p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.95;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
+.value-outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.outcome-item {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.outcome-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+.outcome-item h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffbb00;
+  margin-bottom: 0.5rem;
+}
+
+.outcome-item p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* ===== SALESFORCE EXPERTISE SECTION ===== */
+.salesforce-expertise {
+  padding: 8rem 3rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.salesforce-expertise::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 187, 0, 0.03) 0%, transparent 70%);
+  animation: rotate 60s linear infinite;
+}
+
+/* Lotus Flower Design - Updated for 6 petals */
+.lotus-flower {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  margin: 0 auto 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lotus-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130px;
+  height: 130px;
+  background: linear-gradient(135deg, #4b1e67 0%, #6b2d87 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(75, 30, 103, 0.3);
+  z-index: 10;
+  border: 3px solid #ffbb00;
+}
+
+.lotus-center h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #ffbb00;
+}
+
+.lotus-center p {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  line-height: 1.2;
+}
+
+.lotus-petal {
+  position: absolute;
+  width: 85px;
+  height: 125px;
+  background: linear-gradient(135deg, #ffbb00 0%, #e6a600 100%);
+  border-radius: 42px 42px 12px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4b1e67;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.2;
+  padding: 0.5rem;
+  box-shadow: 0 8px 25px rgba(255, 187, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.lotus-petal:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(255, 187, 0, 0.4);
+}
+
+.lotus-petal.active {
+  background: linear-gradient(135deg, #4b1e67 0%, #6b2d87 100%);
+  color: #ffbb00;
+  transform: scale(1.1);
+}
+
+/* 6 Petal Positioning (60 degrees apart) */
+.lotus-petal:nth-child(1) {
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.lotus-petal:nth-child(2) {
+  top: 50px;
+  right: 25px;
+  transform: rotate(60deg);
+}
+
+.lotus-petal:nth-child(3) {
+  bottom: 50px;
+  right: 25px;
+  transform: rotate(120deg);
+}
+
+.lotus-petal:nth-child(4) {
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.lotus-petal:nth-child(5) {
+  bottom: 50px;
+  left: 25px;
+  transform: rotate(240deg);
+}
+
+.lotus-petal:nth-child(6) {
+  top: 50px;
+  left: 25px;
+  transform: rotate(300deg);
+}
+
+/* Expertise Cards - Enhanced Layout */
+.expertise-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+.expertise-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 30px rgba(75, 30, 103, 0.08);
+  border: 1px solid rgba(255, 187, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.expertise-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffbb00 0%, #4b1e67 100%);
+  border-radius: 4px 4px 0 0;
+}
+
+.expertise-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(75, 30, 103, 0.15);
+  border-color: #ffbb00;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffbb00 0%, #4b1e67 100%);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  box-shadow: 0 8px 25px rgba(255, 187, 0, 0.2);
+}
+
+.card-title-section {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #282828;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  color: #ffbb00;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.card-description {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.card-services {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.card-services li {
+  padding: 0.6rem 0;
+  color: #4b1e67;
+  font-size: 0.9rem;
+  position: relative;
+  padding-left: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.card-services li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #ffbb00;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.card-tech {
+  background: linear-gradient(135deg, rgba(255, 187, 0, 0.08) 0%, rgba(75, 30, 103, 0.05) 100%);
+  padding: 1.2rem;
+  border-radius: 12px;
+  border-left: 4px solid #ffbb00;
+}
+
+.tech-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4b1e67;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.6rem;
+}
+
+.tech-list {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ===== SALESFORCE ECOSYSTEM STRIP ===== */
+.salesforce-strip {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 187, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 187, 0, 0.1);
+}
+
+.strip-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 3rem;
+}
+
+.strip-header {
+  margin-bottom: 3rem;
+}
+
+.strip-header h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #282828;
+  margin-bottom: 1rem;
+}
+
+.strip-header p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.ecosystem-slider {
+  overflow: hidden;
+  position: relative;
+  height: 120px;
+}
+
+.ecosystem-track {
+  display: flex;
+  align-items: center;
+  animation: scroll 40s linear infinite;
+  height: 100%;
+  gap: 3rem;
+}
+
+.ecosystem-item {
+  flex-shrink: 0;
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 5px 20px rgba(75, 30, 103, 0.08);
+  border: 1px solid rgba(255, 187, 0, 0.1);
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.ecosystem-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(75, 30, 103, 0.15);
+}
+
+.ecosystem-icon {
+  width: 40px;
+  height: 40px;
+  background: #4b7bff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.ecosystem-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #282828;
+  white-space: nowrap;
+}
+
+/* ===== BUSINESS IMPACT SECTION ===== */
+.business-impact {
+  padding: 6rem 3rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.impact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.impact-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.impact-hero .section-eyebrow {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffbb00;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.impact-hero h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #282828;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.impact-hero p {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(255, 187, 0, 0.08);
+  border: 1px solid rgba(255, 187, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffbb00 0%, #4b1e67 100%);
+  border-radius: 4px 4px 0 0;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 187, 0, 0.15);
+}
+
+.metric-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.metric-content h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #4b1e67;
+  line-height: 1;
+}
+
+.metric-content p {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .business-impact {
+    padding: 4rem 2rem;
+  }
+  
+  .impact-hero h2 {
+    font-size: 2rem;
+  }
+  
+  .impact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .metric-card {
+    padding: 2rem;
+  }
+  
+  .metric-icon {
+    font-size: 2rem;
+  }
+  
+  .metric-content h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== OFFERINGS SECTION ===== */
+.offerings {
+  padding: 8rem 3rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.offerings-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.offerings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.offering-card {
+  background: white;
+  border-radius: 25px;
+  padding: 3rem;
+  box-shadow: 0 15px 40px rgba(75, 30, 103, 0.1);
+  border: 1px solid rgba(255, 187, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.offering-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ffbb00 0%, #4b1e67 100%);
+  border-radius: 5px 5px 0 0;
+}
+
+.offering-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(75, 30, 103, 0.15);
+}
+
+.offering-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ffbb00 0%, #4b1e67 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(255, 187, 0, 0.3);
+}
+
+.offering-card h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #282828;
+}
+
+.offering-card p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.offering-features {
+  list-style: none;
+}
+
+.offering-features li {
+  padding: 0.8rem 0;
+  color: #4b1e67;
+  font-size: 0.95rem;
+  position: relative;
+  padding-left: 2rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.offering-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #ffbb00;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+
+/* ===== AI CAPABILITIES SECTION ===== */
+.ai-capabilities {
+  padding: 8rem 3rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.ai-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ai-tab {
+  background: white;
+  border: 2px solid #e2e8f0;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.ai-tab.active {
+  background: #0070f3;
+  color: white;
+  border-color: #0070f3;
+}
+
+.ai-content {
+  display: none;
+}
+
+.ai-content.active {
+  display: block;
+}
+
+.ai-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.ai-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 112, 243, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 112, 243, 0.1);
+}
+
+.ai-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 112, 243, 0.15);
+}
+
+.ai-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.ai-card p {
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.ai-features {
+  list-style: none;
+}
+
+.ai-features li {
+  padding: 0.3rem 0;
+  color: #2d3748;
+  font-size: 0.9rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.ai-features li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #0070f3;
+  font-weight: 600;
+}
+
+/* ===== CONNECTED PROCESS TIMELINE ===== */
+.process {
+  padding: 8rem 3rem;
+  background: #f8fafc;
+}
+
+.process-timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.process-timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #0070f3 0%, #4b1e67 100%);
+  transform: translateX(-50%);
+}
+
+.process-step {
+  position: relative;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.process-step:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.process-step:nth-child(even) .step-content {
+  text-align: right;
+}
+
+.step-number {
+  position: relative;
+  z-index: 10;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #0070f3 0%, #4b1e67 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  box-shadow: 0 8px 25px rgba(0, 112, 243, 0.3);
+  border: 4px solid white;
+}
+
+.step-content {
+  flex: 1;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 112, 243, 0.1);
+  border: 1px solid rgba(0, 112, 243, 0.1);
+  transition: all 0.3s ease;
+  max-width: 400px;
+}
+
+.step-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 112, 243, 0.15);
+}
+
+.step-content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.step-content p {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.step-deliverables {
+  list-style: none;
+}
+
+.step-deliverables li {
+  padding: 0.3rem 0;
+  color: #2d3748;
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.step-deliverables li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0070f3;
+  font-weight: 600;
+}
+
+/* ===== PARTNER CREDENTIALS ===== */
+.partner-credentials {
+  padding: 6rem 3rem;
+  background: white;
+}
+
+.credentials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.credentials-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+/* ===== SUCCESS STORIES ===== */
+.case-studies {
+  padding: 8rem 3rem;
+  background: #f8fafc;
+}
+
+.case-studies-container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.case-study-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 6rem;
+}
+
+.case-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.case-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.case-image {
+  height: 220px;
+  background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.image-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
+}
+
+.case-content {
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.case-category {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.case-content h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.case-content p {
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.case-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1 1 30%;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4B1E67;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ===== PARTNER WITH SUMERU SECTION ===== */
+.partner-with-sumeru {
+  padding: 6rem 3rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.partner-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.partner-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(75, 30, 103, 0.15);
+  margin-bottom: 3rem;
+}
+
+/* ===== CTA SECTION ===== */
+.cta-form {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(75, 30, 103, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-top: 1rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(75, 30, 103, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input::placeholder {
+  color: #999;
+}
+
+.form-group input:focus {
+  border-color: #4b1e67;
+  background: #fff;
+  outline: none;
+}
+
+.form-submit {
+  background: #4b1e67;
+  color: #ffffff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  width: 100%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.form-submit:hover {
+  background: #39114e;
+  transform: translateY(-2px);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #1a1a1a;
+  color: white;
+  padding: 4rem 3rem 2rem;
+}
+
+.footer-container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-section h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #ffbb00;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  padding: 0.5rem 0;
+}
+
+.footer-section ul li a {
+  color: #999;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #ffbb00;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+  color: #666;
+}
+
+/* ===== SHARED STYLES ===== */
+.expertise-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-eyebrow {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffbb00;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.section-header h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #282828;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(170px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(170px) rotate(-360deg);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .trust-indicators {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .value-outcomes {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .lotus-flower {
+    width: 350px;
+    height: 350px;
+  }
+
+  .lotus-center {
+    width: 110px;
+    height: 110px;
+  }
+
+  .lotus-petal {
+    width: 70px;
+    height: 100px;
+    font-size: 0.7rem;
+  }
+
+  .expertise-cards {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .impact-visual {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .impact-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-benefits {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .process-timeline::before {
+    left: 30px;
+  }
+
+  .process-step {
+    flex-direction: row !important;
+    padding-left: 80px;
+  }
+
+  .process-step:nth-child(even) .step-content {
+    text-align: left;
+  }
+
+  .step-number {
+    position: absolute;
+    left: 0;
+  }
+
+  .case-study-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .why-hero h2 {
+    font-size: 2.8rem;
+  }
+
+  .trust-indicators {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .salesforce-expertise {
+    padding: 6rem 2rem;
+  }
+
+  .lotus-flower {
+    width: 280px;
+    height: 280px;
+    margin-bottom: 4rem;
+  }
+
+  .lotus-center {
+    width: 90px;
+    height: 90px;
+  }
+
+  .lotus-center h3 {
+    font-size: 1rem;
+  }
+
+  .lotus-center p {
+    font-size: 0.65rem;
+  }
+
+  .lotus-petal {
+    width: 55px;
+    height: 80px;
+    font-size: 0.6rem;
+    padding: 0.3rem;
+  }
+
+  .expertise-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .expertise-card {
+    padding: 2rem;
+  }
+
+  .card-header {
+    gap: 1rem;
+  }
+
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .offerings-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .vision-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .ai-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-badges {
+    justify-content: center;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ecosystem-track {
+    gap: 2rem;
+  }
+
+  .process-timeline::before {
+    left: 20px;
+  }
+
+  .process-step {
+    padding-left: 60px;
+  }
+
+  .step-content {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .lotus-flower {
+    width: 220px;
+    height: 220px;
+  }
+
+  .lotus-center {
+    width: 75px;
+    height: 75px;
+  }
+
+  .lotus-petal {
+    width: 45px;
+    height: 65px;
+    font-size: 0.5rem;
+  }
+
+  .ecosystem-item {
+    min-width: 180px;
+  }
+}
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="nav-container">
             <div class="logo">Sumeru</div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#expertise">Expertise</a></li>
-                    <li><a href="#solutions">Solutions</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#success">Success Stories</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#expertise">Our Approach</a></li>
+                    <li><a href="#ai-capabilities">AI Innovation</a></li>
+                    <li><a href="#success">Case Studies</a></li>
                 </ul>
             </nav>
-            <a href="#contact" class="nav-cta">Get Started</a>
+            <a href="#contact" class="nav-cta">Partner With Us</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- ===== HERO SECTION ===== -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Marketing Automation Powerhouse for Enterprise Growth</h1>
-                <p>Since 2002, we've mastered the art of turning Salesforce Marketing Cloud into revenue-generating machines. With 50+ successful automation projects, we don't just implement—we architect customer journeys that scale.</p>
+                <h1>Salesforce & Sumeru</h1>
+                <p>For over two decades, we've been the trusted technical partner for companies who need Salesforce solutions that actually work. As a full-service Marketing agency, we specialize in handling the end-to-end project life cycle for both B2B and B2C customers, ensuring implementations work flawlessly from day one while creating lasting competitive advantages that drive revenue, loyalty, and long-term success.</p>
                 
-                <div class="hero-badges">
+                <!-- <div class="hero-badges">
                     <span class="badge">Salesforce Partner Since 2018</span>
-                    <span class="badge">50+ Marketing Cloud Projects</span>
-                    <span class="badge">170+ Certified Professionals</span>
-                    <span class="badge">Los Angeles Headquarters</span>
-                </div>
+                    <span class="badge">170+ Certified Specialists</span>
+                    <span class="badge">250+ Projects Delivered</span>
+                    <span class="badge">98% Customer Success Rate</span>
+                </div> -->
                 
                 <div class="hero-cta">
-                    <a href="#contact" class="btn-primary">Assess Your Marketing Automation ROI</a>
-                    <a href="#success" class="btn-secondary">See Our $2M+ Impact Stories</a>
+                    <a href="#get-in-touch" class="btn-primary">Get In Touch</a>
+                    <a href="#success" class="btn-secondary">View Our Work</a>
                 </div>
             </div>
+            
             <div class="hero-visual">
                 <div class="salesforce-ecosystem">
-                    <div class="central-hub">Marketing Cloud</div>
-                    <div class="orbit-item">Pardot B2B</div>
-                    <div class="orbit-item">Journey Builder</div>
-                    <div class="orbit-item">Einstein AI</div>
-                    <div class="orbit-item">Data Cloud CDP</div>
+                    <div class="central-hub">Salesforce</div>
+                    <div class="orbit-item">Marketing Cloud</div>
+                    <div class="orbit-item">Sales Cloud</div>
+                    <div class="orbit-item">Service Cloud</div>
+                    <div class="orbit-item">Data Cloud</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Expertise Section -->
-    <section class="expertise" id="expertise">
-        <div class="expertise-container">
+    <!-- ===== CLIENT SHOWCASE ===== -->
+    <section class="client-showcase">
+        <div class="client-container">
+            <div class="client-title">Trusted by Leading Organizations</div>
+            <div class="client-slider">
+                <div class="client-track">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Upwork</text></svg>" alt="Upwork" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>USC Marshall</text></svg>" alt="USC Marshall" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>DIG</text></svg>" alt="DIG" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Penn Mutual</text></svg>" alt="Penn Mutual" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>IBM</text></svg>" alt="IBM" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>UC Riverside</text></svg>" alt="UC Riverside" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Snagajob</text></svg>" alt="Snagajob" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Evolve</text></svg>" alt="Evolve" class="client-logo">
+                    <!-- Duplicate for seamless loop -->
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Quantitative</text></svg>" alt="Quantitative" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Ascencus</text></svg>" alt="Ascencus" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>Jumpstart MD</text></svg>" alt="Jumpstart MD" class="client-logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'><rect width='120' height='40' fill='%23E5E7EB'/><text x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'>The Art of Living</text></svg>" alt="The Art of Living" class="client-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEW COMBINED WHY SUMERU SECTION ===== -->
+      <section class="partner-credentials">
+        <div class="credentials-container">
             <div class="section-header">
-                <div class="section-eyebrow">Super Specialization in Marketing Automation</div>
-                <h2>We Map Strategy to Automation Architecture</h2>
-                <p>Unlike generalist consultants, we live and breathe marketing automation. Our approach maps your marketing strategies and desired outcomes directly to automation architecture—delivering both long-term value and short-term wins.</p>
+                <div class="section-eyebrow">Certified Partner</div>
+                <h2>Salesforce Partnership & Expertise</h2>
+                <p>Our deep partnership with Salesforce and extensive certifications ensure you get the highest level of expertise and support.</p>
             </div>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="expertise-icon">🎯</div>
-                    <h3>Marketing Cloud Strategy & Implementation</h3>
-                    <p>We architect scalable marketing automation that grows with your business, not against it.</p>
-                    <ul class="expertise-features">
-                        <li>Revenue-focused automation strategy</li>
-                        <li>Enterprise-grade SFMC implementation</li>
-                        <li>Multi-cloud integration architecture</li>
-                        <li>Real-time personalization engines</li>
-                    </ul>
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-07-21%20at%205.01.30%E2%80%AFPM-Gy0oZK9sAYMDhd94CCqW8rydZf0Ydg.png" alt="Certified Salesforce Partner" class="credentials-image">
+        </div>
+        <div class="trust-indicators">
+                    <div class="trust-item">
+                        <span class="trust-number">20+</span>
+                        <div class="trust-label">Years Experience</div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-number">2018</span>
+                        <div class="trust-label">Partner Since</div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-number">250+</span>
+                        <div class="trust-label">Projects Delivered</div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-number">98%</span>
+                        <div class="trust-label">Success Rate</div>
+                    </div>
+    </section>
+    <!-- <section class="why-sumeru" id="why-us">
+        <div class="why-sumeru-container">
+            <div class="why-hero">
+                <div class="section-eyebrow">Why Choose Sumeru</div>
+                <h2>Your Trusted Salesforce Partner</h2>
+                <p class="hero-subtitle">Two decades of experience delivering Salesforce solutions that drive real business results</p>
+                
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <span class="trust-number">20+</span>
+                        <div class="trust-label">Years Experience</div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-number">2018</span>
+                        <div class="trust-label">Partner Since</div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-number">250+</span>
+                        <div class="trust-label">Projects Delivered</div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-number">98%</span>
+                        <div class="trust-label">Success Rate</div>
+                    </div>
                 </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">⚡</div>
-                    <h3>Pardot B2B Automation Excellence</h3>
-                    <p>Transform your B2B pipeline with Account-Based Marketing automation that actually converts.</p>
-                    <ul class="expertise-features">
-                        <li>Lead scoring & nurturing optimization</li>
-                        <li>ABM campaign automation</li>
-                        <li>Pipeline velocity acceleration</li>
-                        <li>Sales-marketing alignment systems</li>
-                    </ul>
+            </div>
+            
+            <div class="value-statement">
+                <div class="value-content">
+                    <h3>We Create Salesforce Experiences That Drive Business Forward</h3>
+                    <p>Every organization has unique rhythms, workflows, and goals. Our approach begins by understanding these nuances—how your teams collaborate, where efficiency gains matter most, and what success looks like in your specific context. We then architect Salesforce solutions that enhance these natural patterns rather than disrupting them.</p>
+                    
+                    <div class="value-outcomes">
+                        <div class="outcome-item">
+                            <h4>Intuitive from Day One</h4>
+                            <p>Implementations that feel natural and require minimal training</p>
+                        </div>
+                        <div class="outcome-item">
+                            <h4>Organic Adoption</h4>
+                            <p>Teams embrace the solution because it enhances their workflow</p>
+                        </div>
+                        <div class="outcome-item">
+                            <h4>Compounding Impact</h4>
+                            <p>Measurable business results that grow over time</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">🧠</div>
-                    <h3>Einstein AI & Personalization</h3>
-                    <p>Deploy AI that learns from your customers' behaviors to predict and personalize at scale.</p>
-                    <ul class="expertise-features">
-                        <li>Predictive audience modeling</li>
-                        <li>Dynamic content optimization</li>
-                        <li>Send-time optimization</li>
-                        <li>Engagement frequency tuning</li>
-                    </ul>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">🔗</div>
-                    <h3>Data Cloud & CDP Integration</h3>
-                    <p>Unify fragmented customer data into actionable insights that fuel intelligent automation.</p>
-                    <ul class="expertise-features">
-                        <li>360-degree customer view creation</li>
-                        <li>Real-time data activation</li>
-                        <li>Cross-platform identity resolution</li>
-                        <li>Compliance-ready data governance</li>
-                    </ul>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">📈</div>
-                    <h3>Performance Analytics & Optimization</h3>
-                    <p>Move beyond vanity metrics to revenue attribution that proves marketing automation ROI.</p>
-                    <ul class="expertise-features">
-                        <li>Multi-touch attribution modeling</li>
-                        <li>Revenue cycle analytics</li>
-                        <li>Campaign performance optimization</li>
-                        <li>Executive-ready ROI reporting</li>
-                    </ul>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">🛠️</div>
-                    <h3>Managed Services & Team Augmentation</h3>
-                    <p>Scale your campaigns without scaling headcount through our dedicated automation specialists.</p>
-                    <ul class="expertise-features">
-                        <li>Campaign execution & management</li>
-                        <li>24/7 technical support</li>
-                        <li>Team training & knowledge transfer</li>
-                        <li>Ongoing optimization services</li>
-                    </ul>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- ===== SALESFORCE EXPERTISE SECTION ===== -->
+<section class="salesforce-expertise" id="expertise">
+    <div class="expertise-container">
+        <div class="section-header">
+            <div class="section-eyebrow">Salesforce Expertise</div>
+            <h2>Six Pillars of Sumeru's Salesforce Services</h2>
+            <p>Our comprehensive approach combines strategic thinking, creative execution, and technical mastery to deliver Salesforce solutions that drive measurable business growth.</p>
+        </div>
+        
+        <!-- Lotus Flower Visual -->
+        <!-- <div class="lotus-flower">
+            <div class="lotus-center">
+                <h3>Salesforce</h3>
+                <p>Platform Excellence</p>
+            </div>
+            
+            <div class="lotus-petal" data-card="strategy" onclick="highlightCard('strategy')">
+                Strategy & Design
+            </div>
+            
+            <div class="lotus-petal" data-card="creative" onclick="highlightCard('creative')">
+                Creative & UX
+            </div>
+            
+            <div class="lotus-petal" data-card="implementation" onclick="highlightCard('implementation')">
+                Implementation
+            </div>
+            
+            <div class="lotus-petal" data-card="backend" onclick="highlightCard('backend')">
+                Backend & Integration
+            </div>
+            
+            <div class="lotus-petal" data-card="intelligence" onclick="highlightCard('intelligence')">
+                Data & Intelligence
+            </div>
+            
+            <div class="lotus-petal" data-card="security" onclick="highlightCard('security')">
+                Security & Compliance
+            </div>
+        </div> -->
+        
+       <!-- Expertise Cards -->
+<div class="expertise-cards">
+    <div class="expertise-card" id="card-strategy">
+        <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <div class="card-title-section">
+                <h3 class="card-title">Digital Strategy & Campaign Design</h3>
+                <p class="card-subtitle">Strategic Foundation</p>
+            </div>
+        </div>
+        <ul class="card-services">
+            <li>Full-funnel digital marketing strategies that drive measurable results</li>
+            <li>Multi-channel campaign workflows aligned with Salesforce tools</li>
+        </ul>
+    </div>
+    
+    <div class="expertise-card" id="card-creative">
+        <div class="card-header">
+            <div class="card-icon">🎨</div>
+            <div class="card-title-section">
+                <h3 class="card-title">Creative & Experience Design</h3>
+                <p class="card-subtitle">User-Centered Design</p>
+            </div>
+        </div>
+        <ul class="card-services">
+            <li>UX/UI design across web, mobile, and Experience Cloud</li>
+            <li>Campaign creative and branded assets built to perform</li>
+        </ul>
+    </div>
+    
+    <div class="expertise-card" id="card-implementation">
+        <div class="card-header">
+            <div class="card-icon">⚙️</div>
+            <div class="card-title-section">
+                <h3 class="card-title">Salesforce Implementation & Optimization</h3>
+                <p class="card-subtitle">Platform Mastery</p>
+            </div>
+        </div>
+        <ul class="card-services">
+            <li>Sales, Service, and Experience Cloud setup tailored to your business</li>
+            <li>Custom applications and automation with Apex and Flow</li>
+        </ul>
+    </div>
+    
+    <div class="expertise-card" id="card-backend">
+        <div class="card-header">
+            <div class="card-icon">🔧</div>
+            <div class="card-title-section">
+                <h3 class="card-title">Backend Systems & Integration</h3>
+                <p class="card-subtitle">Technical Architecture</p>
+            </div>
+        </div>
+        <ul class="card-services">
+            <li>API development and third-party integrations across your ecosystem</li>
+            <li>Data migration, cleansing, and platform connections</li>
+        </ul>
+    </div>
+    
+    <div class="expertise-card" id="card-intelligence">
+        <div class="card-header">
+            <div class="card-icon">🧠</div>
+            <div class="card-title-section">
+                <h3 class="card-title">Data & Intelligence</h3>
+                <p class="card-subtitle">AI-Powered Insights</p>
+            </div>
+        </div>
+        <ul class="card-services">
+            <li>Data Cloud and Einstein AI implementation for predictive insights</li>
+            <li>Real-time dashboards and reporting for faster decisions</li>
+        </ul>
+    </div>
+    
+    <div class="expertise-card" id="card-security">
+        <div class="card-header">
+            <div class="card-icon">🛡️</div>
+            <div class="card-title-section">
+                <h3 class="card-title">Security, Governance & Compliance</h3>
+                <p class="card-subtitle">Trust & Protection</p>
+            </div>
+        </div>
+        <ul class="card-services">
+            <li>Salesforce Shield setup and regulatory compliance (GDPR, HIPAA)</li>
+            <li>Data governance and risk management controls</li>
+        </ul>
+    </div>
+</div>
+    </div>
+</section>
+
+
+    <!-- ===== SALESFORCE ECOSYSTEM STRIP ===== -->
+    <section class="salesforce-strip">
+        <div class="strip-container">
+            <div class="strip-header">
+                <h3>Complete Salesforce Ecosystem</h3>
+                <p>We work across the entire Salesforce platform to deliver integrated solutions</p>
+            </div>
+            <div class="ecosystem-slider">
+                <div class="ecosystem-track">
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon marketing-cloud">📧</div>
+                        <div class="ecosystem-name">Marketing Cloud</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon sales-cloud">💰</div>
+                        <div class="ecosystem-name">Sales Cloud</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon service-cloud">❤️</div>
+                        <div class="ecosystem-name">Service Cloud</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon data-cloud">📊</div>
+                        <div class="ecosystem-name">Data Cloud</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon einstein-ai">🧠</div>
+                        <div class="ecosystem-name">Einstein AI</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon agentforce">🤖</div>
+                        <div class="ecosystem-name">Agentforce</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon tableau">📈</div>
+                        <div class="ecosystem-name">Tableau</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon experience-cloud">🌐</div>
+                        <div class="ecosystem-name">Experience Cloud</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon commerce-cloud">🛒</div>
+                        <div class="ecosystem-name">Commerce Cloud</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon platform">⚙️</div>
+                        <div class="ecosystem-name">Platform</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon cpq-cloud">💼</div>
+                        <div class="ecosystem-name">CPQ Cloud</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon education-cloud">🎓</div>
+                        <div class="ecosystem-name">Education Cloud</div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon marketing-cloud">📧</div>
+                        <div class="ecosystem-name">Marketing Cloud</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon sales-cloud">💰</div>
+                        <div class="ecosystem-name">Sales Cloud</div>
+                    </div>
+                    <div class="ecosystem-item">
+                        <div class="ecosystem-icon service-cloud">❤️</div>
+                        <div class="ecosystem-name">Service Cloud</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Cloud Solutions -->
-    <section class="cloud-solutions" id="solutions">
-        <div class="expertise-container">
+<!-- ===== BUSINESS IMPACT SECTION ===== -->
+<section class="business-impact">
+    <div class="impact-container">
+        <div class="impact-hero">
+            <div class="section-eyebrow">Business Impact</div>
+            <h2>Measurable Salesforce Results</h2>
+            <p>Strategic implementation delivers immediate improvements across key business metrics.</p>
+        </div>
+        
+        <div class="impact-grid">
+            <div class="metric-card">
+                <!-- <div class="metric-icon">📈</div> -->
+                <div class="metric-content">
+                    <h3>Speed</h3>
+                    <p>Faster Sales Cycles</p>
+                </div>
+            </div>
+            <div class="metric-card">
+                <!-- <div class="metric-icon">⚡</div> -->
+                <div class="metric-content">
+                    <h3>Productivity</h3>
+                    <p>Reduced Admin Overhead</p>
+                </div>
+            </div>
+            <div class="metric-card">
+                <!-- <div class="metric-icon">🎯</div> -->
+                <div class="metric-content">
+                    <h3>Real-time</h3>
+                    <p>Predictive Insights</p>
+                </div>
+            </div>
+            <div class="metric-card">
+                <!-- <div class="metric-icon">❤️</div> -->
+                <div class="metric-content">
+                    <h3>360°</h3>
+                    <p>Customer Experience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ===== OFFERINGS SECTION ===== -->
+    <section class="offerings" id="offerings">
+        <div class="offerings-container">
             <div class="section-header">
-                <div class="section-eyebrow">Marketing Technology Stack Mastery</div>
-                <h2>Beyond Marketing Cloud: Complete MarTech Excellence</h2>
-                <p>While we specialize in Salesforce Marketing Cloud, our expertise extends across the entire marketing technology ecosystem to create seamless, integrated customer experiences.</p>
+                <div class="section-eyebrow">Partnership Models</div>
+                <h2>Our Offerings are Tailored to Your Needs</h2>
+                <p>Whether you need strategic guidance, complete implementation, or ongoing optimization, Sumeru offers flexible partnership models designed to deliver maximum value for your investment.</p>
             </div>
-            <div class="cloud-grid">
-                <div class="cloud-card">
-                    <div class="cloud-icon">📧</div>
-                    <h3>Marketing Cloud (SFMC)</h3>
-                    <p>Enterprise-grade B2C marketing automation for complex customer journeys</p>
-                    <ul class="cloud-features">
-                        <li>Journey Builder automation</li>
-                        <li>Email Studio optimization</li>
-                        <li>Mobile messaging campaigns</li>
-                        <li>Social media integration</li>
-                    </ul>
-                </div>
-                <div class="cloud-card">
-                    <div class="cloud-icon">🎯</div>
-                    <h3>Pardot (Account Engagement)</h3>
-                    <p>B2B marketing automation that accelerates pipeline velocity</p>
-                    <ul class="cloud-features">
-                        <li>Lead qualification & scoring</li>
-                        <li>ABM campaign execution</li>
-                        <li>Sales enablement automation</li>
-                        <li>ROI tracking & attribution</li>
-                    </ul>
-                </div>
-                <div class="cloud-card">
-                    <div class="cloud-icon">🔮</div>
-                    <h3>Personalization (Interaction Studio)</h3>
-                    <p>Real-time personalization that adapts to every customer interaction</p>
-                    <ul class="cloud-features">
-                        <li>Behavioral tracking & analysis</li>
-                        <li>Dynamic content delivery</li>
-                        <li>Cross-channel orchestration</li>
-                        <li>A/B testing automation</li>
-                    </ul>
-                </div>
-                <div class="cloud-card">
-                    <div class="cloud-icon">💾</div>
-                    <h3>Data Cloud (CDP)</h3>
-                    <p>Customer data platform that unifies identity across every touchpoint</p>
-                    <ul class="cloud-features">
-                        <li>Identity resolution</li>
-                        <li>Audience segmentation</li>
-                        <li>Real-time activation</li>
-                        <li>Privacy compliance</li>
-                    </ul>
-                </div>
-                <div class="cloud-card">
-                    <div class="cloud-icon">📊</div>
-                    <h3>Datorama (Intelligence)</h3>
-                    <p>Marketing analytics that connects spend to revenue across all channels</p>
-                    <ul class="cloud-features">
-                        <li>Cross-channel attribution</li>
-                        <li>Campaign performance analysis</li>
-                        <li>Executive dashboards</li>
-                        <li>Budget optimization</li>
-                    </ul>
-                </div>
-                <div class="cloud-card">
-                    <div class="cloud-icon">🤖</div>
-                    <h3>Einstein AI Suite</h3>
-                    <p>AI-powered insights that predict customer behavior and optimize engagement</p>
-                    <ul class="cloud-features">
-                        <li>Predictive audience modeling</li>
-                        <li>Send-time optimization</li>
-                        <li>Content recommendations</li>
-                        <li>Engagement scoring</li>
-                    </ul>
-                </div>
+            
+            <div class="offerings-grid">
+    <div class="offering-card">
+        <!-- <div class="offering-icon">🧠</div> -->
+        <h3>Strategic Consulting</h3>
+        <ul class="offering-features">
+            <li>In-depth Technology Assessments & Audits</li>
+            <li>Strategic Roadmap Development aligned with business goals</li>
+            <li>Executive Advisory Sessions for digital transformation</li>
+        </ul>
+    </div>
+    
+    <div class="offering-card">
+        <!-- <div class="offering-icon">🚀</div> -->
+        <h3>Project Implementation</h3>
+        <p>Complete end-to-end delivery of customer experience solutions, from strategy through deployment and launch optimization.</p>
+        <ul class="offering-features">
+            <li>Full Platform Implementation</li>
+            <li>Custom Development & Integration</li>
+            <li>Data Migration & Setup</li>
+        </ul>
+    </div>
+    
+    <div class="offering-card">
+        <!-- <div class="offering-icon">⚙️</div> -->
+        <h3>Managed Services</h3>
+        <p>Ongoing optimization and management of your marketing technology stack to ensure continuous improvement and maximum ROI.</p>
+        <ul class="offering-features">
+            <li>24/7 Platform Management</li>
+            <li>Continuous Performance Optimization</li>
+            <li>Regular Analytics & Reporting</li>
+        </ul>
+    </div>
+</div>
+
             </div>
         </div>
     </section>
 
-    <!-- Agentforce Section -->
-    <section class="agentforce">
-        <div class="agentforce-content">
-            <div class="section-eyebrow" style="color: rgba(255,255,255,0.8);">Agentforce: The Future of Marketing Automation</div>
-            <h2>AI Agents That Execute Your Marketing Strategy</h2>
-            <p>We're early adopters of Salesforce Agentforce, training autonomous AI agents to handle complex marketing tasks while you focus on strategy and creativity.</p>
-            <div class="agentforce-grid">
-                <div class="agentforce-card">
-                    <h3>Campaign Creation Agent</h3>
-                    <p>AI that builds entire campaigns from brief to execution, including audience segmentation, content creation, and journey mapping.</p>
-                    <ul style="list-style: none; text-align: left; margin-top: 1rem;">
-                        <li style="padding: 0.3rem 0; opacity: 0.8;">• Automated campaign briefs</li>
-                        <li style="padding: 0.3rem 0; opacity: 0.8;">• Dynamic audience creation</li>
-                        <li style="padding: 0.3rem 0; opacity: 0.8;">• Content generation & optimization</li>
-                    </ul>
+
+    
+
+   <!-- ===== AI CAPABILITIES SECTION ===== -->
+<section class="ai-capabilities" id="ai-capabilities">
+    <div class="expertise-container">
+        <div class="section-header">
+            <div class="section-eyebrow">Salesforce AI Capabilities</div>
+            <h2>Build with AI, Together</h2>
+            <p>Our methodology is built around ensuring your organization leads in the age of intelligent customer relationships.</p>
+        </div>
+
+        <div class="ai-tabs">
+            <div class="ai-tab active" data-tab="agentforce">Agentforce</div>
+            <div class="ai-tab" data-tab="einstein">Einstein AI</div>
+            <div class="ai-tab" data-tab="platform">Platform AI</div>
+            <div class="ai-tab" data-tab="industry">Industry AI</div>
+        </div>
+
+        <div class="ai-content active" id="agentforce">
+            <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: #1a1a1a;">Agentforce: Autonomous AI Agents</h3>
+            <!-- <p style="text-align: center; margin-bottom: 3rem; color: #4a5568; max-width: 600px; margin-left: auto; margin-right: auto;">Deploy intelligent agents that work autonomously to handle customer interactions, automate processes, and drive business outcomes.</p> -->
+            <div class="ai-grid">
+                <div class="ai-card">
+                    <h3>AgentForce for Service</h3>
+                    <p style="color: #0070f3; font-weight: 500; font-size: 0.9rem; margin-bottom: 1rem;">CUSTOMER SUPPORT AUTOMATION</p>
+                    <p>Intelligent service agents that resolve customer inquiries, escalate complex issues, and provide 24/7 support across all channels.</p>
                 </div>
-                <div class="agentforce-card">
-                    <h3>Lead Nurturing Agent</h3>
-                    <p>Intelligent automation that adapts nurturing sequences based on prospect behavior and engagement patterns.</p>
-                    <ul style="list-style: none; text-align: left; margin-top: 1rem;">
-                        <li style="padding: 0.3rem 0; opacity: 0.8;">• Behavioral trigger optimization</li>
-                        <li style="padding: 0.3rem 0; opacity: 0.8;">• Dynamic content personalization</li>
-                        <li style="padding: 0.3rem 0; opacity: 0.8;">• Sales handoff automation</li>
-                    </ul>
+                <div class="ai-card">
+                    <h3>AgentForce for Sales</h3>
+                    <p style="color: #0070f3; font-weight: 500; font-size: 0.9rem; margin-bottom: 1rem;">SALES PROCESS AUTOMATION</p>
+                    <p>AI-powered sales agents that qualify leads, schedule meetings, update CRM records, and automate follow-ups automatically.</p>
                 </div>
-                <div class="agentforce-card">
-                    <h3>Performance Optimization Agent</h3>
-                    <p>AI that continuously monitors and optimizes campaigns for maximum ROI without human intervention.</p>
-                    <ul style="list-style: none; text-align: left; margin-top: 1rem;">
-                        <li style="padding: 0.3rem 0; opacity: 0.8;">• Real-time A/B testing</li>
-                        <li style="padding: 0.3rem 0; opacity: 0.8;">• Automated bid management</li>
-                        <li style="padding: 0.3rem 0; opacity: 0.8;">• Performance anomaly detection</li>
-                    </ul>
+                <div class="ai-card">
+                    <h3>AgentForce for Marketing</h3>
+                    <p style="color: #0070f3; font-weight: 500; font-size: 0.9rem; margin-bottom: 1rem;">CAMPAIGN AUTOMATION</p>
+                    <p>Marketing agents that personalize campaigns, nurture leads, optimize content, and analyze customer performance in real-time.</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Process Timeline -->
+        <div class="ai-content" id="einstein">
+            <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: #1a1a1a;">Einstein AI: Predictive Intelligence</h3>
+            <!-- <p style="text-align: center; margin-bottom: 3rem; color: #4a5568; max-width: 600px; margin-left: auto; margin-right: auto;">Harness Einstein's predictive capabilities to forecast outcomes, personalize experiences, and automate decision-making.</p> -->
+            <div class="ai-grid">
+                <div class="ai-card">
+                    <h3>Einstein Lead Scoring</h3>
+                    <p>Automatically score and prioritize leads based on historical data and behavioral patterns.</p>
+                </div>
+                <div class="ai-card">
+                    <h3>Einstein Analytics</h3>
+                    <p>Discover hidden insights in your data with AI-powered analytics and automated reporting.</p>
+                </div>
+                <div class="ai-card">
+                    <h3>Einstein Personalization</h3>
+                    <p>Deliver personalized experiences across all customer touchpoints with AI-driven recommendations.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-content" id="platform">
+            <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: #1a1a1a;">Platform AI: Custom Intelligence</h3>
+            <!-- <p style="text-align: center; margin-bottom: 3rem; color: #4a5568; max-width: 600px; margin-left: auto; margin-right: auto;">Build custom AI solutions tailored to your specific business needs using Salesforce's AI platform capabilities.</p> -->
+            <div class="ai-grid">
+                <div class="ai-card">
+                    <h3>Custom AI Models</h3>
+                    <p>Develop and deploy custom machine learning models that address your unique business challenges.</p>
+                </div>
+                <div class="ai-card">
+                    <h3>AI Builder</h3>
+                    <p>Create intelligent workflows and automation using Salesforce's low-code AI development tools.</p>
+                </div>
+                <div class="ai-card">
+                    <h3>AI Integration</h3>
+                    <p>Connect third-party AI services and tools with your Salesforce environment for enhanced capabilities.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-content" id="industry">
+            <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: #1a1a1a;">Industry AI: Specialized Solutions</h3>
+            <!-- <p style="text-align: center; margin-bottom: 3rem; color: #4a5568; max-width: 600px; margin-left: auto; margin-right: auto;">Leverage industry-specific AI capabilities designed for retail, financial services, and consumer engagement use cases within Salesforce.</p> -->
+            <div class="ai-grid">
+                <div class="ai-card">
+                    <h3>Retail & E-Commerce</h3>
+                    <p>Deliver personalized product recommendations, automate promotions, and create consistent cross-channel journeys using Salesforce Marketing Cloud.</p>
+                </div>
+                <div class="ai-card">
+                    <h3>Financial Services</h3>
+                    <p>Use AI to tailor communications, deepen client relationships, and streamline onboarding through Marketing Cloud automation and personalization tools.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- ===== CONNECTED PROCESS TIMELINE ===== -->
     <section class="process" id="process">
         <div class="expertise-container">
             <div class="section-header">
-                <div class="section-eyebrow">The Sumeru Marketing Automation Methodology</div>
-                <h2>From Strategy to Scale: Our Proven 90-Day Framework</h2>
-                <p>Two decades of experience distilled into a battle-tested methodology that delivers measurable results within 90 days—not 9 months.</p>
+                <div class="section-eyebrow">Our Approach</div>
+                <h2>From Planning to Performance: How We Build with Salesforce</h2>
+                <p>Every engagement starts with business context. We plan collaboratively, build with flexibility, and deliver solutions that scale — using Salesforce as a foundation and integrating the tools that matter most to your teams.</p>
             </div>
             <div class="process-timeline">
                 <div class="process-step">
-                    <div class="process-content">
-                        <h3>Automation Readiness Assessment (Days 1-14)</h3>
-                        <p>We audit your current marketing technology stack, data quality, and team capabilities to identify automation opportunities that will drive immediate ROI.</p>
-                        <ul class="process-deliverables">
-                            <li>MarTech stack audit & gap analysis</li>
-                            <li>Data quality assessment & cleanup plan</li>
-                            <li>Team skills evaluation & training roadmap</li>
-                            <li>Quick-win automation opportunities</li>
-                        </ul>
+                    <div class="step-connector"></div>
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Discovery & Alignment</h3>
+                        <!-- <p>We take time to understand your business, customer experience, and tech landscape — so we can shape the right Salesforce approach from the start.</p>
+                        <ul class="step-deliverables">
+                            <li>Stakeholder workshops & process mapping</li>
+                            <li>Current platform and data audit</li>
+                            <li>Goals and success metrics alignment</li>
+                        </ul> -->
                     </div>
-                    <div class="process-number">1</div>
                 </div>
                 <div class="process-step">
-                    <div class="process-content">
-                        <h3>Revenue-Focused Strategy Design (Days 15-30)</h3>
-                        <p>We map your customer journey to automation touchpoints, designing sequences that nurture prospects and accelerate deal velocity.</p>
-                        <ul class="process-deliverables">
-                            <li>Customer journey mapping & automation blueprint</li>
-                            <li>Lead scoring & qualification criteria</li>
-                            <li>Content strategy for each funnel stage</li>
-                            <li>Attribution model & KPI framework</li>
-                        </ul>
+                    <div class="step-connector"></div>
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Solution Planning & Experience Design</h3>
+                        <!-- <p>We craft a solution blueprint that balances your business needs, user experience, and future scalability — across Salesforce and connected tools.</p>
+                        <ul class="step-deliverables">
+                            <li>Solution and data architecture planning</li>
+                            <li>User experience and journey mapping</li>
+                            <li>Integration and automation strategy</li>
+                        </ul> -->
                     </div>
-                    <div class="process-number">2</div>
                 </div>
                 <div class="process-step">
-                    <div class="process-content">
-                        <h3>Platform Configuration & Integration (Days 31-60)</h3>
-                        <p>Our certified specialists configure your chosen platforms with enterprise-grade security, data governance, and performance optimization built-in.</p>
-                        <ul class="process-deliverables">
-                            <li>Marketing Cloud/Pardot setup & configuration</li>
-                            <li>CRM integration & data synchronization</li>
-                            <li>Custom development & third-party integrations</li>
-                            <li>Security protocols & compliance setup</li>
-                        </ul>
+                    <div class="step-connector"></div>
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Configuration & Build</h3>
+                        <!-- <p>We configure Salesforce products and supporting platforms based on your defined needs — with flexibility to adapt as your solution evolves.</p>
+                        <ul class="step-deliverables">
+                            <li>Salesforce product setup (Sales, Service, Marketing, etc.)</li>
+                            <li>Campaign automation and workflows</li>
+                            <li>Connected systems and data flows</li>
+                        </ul> -->
                     </div>
-                    <div class="process-number">3</div>
                 </div>
                 <div class="process-step">
-                    <div class="process-content">
-                        <h3>Campaign Launch & Optimization (Days 61-75)</h3>
-                        <p>We launch your first automated campaigns with built-in optimization protocols, ensuring peak performance from day one.</p>
-                        <ul class="process-deliverables">
-                            <li>Campaign creation & audience segmentation</li>
-                            <li>A/B testing framework implementation</li>
-                            <li>Performance monitoring dashboard setup</li>
-                            <li>Team training & knowledge transfer</li>
-                        </ul>
+                    <div class="step-connector"></div>
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Enablement & Readiness</h3>
+                        <!-- <p>We prepare your teams to launch successfully — with training, testing, and support that drives adoption from day one.</p>
+                        <ul class="step-deliverables">
+                            <li>End-to-end testing and validation</li>
+                            <li>Team training and documentation</li>
+                            <li>Go-live readiness and communication planning</li>
+                        </ul> -->
                     </div>
-                    <div class="process-number">4</div>
                 </div>
                 <div class="process-step">
-                    <div class="process-content">
-                        <h3>Scale & Continuous Innovation (Days 76-90+)</h3>
-                        <p>We establish ongoing optimization protocols and introduce advanced features like AI-powered personalization and predictive analytics.</p>
-                        <ul class="process-deliverables">
-                            <li>Performance analysis & ROI reporting</li>
-                            <li>Advanced automation feature rollout</li>
-                            <li>Scale planning & resource optimization</li>
-                            <li>Long-term roadmap & innovation strategy</li>
-                        </ul>
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Launch & Optimize</h3>
+                        <!-- <p>We support your launch and stay involved post-go-live — monitoring performance, making refinements, and planning for future phases.</p>
+                        <ul class="step-deliverables">
+                            <li>Go-live support and performance monitoring</li>
+                            <li>Post-launch refinements</li>
+                            <li>Ongoing optimization roadmap</li>
+                        </ul> -->
                     </div>
-                   
-                </div>
-            </div>
-        </div>
-    </section>
-                    </div>
-                   
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Certifications -->
-    <section class="certifications">
-        <div class="expertise-container">
+   
+
+    <!-- ===== SUCCESS STORIES ===== -->
+    <section class="case-studies" id="case-studies">
+        <div class="case-studies-container">
             <div class="section-header">
-                <div class="section-eyebrow">Deep Marketing Cloud Expertise</div>
-                <h2>170+ Certified Marketing Automation Specialists</h2>
-                <p>Our team doesn't just hold certifications—we live and breathe marketing automation. From Email Specialists to Technical Architects, we've assembled the most comprehensive Salesforce marketing team on the West Coast.</p>
+                <div class="section-eyebrow">Sumeru Success Stories</div>
+                <h2>Proven Results Across Industries</h2>
+                <p>Real transformation stories from healthcare, telecommunications, retail, and aviation that deliver measurable business impact through Sumeru's proven DCX framework and expertise.</p>
             </div>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <div class="cert-icon">🏆</div>
-                    <h3>Salesforce Partner Since 2018</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">📧</div>
-                    <h3>Marketing Cloud Email Specialists</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">🎯</div>
-                    <h3>Marketing Cloud Consultants</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">⚡</div>
-                    <h3>Pardot Specialists</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">🧠</div>
-                    <h3>Einstein Analytics Experts</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">🔗</div>
-                    <h3>Integration Architects</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">📊</div>
-                    <h3>Datorama Analytics</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">🔮</div>
-                    <h3>Personalization Studio</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">💾</div>
-                    <h3>Data Cloud CDP</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">🤖</div>
-                    <h3>Agentforce Specialists</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">☁️</div>
-                    <h3>Heroku Integration</h3>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">💬</div>
-                    <h3>Slack Workflow Automation</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Success Stories -->
-    <section class="success-stories" id="success">
-        <div class="expertise-container">
-            <div class="section-header">
-                <div class="section-eyebrow">$2M+ in Proven Marketing Automation ROI</div>
-                <h2>Real Results from Real Implementations</h2>
-                <p>We don't just implement technology—we architect revenue-generating systems. Here's how we've transformed marketing operations for enterprise clients across industries.</p>
-            </div>
-            <div class="stories-grid">
-                <div class="story-card">
-                    <div class="story-header">
-                        B2B SaaS Revenue Acceleration
-                    </div>
-                    <div class="story-content">
-                        <h3>FinTech Startup Scales from $2M to $12M ARR</h3>
-                        <p>Comprehensive Pardot implementation with ABM automation, lead scoring optimization, and sales-marketing alignment that accelerated pipeline velocity by 340%.</p>
-                        <div class="story-metrics">
-                            <div class="metric">
-                                <div class="metric-number">340%</div>
-                                <div class="metric-label">Pipeline Velocity Increase</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-number">67%</div>
-                                <div class="metric-label">Marketing Qualified Lead Increase</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-number">$2.4M</div>
-                                <div class="metric-label">Additional Annual Revenue</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="story-card">
-                    <div class="story-header">
-                        Enterprise E-commerce Transformation
-                    </div>
-                    <div class="story-content">
-                        <h3>Retail Giant Personalizes 50M+ Customer Journeys</h3>
-                        <p>Marketing Cloud implementation with Einstein AI personalization, cross-channel orchestration, and real-time behavioral triggers for a Fortune 500 retailer.</p>
-                        <div class="story-metrics">
-                            <div class="metric">
-                                <div class="metric-number">189%</div>
-                                <div class="metric-label">Email Revenue Increase</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-number">45%</div>
-                                <div class="metric-label">Cart Abandonment Recovery</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-number">23%</div>
-                                <div class="metric-label">Customer Lifetime Value Growth</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="story-card">
-                    <div class="story-header">
-                        Healthcare Marketing Compliance
-                    </div>
-                    <div class="story-content">
-                        <h3>Medical Device Company Achieves HIPAA-Compliant Automation</h3>
-                        <p>Secure Marketing Cloud implementation with advanced data governance, physician targeting, and regulatory-compliant patient journey automation.</p>
-                        <div class="story-metrics">
-                            <div class="metric">
-                                <div class="metric-number">156%</div>
-                                <div class="metric-label">Physician Engagement Increase</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-number">89%</div>
-                                <div class="metric-label">Compliance Audit Score</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-number">$1.8M</div>
-                                <div class="metric-label">Cost Savings from Automation</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="stats-container">
-            <h2 style="margin-bottom: 1rem;">Los Angeles-Based Marketing Automation Powerhouse</h2>
-            <p style="margin-bottom: 2rem; opacity: 0.9;">Since 2002, we've been architecting marketing automation systems that scale with ambitious companies</p>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Marketing Cloud Projects</div>
-                    <div class="stat-desc">Successful implementations delivered</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">170+</div>
-                    <div class="stat-label">Certified Specialists</div>
-                    <div class="stat-desc">Marketing automation experts</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">$2M+</div>
-                    <div class="stat-label">Client ROI Generated</div>
-                    <div class="stat-desc">Proven marketing automation value</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">23</div>
-                    <div class="stat-label">Years in Business</div>
-                    <div class="stat-desc">Marketing technology expertise</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="cta-container">
-            <h2>Ready to Turn Marketing Automation Into Revenue Generation?</h2>
-            <p>Stop thinking about marketing automation as just email campaigns. Let's architect a revenue-generating system that scales with your ambitions. Book a 30-minute Marketing Automation ROI Assessment—we'll show you exactly where you're leaving money on the table.</p>
             
-            <div class="cta-form">
-                <h3 style="margin-bottom: 2rem; color: white;">Get Your Free Marketing Automation ROI Assessment</h3>
+            <!-- Case Study Grid -->
+            <div class="case-study-grid">
+                <div class="case-card">
+                    <div class="case-image">
+                        <div class="image-content">
+                            <div class="image-icon">
+                                <img src="/placeholder.svg?height=48&width=48&text=Healthcare" alt="Healthcare">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">Healthcare</div>
+                        <h4>Sumeru Maximizes Access to Diabetes Care Management Devices</h4>
+                        <p>Sumeru partnered with a leading healthcare provider to deliver a strategic marketing transformation that significantly improved patient access to critical diabetes management tools.</p>
+                        <div class="case-stat">
+                            <div class="stat-item">
+                                <div class="stat-number">18%</div>
+                                <div class="stat-label">Customer Satisfaction</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">42%</div>
+                                <div class="stat-label">Email Deliverability</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">25%</div>
+                                <div class="stat-label">Open Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-image">
+                        <div class="image-content">
+                            <div class="image-icon">
+                                <img src="/placeholder.svg?height=48&width=48&text=Telecom" alt="Telecommunications">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">Telecommunications</div>
+                        <h4>Sumeru Optimizes Broadband Customer Experience</h4>
+                        <p>Sumeru helped a top Canadian telecom optimize their broadband customer experience and onboarding process, delivering significant improvements in customer satisfaction and digital adoption rates.</p>
+                        <div class="case-stat">
+                            <div class="stat-item">
+                                <div class="stat-number">27%</div>
+                                <div class="stat-label">Digital Adoption</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">11%</div>
+                                <div class="stat-label">Customer Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-image">
+                        <div class="image-content">
+                            <div class="image-icon">
+                                <img src="/placeholder.svg?height=48&width=48&text=Retail" alt="Retail">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">International Retail</div>
+                        <h4>Sumeru Drives Customer Intelligence for Leading Retailer</h4>
+                        <p>Enhanced customer intelligence capabilities for an international retailer, enabling data-driven decision making and personalized customer experiences across multiple channels.</p>
+                        <div class="case-stat">
+                            <div class="stat-item">
+                                <div class="stat-number">25%</div>
+                                <div class="stat-label">Customer Intelligence</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">8%</div>
+                                <div class="stat-label">Operational Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-image">
+                        <div class="image-content">
+                            <div class="image-icon">
+                                <img src="/placeholder.svg?height=48&width=48&text=Aviation" alt="Aviation">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <div class="case-category">Aviation</div>
+                        <h4>Sumeru Transforms MarTech for Top LATAM Airline</h4>
+                        <p>Comprehensive marketing technology transformation that enhanced customer engagement and streamlined marketing operations for a leading Latin American airline carrier.</p>
+                        <div class="case-stat">
+                            <div class="stat-item">
+                                <div class="stat-number">35%</div>
+                                <div class="stat-label">Marketing Efficiency</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">28%</div>
+                                <div class="stat-label">Customer Engagement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PARTNER WITH SUMERU SECTION ===== -->
+
+                <section class="partner-with-sumeru">
+        <div class="partner-container">
+            <div class="section-header">
+                <div class="section-eyebrow">Work With Us</div>
+                <h2>Ready to Get Started?</h2>
+                          <div class="cta-form" id="get-in-touch">
+                <h3 style="margin-bottom: 2rem; color: black;">Start a Conversation</h3>
                 <div class="form-group">
                     <input type="text" placeholder="Your Name" required>
                 </div>
@@ -1529,61 +2613,58 @@
                 <div class="form-group">
                     <input type="text" placeholder="Company Name" required>
                 </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Current Marketing Automation Platform (if any)" required>
-                </div>
-                <button class="form-submit">Book My 30-Minute ROI Assessment</button>
+                <button class="form-submit">Get In Touch</button>
+            </div> 
+                <!-- <p>Join the ranks of successful organizations who have transformed their business with our Salesforce expertise.</p> -->
             </div>
-            
-            <div style="margin-top: 2rem;">
-                <a href="#" class="btn-secondary" style="margin-right: 1rem;">Download: Marketing Automation ROI Calculator</a>
-                <a href="#success" class="btn-secondary">View More $2M+ Impact Stories</a>
-            </div>
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-07-21%20at%205.01.44%E2%80%AFPM-RaHzzfmM2FUmNlJFqx4X1wXQrGwY0A.png" alt="Partner with Sumeru - A Salesforce Marketing Cloud Full Stack Partner" class="partner-image">
+        </div> 
         </div>
     </section>
-
-    <!-- Footer -->
+            
+          
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-section">
-                    <h3>Marketing Automation Services</h3>
+                    <h3>Our Services</h3>
                     <ul>
-                        <li><a href="#">Salesforce Marketing Cloud Implementation</a></li>
-                        <li><a href="#">Pardot B2B Automation</a></li>
-                        <li><a href="#">Einstein AI & Personalization</a></li>
-                        <li><a href="#">Data Cloud CDP Integration</a></li>
-                        <li><a href="#">Marketing Automation Strategy</a></li>
+                        <li><a href="#">Salesforce Implementation</a></li>
+                        <li><a href="#">Marketing Cloud</a></li>
+                        <li><a href="#">Sales Cloud</a></li>
+                        <li><a href="#">Service Cloud</a></li>
+                        <li><a href="#">Data Cloud Integration</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Specialized Platforms</h3>
+                    <h3>Specialized Solutions</h3>
                     <ul>
-                        <li><a href="#">Marketing Cloud (SFMC)</a></li>
-                        <li><a href="#">Pardot (Account Engagement)</a></li>
-                        <li><a href="#">Personalization Studio</a></li>
-                        <li><a href="#">Data Cloud CDP</a></li>
-                        <li><a href="#">Datorama Analytics</a></li>
+                        <li><a href="#">Einstein AI Implementation</a></li>
+                        <li><a href="#">Agentforce Deployment</a></li>
+                        <li><a href="#">Experience Cloud</a></li>
+                        <li><a href="#">Commerce Cloud</a></li>
+                        <li><a href="#">Analytics & Reporting</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Industry Expertise</h3>
+                    <h3>Industries</h3>
                     <ul>
-                        <li><a href="#">B2B SaaS & Technology</a></li>
-                        <li><a href="#">E-commerce & Retail</a></li>
+                        <li><a href="#">Technology & SaaS</a></li>
                         <li><a href="#">Healthcare & Life Sciences</a></li>
                         <li><a href="#">Financial Services</a></li>
-                        <li><a href="#">Manufacturing & Industrial</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Retail & E-commerce</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Resources</h3>
                     <ul>
-                        <li><a href="#">Marketing Automation ROI Calculator</a></li>
-                        <li><a href="#">$2M+ Impact Case Studies</a></li>
-                        <li><a href="#">Pardot vs. Marketing Cloud Guide</a></li>
-                        <li><a href="#">Marketing Automation Webinars</a></li>
-                        <li><a href="#">Certification Training Programs</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Implementation Guide</a></li>
+                        <li><a href="#">Best Practices</a></li>
+                        <li><a href="#">Certification Training</a></li>
+                        <li><a href="#">Support</a></li>
                     </ul>
                 </div>
             </div>
@@ -1594,320 +2675,170 @@
     </footer>
 
     <script>
-        // Add smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+// ===== SMOOTH SCROLLING =====
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault()
+    const target = document.querySelector(this.getAttribute("href"))
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+      })
+    }
+  })
+})
 
-        // Add scroll effects to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(75, 30, 103, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = 'none';
-            }
-        });
+// ===== HEADER SCROLL EFFECTS =====
+window.addEventListener("scroll", () => {
+  const header = document.querySelector(".header")
+  if (window.scrollY > 100) {
+    header.style.background = "rgba(255, 255, 255, 0.98)"
+    header.style.boxShadow = "0 2px 20px rgba(75, 30, 103, 0.1)"
+  } else {
+    header.style.background = "rgba(255, 255, 255, 0.98)"
+    header.style.boxShadow = "none"
+  }
+})
 
-        // Add intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+// ===== AI CAPABILITIES TAB FUNCTIONALITY =====
+document.querySelectorAll(".ai-tab").forEach((tab) => {
+  tab.addEventListener("click", function () {
+    // Remove active class from all tabs and content
+    document.querySelectorAll(".ai-tab").forEach((t) => t.classList.remove("active"))
+    document.querySelectorAll(".ai-content").forEach((c) => c.classList.remove("active"))
+    
+    // Add active class to clicked tab
+    this.classList.add("active")
+    
+    // Show corresponding content
+    const targetContent = document.getElementById(this.dataset.tab)
+    if (targetContent) {
+      targetContent.classList.add("active")
+    }
+  })
+})
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+// ===== LOTUS PETAL AND CARD INTERACTION =====
+function highlightCard(cardType) {
+  // Remove active class from all petals and cards
+  document.querySelectorAll(".lotus-petal").forEach((petal) => {
+    petal.classList.remove("active")
+  })
+  document.querySelectorAll(".expertise-card").forEach((card) => {
+    card.style.transform = ""
+    card.style.boxShadow = ""
+    card.style.borderColor = ""
+  })
 
-        // Observe all cards for animations
-        document.querySelectorAll('.expertise-card, .cloud-card, .story-card, .cert-card, .process-content, .agentforce-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s ease';
-            observer.observe(card);
-        });
+  // Activate clicked petal
+  const clickedPetal = document.querySelector(`[data-card="${cardType}"]`)
+  if (clickedPetal) {
+    clickedPetal.classList.add("active")
+  }
 
-        // Form submission handling
-        document.querySelector('.cta-form button').addEventListener('click', function(e) {
-            e.preventDefault();
-            const inputs = document.querySelectorAll('.cta-form input');
-            let isValid = true;
-            
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.style.borderColor = '#ff4757';
-                } else {
-                    input.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                }
-            });
-            
-            if (isValid) {
-                alert('Thank you! We will contact you shortly to schedule your free Salesforce assessment.');
-                inputs.forEach(input => input.value = '');
-            } else {
-                alert('Please fill in all required fields.');
-            }
-        });
+  // Highlight corresponding card
+  const targetCard = document.getElementById(`card-${cardType}`)
+  if (targetCard) {
+    targetCard.style.transform = "translateY(-12px) scale(1.02)"
+    targetCard.style.boxShadow = "0 25px 80px rgba(75, 30, 103, 0.2)"
+    targetCard.style.borderColor = "#4B1E67"
+    
+    // Scroll to card on mobile
+    if (window.innerWidth <= 768) {
+      targetCard.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      })
+    }
+    
+    // Reset after 4 seconds
+    setTimeout(() => {
+      targetCard.style.transform = ""
+      targetCard.style.boxShadow = ""
+      targetCard.style.borderColor = ""
+      clickedPetal.classList.remove("active")
+    }, 4000)
+  }
+}
 
-        // Add hover effects to orbit items
-        document.querySelectorAll('.orbit-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1)';
-                this.style.background = 'rgba(255, 255, 255, 0.25)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-                this.style.background = 'rgba(255, 255, 255, 0.15)';
-            });
-        });
+// ===== CARD HOVER EFFECTS =====
+document.querySelectorAll(".expertise-card").forEach((card) => {
+  card.addEventListener("mouseenter", function () {
+    const cardId = this.id.replace("card-", "")
+    const correspondingPetal = document.querySelector(`[data-card="${cardId}"]`)
+    if (correspondingPetal) {
+      correspondingPetal.style.transform = correspondingPetal.style.transform + " scale(1.1)"
+      correspondingPetal.style.boxShadow = "0 12px 35px rgba(255, 187, 0, 0.4)"
+    }
+  })
 
-        // Dynamic counter animation for metrics
-        function animateCounters() {
-            const counters = document.querySelectorAll('.metric-number, .stat-number');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
-                if (target > 0) {
-                    const increment = target / 100;
-                    let current = 0;
-                    
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            counter.textContent = counter.textContent.replace(/\d+/, target);
-                            clearInterval(timer);
-                        } else {
-                            counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
-                        }
-                    }, 20);
-                }
-            });
-        }
+  card.addEventListener("mouseleave", function () {
+    const cardId = this.id.replace("card-", "")
+    const correspondingPetal = document.querySelector(`[data-card="${cardId}"]`)
+    if (correspondingPetal && !correspondingPetal.classList.contains("active")) {
+      correspondingPetal.style.transform = correspondingPetal.style.transform.replace(" scale(1.1)", "")
+      correspondingPetal.style.boxShadow = "0 8px 25px rgba(255, 187, 0, 0.3)"
+    }
+  })
+})
 
-        // Trigger counter animation when stats section is visible
-        const statsSection = document.querySelector('.stats-section');
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+// ===== FORM SUBMISSION HANDLING =====
+document.querySelector(".cta-form button").addEventListener("click", (e) => {
+  e.preventDefault()
+  const inputs = document.querySelectorAll(".cta-form input")
+  let isValid = true
 
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
+  inputs.forEach((input) => {
+    if (!input.value.trim()) {
+      isValid = false
+      input.style.borderColor = "#ff4757"
+    } else {
+      input.style.borderColor = "rgba(255, 187, 0, 0.3)"
+    }
+  })
 
-        // Trigger counter animation for success stories
-        const successSection = document.querySelector('.success-stories');
-        const successObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        document.querySelectorAll('.story-card .metric-number').forEach(counter => {
-                            const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
-                            if (target > 0) {
-                                const increment = target / 50;
-                                let current = 0;
-                                
-                                const timer = setInterval(() => {
-                                    current += increment;
-                                    if (current >= target) {
-                                        counter.textContent = counter.textContent.replace(/\d+/, target);
-                                        clearInterval(timer);
-                                    } else {
-                                        counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
-                                    }
-                                }, 30);
-                            }
-                        });
-                    }, 300);
-                    successObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
+  if (isValid) {
+    alert("Thank you! We will contact you shortly to discuss your project.")
+    inputs.forEach((input) => (input.value = ""))
+  } else {
+    alert("Please fill in all required fields.")
+  }
+})
 
-        if (successSection) {
-            successObserver.observe(successSection);
-        }
+// ===== ORBIT ITEM HOVER EFFECTS =====
+document.querySelectorAll(".orbit-item").forEach((item) => {
+  item.addEventListener("mouseenter", function () {
+    this.style.animationPlayState = "paused"
+    this.style.transform = "scale(1.1)"
+    this.style.background = "rgba(255, 255, 255, 0.25)"
+  })
 
-        // Enhanced orbit animation controls
-        const orbitItems = document.querySelectorAll('.orbit-item');
-        orbitItems.forEach((item, index) => {
-            item.addEventListener('click', function() {
-                // Pause animation temporarily on click
-                this.style.animationPlayState = 'paused';
-                setTimeout(() => {
-                    this.style.animationPlayState = 'running';
-                }, 2000);
-            });
-        });
+  item.addEventListener("mouseleave", function () {
+    this.style.animationPlayState = "running"
+    this.style.transform = "scale(1)"
+    this.style.background = "rgba(255, 255, 255, 0.15)"
+  })
+})
 
-        // Process timeline enhanced animations
-        const processSteps = document.querySelectorAll('.process-step');
-        const processObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    
-                    // Add staggered animation for process deliverables
-                    const deliverables = entry.target.querySelectorAll('.process-deliverables li');
-                    deliverables.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateX(0)';
-                        }, index * 100);
-                    });
-                }
-            });
-        }, { threshold: 0.3 });
+// ===== ENHANCED FORM INTERACTIONS =====
+const formInputs = document.querySelectorAll(".cta-form input")
+formInputs.forEach((input) => {
+  input.addEventListener("input", function () {
+    if (this.style.borderColor === "rgb(255, 71, 87)") {
+      this.style.borderColor = "rgba(255, 255, 255, 0.3)"
+    }
+  })
+})
 
-        processSteps.forEach(step => {
-            step.style.opacity = '0';
-            step.style.transform = 'translateY(50px)';
-            step.style.transition = 'all 0.8s ease';
-            
-            // Initially hide deliverables
-            const deliverables = step.querySelectorAll('.process-deliverables li');
-            deliverables.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-20px)';
-                item.style.transition = 'all 0.4s ease';
-            });
-            
-            processObserver.observe(step);
-        });
-
-        // Cloud cards enhanced interactions
-        document.querySelectorAll('.cloud-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                const features = this.querySelectorAll('.cloud-features li');
-                features.forEach((feature, index) => {
-                    setTimeout(() => {
-                        feature.style.transform = 'translateX(5px)';
-                        feature.style.color = '#0070f3';
-                    }, index * 50);
-                });
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                const features = this.querySelectorAll('.cloud-features li');
-                features.forEach(feature => {
-                    feature.style.transform = 'translateX(0)';
-                    feature.style.color = '#666';
-                });
-            });
-        });
-
-        // Expertise cards progressive enhancement
-        document.querySelectorAll('.expertise-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                const icon = this.querySelector('.expertise-icon');
-                icon.style.transform = 'rotate(10deg) scale(1.1)';
-                icon.style.background = 'linear-gradient(135deg, #0051cc 0%, #0070f3 100%)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                const icon = this.querySelector('.expertise-icon');
-                icon.style.transform = 'rotate(0deg) scale(1)';
-                icon.style.background = 'linear-gradient(135deg, #0070f3 0%, #0051cc 100%)';
-            });
-        });
-
-        // Certification cards animation
-        document.querySelectorAll('.cert-card').forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.1}s`;
-            
-            card.addEventListener('mouseenter', function() {
-                const icon = this.querySelector('.cert-icon');
-                icon.style.transform = 'scale(1.2)';
-                icon.style.background = 'linear-gradient(135deg, #0051cc 0%, #0070f3 100%)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                const icon = this.querySelector('.cert-icon');
-                icon.style.transform = 'scale(1)';
-                icon.style.background = 'linear-gradient(135deg, #0070f3 0%, #0051cc 100%)';
-            });
-        });
-
-        // Form validation enhancement
-        const formInputs = document.querySelectorAll('.cta-form input');
-        formInputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.style.borderColor = '#0070f3';
-                this.style.background = 'rgba(0, 112, 243, 0.05)';
-            });
-            
-            input.addEventListener('blur', function() {
-                if (this.value.trim()) {
-                    this.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                    this.style.background = 'rgba(255, 255, 255, 0.1)';
-                } else {
-                    this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                    this.style.background = 'rgba(255, 255, 255, 0.1)';
-                }
-            });
-
-            input.addEventListener('input', function() {
-                if (this.style.borderColor === 'rgb(255, 71, 87)') {
-                    this.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                }
-            });
-        });
-
-        // Smooth reveal for sections
-        const sections = document.querySelectorAll('section');
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('section-visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // Add CSS for section visibility
-        const style = document.createElement('style');
-        style.textContent = `
-            .section-visible {
-                animation: sectionFadeIn 0.8s ease forwards;
-            }
-            
-            @keyframes sectionFadeIn {
-                from {
-                    opacity: 0.7;
-                    transform: translateY(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
+// ===== CLIENT LOGO HOVER EFFECTS =====
+document.querySelectorAll(".client-logo").forEach((logo) => {
+  logo.addEventListener("mouseenter", function () {
+    this.style.transform = "scale(1.1)"
+  })
+  logo.addEventListener("mouseleave", function () {
+    this.style.transform = "scale(1)"
+  })
+})
     </script>
 </body>
 </html>
