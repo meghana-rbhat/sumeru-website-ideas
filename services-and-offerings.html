@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumeru DCX Pillars & Offerings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #282828;
+            background: #f8fafc;
+        }
+
+        /* Digital Suite Section */
+        .digital-suite {
+            padding: 8rem 3rem;
+            background: #f8fafc;
+        }
+
+        .suite-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 6rem;
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .suite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (min-width: 1200px) {
+            .suite-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .suite-pillar {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .suite-subtitle {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #999;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .suite-pillar:nth-child(1) { border-top-color: #4B1E67; }
+        .suite-pillar:nth-child(2) { border-top-color: #FFBB00; }
+        .suite-pillar:nth-child(3) { border-top-color: #6B2D87; }
+        .suite-pillar:nth-child(4) { border-top-color: #FFBB00; }
+        .suite-pillar:nth-child(5) { border-top-color: #4B1E67; }
+
+        .suite-pillar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .suite-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .suite-pillar:nth-child(2) .suite-icon {
+            background: linear-gradient(135deg, #FFBB00 0%, #e6a600 100%);
+            color: #4B1E67;
+        }
+
+        .suite-pillar:nth-child(4) .suite-icon {
+            background: linear-gradient(135deg, #FFBB00 0%, #e6a600 100%);
+            color: #4B1E67;
+        }
+
+        .suite-pillar h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .suite-pillar p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .suite-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .suite-features li {
+            padding: 0.5rem 0;
+            color: #4B1E67;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .suite-features li::before {
+            content: ' - ';
+            position: absolute;
+            left: 0;
+            color: #FFBB00;
+            font-weight: 700;
+        }
+
+        /* Offerings Section */
+        .offerings {
+            padding: 8rem 3rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .offerings-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .offering-card {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(75, 30, 103, 0.1);
+            border: 1px solid rgba(255, 187, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offering-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffbb00 0%, #4b1e67 100%);
+            border-radius: 5px 5px 0 0;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(75, 30, 103, 0.15);
+        }
+
+        .offering-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ffbb00 0%, #4b1e67 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 187, 0, 0.3);
+        }
+
+        .offering-card h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #282828;
+        }
+
+        .offering-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .offering-features {
+            list-style: none;
+        }
+
+        .offering-features li {
+            padding: 0.8rem 0;
+            color: #4b1e67;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 2rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .offering-features li::before {
+            content: " - ";
+            position: absolute;
+            left: 0;
+            color: #ffbb00;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .digital-suite, .offerings {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .suite-grid, .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .suite-pillar {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Animation */
+        .suite-pillar, .offering-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .suite-pillar:nth-child(1) { animation-delay: 0.1s; }
+        .suite-pillar:nth-child(2) { animation-delay: 0.2s; }
+        .suite-pillar:nth-child(3) { animation-delay: 0.3s; }
+        .suite-pillar:nth-child(4) { animation-delay: 0.4s; }
+        .suite-pillar:nth-child(5) { animation-delay: 0.5s; }
+
+        .offering-card:nth-child(1) { animation-delay: 0.1s; }
+        .offering-card:nth-child(2) { animation-delay: 0.2s; }
+        .offering-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sumeru's Comprehensive Digital Suite -->
+    <section class="digital-suite" id="digital-suite">
+        <div class="suite-container">
+            <div class="section-header">
+                <div class="section-eyebrow">What we do.</div>
+                <h2>Five Pillars of Sumeru's DCX</h2>
+                <p>Our approach helps businesses understand their users, design purposeful experiences, implement scalable technology, and drive impact through intelligent data. These four pillars ensure your digital investments lead to measurable business growth.</p>
+            </div>
+
+            <div class="suite-grid">
+                <!-- Strategy -->
+                <div class="suite-pillar">
+                    <div class="suite-icon">🧭</div>
+                    <h3>Strategy</h3>
+                    <div class="suite-subtitle">Understand & Plan</div>
+                    <p>We partner with your team to uncover insights, define user journeys, and build a roadmap aligned to your customer and business needs.</p>
+                    <ul class="suite-features">
+                        <li>Customer Research & Segmentation</li>
+                        <li>Persona & Journey Mapping</li>
+                        <li>Experience & Content Strategy</li>
+                        <li>Digital Roadmap Development</li>
+                    </ul>
+                </div>
+
+                <!-- Design -->
+                <div class="suite-pillar">
+                    <div class="suite-icon">🎨</div>
+                    <h3>Design</h3>
+                    <div class="suite-subtitle">Design & Prototype</div>
+                    <p>We design interfaces that reflect your brand and drive real user action—focusing on clarity, usability, and performance across all channels.</p>
+                    <ul class="suite-features">
+                        <li>UX/UI Design for Web & Mobile</li>
+                        <li>Wireframes, Prototypes & Testing</li>
+                        <li>Conversion-Driven Design</li>
+                        <li>Design Systems & Brand Application</li>
+                    </ul>
+                </div>
+
+                <!-- Tech -->
+                <div class="suite-pillar">
+                    <div class="suite-icon">⚙️</div>
+                    <h3>Technology Implementation</h3>
+                    <div class="suite-subtitle">Build & Integrate</div>
+                    <p>We develop and integrate modern platforms that power consistent, personalized experiences—across your entire marketing stack.</p>
+                    <ul class="suite-features">
+                        <li>Front-end & Back-end Development</li>
+                        <li>CMS, Commerce & CRM Integration</li>
+                        <li>MarTech Stack Implementation</li>
+                        <li>API Integration & Automation</li>
+                    </ul>
+                </div>
+
+                <!-- Data -->
+                <div class="suite-pillar">
+                    <div class="suite-icon">📊</div>
+                    <h3>Data Analytics & Intelligence</h3>
+                    <div class="suite-subtitle">Launch & Optimize</div>
+                    <p>We turn your customer and campaign data into actionable intelligence, powering better decisions and smarter, more dynamic experiences.</p>
+                    <ul class="suite-features">
+                        <li>Marketing Performance Dashboards</li>
+                        <li>Customer & Channel Attribution</li>
+                        <li>Real-time Data Pipelines</li>
+                        <li>Personalization & Predictive Insights</li>
+                    </ul>
+                </div>
+
+                <!-- Operations & Governance -->
+                <div class="suite-pillar">
+                    <div class="suite-icon">🛡️</div>
+                    <h3>Operations & Governance</h3>
+                    <div class="suite-subtitle">Run & Scale</div>
+                    <p>We ensure your digital platforms remain secure, compliant, and high-performing—while scaling with your business and evolving customer needs.</p>
+                    <ul class="suite-features">
+                        <li>Platform Monitoring & Support</li>
+                        <li>Accessibility & Regulatory Compliance</li>
+                        <li>Performance Optimization</li>
+                        <li>Marketing Operations Enablement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offerings Section -->
+    <section class="offerings" id="services">
+        <div class="offerings-container">
+            <div class="section-header">
+                <div class="section-eyebrow">What we offer.</div>
+                <h2>Our Offerings are Tailored to Your Needs</h2>
+                <p>Whether you need strategic guidance, complete implementation, or ongoing optimization, Sumeru offers flexible partnership models designed to deliver maximum value for your investment.</p>
+            </div>
+            
+            <div class="offerings-grid">
+                <div class="offering-card">
+                    <h3>Strategic Consulting</h3>
+                    <ul class="offering-features">
+                        <li>In-depth Technology Assessments & Audits</li>
+                        <li>Strategic Roadmap Development aligned with business goals</li>
+                        <li>Executive Advisory Sessions for digital transformation</li>
+                    </ul>
+                </div>
+                
+                <div class="offering-card">
+                    <h3>Project Implementation</h3>
+                    <p>Complete end-to-end delivery of customer experience solutions, from strategy through deployment and launch optimization.</p>
+                    <ul class="offering-features">
+                        <li>Full Platform Implementation</li>
+                        <li>Custom Development & Integration</li>
+                        <li>Data Migration & Setup</li>
+                    </ul>
+                </div>
+                
+                <div class="offering-card">
+                    <h3>Managed Services</h3>
+                    <p>Ongoing optimization and management of your marketing technology stack to ensure continuous improvement and maximum ROI.</p>
+                    <ul class="offering-features">
+                        <li>24/7 Platform Management</li>
+                        <li>Continuous Performance Optimization</li>
+                        <li>Regular Analytics & Reporting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
