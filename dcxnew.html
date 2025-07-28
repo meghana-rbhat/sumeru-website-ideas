@@ -945,6 +945,114 @@ HTML
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
 
+        /* --- DIGITAL MARKETING SCROLLING STRIP --- */
+        .logo-strip {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--light-gray-1) 0%, var(--light-gray-2) 100%);
+            overflow: hidden;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-slider {
+            overflow: hidden;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        
+        .logo-track {
+            display: flex;
+            align-items: center;
+            width: calc((250px + 3rem) * 12); /* 6 items duplicated */
+            animation: scroll 40s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc((250px + 3rem) * -6)); }
+        }
+        
+        .logo-item {
+            flex-shrink: 0;
+            width: 250px;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 5px 20px rgba(75, 30, 103, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            margin-right: 3rem;
+        }
+
+        .logo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(75, 30, 103, 0.1);
+        }
+
+        .logo-item .icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-purple);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .logo-item .name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: nowrap;
+        }
+        
+        /* --- BUSINESS PRINCIPLES SECTION --- */
+        .principles-section {
+            padding: 6rem 0;
+            background-color: #ffffff;
+        }
+        
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .principle-card {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            background-color: var(--light-gray-1);
+        }
+        
+        .principle-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .principle-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-purple);
+        }
+        
+        .principle-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
         /*tech Suite */
         .tech-expertise-section {
             padding: 8rem 0;
@@ -2031,6 +2139,59 @@ HTML
             </div>
         </div>
     </section>
+    <section class="logo-strip">
+        <div class="section-header">
+            <h3>Full-Funnel Digital Marketing Services</h3>
+        </div>
+        <div class="logo-slider">
+            <div class="logo-track">
+                <div class="logo-item"><div class="icon">📈</div><div class="name">SEO</div></div>
+                <div class="logo-item"><div class="icon">📣</div><div class="name">PPC Advertising</div></div>
+                <div class="logo-item"><div class="icon">📱</div><div class="name">Social Media Marketing</div></div>
+                <div class="logo-item"><div class="icon">✉️</div><div class="name">Email Marketing</div></div>
+                <div class="logo-item"><div class="icon">💻</div><div class="name">Websites & UX</div></div>
+                <div class="logo-item"><div class="icon">✍️</div><div class="name">Content Marketing</div></div>
+
+                <div class="logo-item"><div class="icon">📈</div><div class="name">SEO</div></div>
+                <div class="logo-item"><div class="icon">📣</div><div class="name">PPC Advertising</div></div>
+                <div class="logo-item"><div class="icon">📱</div><div class="name">Social Media Marketing</div></div>
+                <div class="logo-item"><div class="icon">✉️</div><div class="name">Email Marketing</div></div>
+                <div class="logo-item"><div class="icon">💻</div><div class="name">Websites & UX</div></div>
+                <div class="logo-item"><div class="icon">✍️</div><div class="name">Content Marketing</div></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="principles-section">
+        <div class="container">
+             <div class="section-header">
+                <h3>Our DCX Principles</h3>
+            </div>
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="icon">💥</div>
+                    <h4>Be Bold</h4>
+                    <p>We create memorable campaigns that cut through the noise.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="icon">🎯</div>
+                    <h4>Be Relevant</h4>
+                    <p>We deliver the right message to the right person at the right time.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="icon">💎</div>
+                    <h4>Be Valuable</h4>
+                    <p>We focus on providing genuine value to build trust and authority.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="icon">📊</div>
+                    <h4>Be Accountable</h4>
+                    <p>We are driven by data and accountable for delivering measurable results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <!-- Tech Suite Section -->
 
 
@@ -2056,6 +2217,8 @@ HTML
             </div>
         </div>
     </section>
+
+    
 
         <!-- Offerings Section -->
        <section class="section offerings fade-in-section" id="services">
@@ -2228,69 +2391,29 @@ HTML
                     </div>
                 </div>
                 <div class="case-content">
-                    <div class="case-category">International Retail</div>
-                    <h4>Driving Customer Intelligence for a Global Retailer</h4>
-                    <p>We enhanced customer intelligence capabilities for a major international retailer, enabling smarter decision-making and personalized experiences across every touchpoint.</p>
-                    <div class="case-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">25%</div>
-                            <div class="stat-label">Customer Intelligence</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">8%</div>
-                            <div class="stat-label">Operational Efficiency</div>
-                        </div>
-                    </div>
-                </div>
+    <div class="case-category">B2B Automation</div>
+    <h4>Automated Lead Scoring for a B2B Marketplace</h4>
+    <p>We streamlined an online job marketplace by unifying disparate channels into a 360° lead scoring system, introducing MQL and automation to help sales prioritize high-intent customers.</p>
+    <div class="case-stats">
+        <div class="stat-item">
+            <div class="stat-number">5%</div>
+            <div class="stat-label">Increase in Deals Generated</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">10%</div>
+            <div class="stat-label">Decrease in Rep Outreach Time</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">5%</div>
+            <div class="stat-label">Increase in Form Submissions</div>
+        </div>
+    </div>
+</div>
             </div>
 
-            <div class="case-card">
-                <div class="case-image">
-                    <div class="image-content">
-                        <div class="image-icon">✈️</div>
-                        <div>Aviation MarTech</div>
-                    </div>
-                </div>
-                <div class="case-content">
-                    <div class="case-category">Aviation</div>
-                    <h4>Transforming MarTech for a Leading LATAM Airline</h4>
-                    <p>A complete marketing technology transformation enhanced engagement and streamlined operations for one of Latin America's top airline carriers.</p>
-                    <div class="case-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">35%</div>
-                            <div class="stat-label">Marketing Efficiency</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">28%</div>
-                            <div class="stat-label">Customer Engagement</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
 
-            <div class="case-card">
-                <div class="case-image">
-                    <div class="image-content">
-                        <div class="image-icon">⚙️</div>
-                        <div>Tech Stack Innovation</div>
-                    </div>
-                </div>
-                <div class="case-content">
-                    <div class="case-category">Technology</div>
-                    <h4>Advanced Tech Stack Implementation</h4>
-                    <p>We deployed cutting-edge technology solutions that enabled real-time insights and personalized experiences across key customer journeys and channels.</p>
-                    <div class="case-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">45%</div>
-                            <div class="stat-label">Processing Speed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">32%</div>
-                            <div class="stat-label">Data Accuracy</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
         </div>
     </div>
 </section>
