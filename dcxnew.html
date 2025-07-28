@@ -869,6 +869,44 @@ HTML
             line-height: 1.6;
         }
 
+        /* --- IMPACT STRIP SECTION STYLES --- */
+        .impact-strip {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            color: #ffffff;
+            padding: 4rem 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .impact-stat {
+            padding: 1rem;
+        }
+
+        .impact-stat h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-stat p {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
         /* --- TECHNOLOGY GRID STYLES --- */
         .tech-grid {
             display: grid;
@@ -1845,6 +1883,32 @@ HTML
     </div>
 </section>
 
+ <section class="impact-strip">
+        <div class="container impact-grid">
+            
+            <div class="impact-stat">
+                <h2>20+ Years</h2>
+                <p>Of Consistent Growth & Innovation</p>
+            </div>
+            
+            <div class="impact-stat">
+                <h2>700+</h2>
+               <p>Successful Projects Delivered</p>
+            </div>
+            
+            <div class="impact-stat">
+                <h2>300+</h2>
+                <p>Certified In-House Experts</p>
+            </div>
+            
+            <div class="impact-stat">
+                <h2>5,000+</h2>
+                <p>Skilled Resources</p>
+            </div>
+
+        </div>
+    </section>
+
 
         <!-- Case Studies -->
        <section class="section case-studies fade-in-section" id="case-studies">
@@ -1852,8 +1916,7 @@ HTML
         <div class="section-header">
             <p class="section-eyebrow">Sumeru Success Stories</p>
             <h2>Proven Results Across Industries</h2>
-            <p>Since 2003, we’ve delivered over 700 successful projects. Here are real-world transformation stories from leading organizations, each showing measurable business impact made possible through our DCX expertise and proven frameworks.</p>
-        </div>
+<!-- <p>These case studies highlight how leading organizations have achieved measurable business results by leveraging our DCX expertise and proven frameworks.</p>        </div> -->
 
         <!-- Featured Case Study -->
         <div class="featured-case">
