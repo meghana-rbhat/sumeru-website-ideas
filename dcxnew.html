@@ -108,6 +108,123 @@
             height: 60px;
         }
 
+        /* --- UNIFIED LOGO STRIP STYLES (for all three sections) --- */
+        .logo-strip {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--light-gray-1) 0%, var(--light-gray-2) 100%);
+            overflow: hidden;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .strip-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 2rem;
+        }
+
+        .strip-header h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .strip-header p {
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .logo-slider {
+            overflow: hidden;
+            position: relative;
+            /* To fade out edges */
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        
+        .logo-track {
+            display: flex;
+            align-items: center;
+            /* Multiply total items by width+gap for seamless loop */
+            width: calc((250px + 3rem) * 24); /* 12 items duplicated */
+            animation: scroll 60s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc((250px + 3rem) * -12)); } /* Move by the width of the original 12 items */
+        }
+        
+        .logo-item {
+            flex-shrink: 0;
+            width: 250px;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 5px 20px rgba(75, 30, 103, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            margin-right: 3rem; /* This is the gap */
+        }
+
+        .logo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(75, 30, 103, 0.1);
+        }
+
+        .logo-item .icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-purple);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .logo-item .icon img {
+            max-height: 28px;
+            width: auto;
+        }
+
+        .logo-item .name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: nowrap;
+        }
+        
+        /* Client Logo Specific Styles */
+        .client-logo-item {
+            background: none;
+            border: none;
+            box-shadow: none;
+            width: auto;
+            padding: 0;
+        }
+        
+        .client-logo-item img {
+            height: 40px;
+            opacity: 0.6;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+        
+        .client-logo-item:hover img {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
         .logo {
             font-size: 1.8rem;
             font-weight: 600;
@@ -1018,6 +1135,126 @@ HTML
             font-weight: 700;
         }
 
+         .ai-section {
+            padding: 8rem 0;
+            background-color: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        /* --- AI SECTION GRID & CONTENT --- */
+        .ai-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .ai-content h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-purple);
+        }
+        
+        .ai-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .ai-content ul {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .ai-content li {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .ai-content li::before {
+            content: '✓';
+            color: var(--primary-gold);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .btn-primary {
+            background: var(--primary-gold);
+            color: var(--primary-purple);
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: #e6a600;
+            transform: translateY(-2px);
+        }
+        
+        /* --- AI VISUAL --- */
+        .ai-visual img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        /* --- RESPONSIVE STYLES --- */
+        @media (max-width: 992px) {
+            .ai-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .ai-visual {
+                order: -1; /* Moves image to the top on smaller screens */
+            }
+        }
+        
+        @media (max-width: 768px) {
+             .section {
+                padding: 4rem 0;
+            }
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+        }
+
         /* Case Studies */
         .case-studies {
             background: var(--light-gray);
@@ -1609,28 +1846,28 @@ HTML
         </section>
 
         <!-- Trust Indicators -->
-        <section class="trust-section fade-in-section">
-            <div class="container">
-                <h3 class="trust-title">Trusted by Global Leaders & Technology Partners</h3>
-                <div class="trust-grid">
-                    <div class="trust-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/1280px-Salesforce.com_logo.svg.png" alt="Salesforce" class="trust-logo">
-                    </div>
-                    <div class="trust-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/1280px-SAP_2011_logo.svg.png" alt="SAP" class="trust-logo">
-                    </div>
-                    <div class="trust-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png" alt="AWS" class="trust-logo">
-                    </div>
-                    <div class="trust-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1280px-Microsoft_logo.svg.png" alt="Microsoft" class="trust-logo">
-                    </div>
-                    <div class="trust-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1280px-Google_2015_logo.svg.png" alt="Google" class="trust-logo">
-                    </div>
-                </div>
+       <section class="logo-strip">
+        <div class="strip-header">
+            <h3>Trusted by Leading Organizations</h3>
+            <p>We partner with ambitious brands, from global enterprises to innovative startups, to deliver lasting results.</p>
+        </div>
+        <div class="logo-slider">
+            <div class="logo-track">
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect width='120' height='40' fill='%23E5E7EB'/%3E%3Ctext x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EUpwork%3C/text%3E%3C/svg%3E" alt="Upwork"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='40' viewBox='0 0 150 40'%3E%3Crect width='150' height='40' fill='%23E5E7EB'/%3E%3Ctext x='75' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EUSC Marshall%3C/text%3E%3C/svg%3E" alt="USC Marshall"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect width='120' height='40' fill='%23E5E7EB'/%3E%3Ctext x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EDIG%3C/text%3E%3C/svg%3E" alt="DIG"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='40' viewBox='0 0 150 40'%3E%3Crect width='150' height='40' fill='%23E5E7EB'/%3E%3Ctext x='75' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EPenn Mutual%3C/text%3E%3C/svg%3E" alt="Penn Mutual"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect width='120' height='40' fill='%23E5E7EB'/%3E%3Ctext x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EIBM%3C/text%3E%3C/svg%3E" alt="IBM"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='40' viewBox='0 0 150 40'%3E%3Crect width='150' height='40' fill='%23E5E7EB'/%3E%3Ctext x='75' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EUC Riverside%3C/text%3E%3C/svg%3E" alt="UC Riverside"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect width='120' height='40' fill='%23E5E7EB'/%3E%3Ctext x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3ESnagajob%3C/text%3E%3C/svg%3E" alt="Snagajob"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect width='120' height='40' fill='%23E5E7EB'/%3E%3Ctext x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EEvolve%3C/text%3E%3C/svg%3E" alt="Evolve"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='40' viewBox='0 0 150 40'%3E%3Crect width='150' height='40' fill='%23E5E7EB'/%3E%3Ctext x='75' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EThe Art of Living%3C/text%3E%3C/svg%3E" alt="The Art of Living"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect width='120' height='40' fill='%23E5E7EB'/%3E%3Ctext x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EUpwork%3C/text%3E%3C/svg%3E" alt="Upwork"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='40' viewBox='0 0 150 40'%3E%3Crect width='150' height='40' fill='%23E5E7EB'/%3E%3Ctext x='75' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EUSC Marshall%3C/text%3E%3C/svg%3E" alt="USC Marshall"></div>
+                <div class="logo-item client-logo-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect width='120' height='40' fill='%23E5E7EB'/%3E%3Ctext x='60' y='25' font-family='Arial' font-size='12' text-anchor='middle' fill='%234B5563'%3EDIG%3C/text%3E%3C/svg%3E" alt="DIG"></div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <!-- Why DCX Section -->
         <section class="section why-dcx fade-in-section" id="why-dcx">
@@ -1795,44 +2032,27 @@ HTML
         </div>
     </section>
 <!-- Tech Suite Section -->
-         <section class="tech-expertise-section">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-eyebrow">Our Technology Stack</p>
-                <h2>Mastery of Core DCX Platforms</h2>
-                <p>Our team of over 300 certified professionals possesses deep technical knowledge across the world's leading marketing, cloud, and CRM platforms, allowing us to architect the perfect stack for your unique business needs.</p>
-            </div>
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <div class="tech-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/1280px-Salesforce.com_logo.svg.png" alt="Salesforce Logo">
-                    </div>
-                    <p>Salesforce</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Adobe_Experience_Cloud_logo.svg/1280px-Adobe_Experience_Cloud_logo.svg.png" alt="Adobe Experience Cloud Logo">
-                    </div>
-                    <p>Adobe Experience Cloud</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png" alt="AWS Logo">
-                    </div>
-                    <p>Amazon Web Services</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1280px-Google_Cloud_logo.svg.png" alt="Google Cloud Platform Logo">
-                    </div>
-                    <p>Google Cloud Platform</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/HubSpot_Logo.svg/1280px-HubSpot_Logo.svg.png" alt="HubSpot Logo">
-                    </div>
-                    <p>HubSpot</p>
-                </div>
+
+
+      <section class="logo-strip">
+        <div class="strip-header">
+            <h3>Mastery of Core DCX Platforms</h3>
+            <p>We are certified experts in the world's leading marketing, cloud, and CRM platforms.</p>
+        </div>
+        <div class="logo-slider">
+            <div class="logo-track">
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/1024px-Salesforce.com_logo.svg.png" alt="Salesforce"></div><div class="name">Salesforce</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/1024px-Microsoft_Azure_Logo.svg.png" alt="Microsoft"></div><div class="name">Microsoft</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/1024px-SAP_2011_logo.svg.png" alt="SAP"></div><div class="name">SAP</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/ServiceNow_logo.svg/1024px-ServiceNow_logo.svg.png" alt="ServiceNow"></div><div class="name">ServiceNow</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Adobe_Experience_Cloud_logo.svg/1024px-Adobe_Experience_Cloud_logo.svg.png" alt="Adobe"></div><div class="name">Adobe</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" alt="AWS"></div><div class="name">AWS</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1024px-Google_Cloud_logo.svg.png" alt="GCP"></div><div class="name">Google Cloud</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/HubSpot_Logo.svg/1024px-HubSpot_Logo.svg.png" alt="HubSpot"></div><div class="name">HubSpot</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/1024px-Salesforce.com_logo.svg.png" alt="Salesforce"></div><div class="name">Salesforce</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/1024px-Microsoft_Azure_Logo.svg.png" alt="Microsoft"></div><div class="name">Microsoft</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/1024px-SAP_2011_logo.svg.png" alt="SAP"></div><div class="name">SAP</div></div>
+                <div class="logo-item"><div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/ServiceNow_logo.svg/1024px-ServiceNow_logo.svg.png" alt="ServiceNow"></div><div class="name">ServiceNow</div></div>
             </div>
         </div>
     </section>
@@ -1882,6 +2102,27 @@ HTML
         </div>
     </div>
 </section>
+
+ <section class="section ai-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">The Future of Customer Experience</p>
+                <h2>Agentic AI & Innovation in Practice</h2>
+            </div>
+            <div class="ai-grid">
+                <div class="ai-content">
+                    <h3>We Turn Future Tech into Present-Day Performance</h3>
+                    <p>
+                        We’ve woven AI into the fabric of our delivery. This isn’t a theoretical roadmap—it’s about deploying real, industry-first solutions today. From our intelligent, first-ever AI Concierge to Agentforce at Salesforce, we use AI to drive tangible business results.
+                    </p>
+                    <a href="#" class="btn-primary">Explore Our AI Concierge</a>
+                </div>
+                <div class="ai-visual">
+                    <img src="http://googleusercontent.com/file_content/0" alt="Sumeru's AI Concierge for The Art of Living">
+                </div>
+            </div>
+        </div>
+    </section>
 
  <section class="impact-strip">
         <div class="container impact-grid">
