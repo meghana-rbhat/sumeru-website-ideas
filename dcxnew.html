@@ -1363,179 +1363,127 @@ HTML
             }
         }
 
-        /* Case Studies */
-        .case-studies {
-            background: var(--light-gray);
-        }
+/* ===== SUCCESS STORIES ===== */
+.case-studies {
+  padding: 8rem 3rem;
+  background: #f8fafc;
+}
 
-        .case-study-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
+.case-studies-container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
 
-        .featured-case {
-            grid-column: 1 / -1;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-            margin-bottom: 4rem;
-        }
+.case-study-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 6rem;
+}
 
-        .featured-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 500px;
-        }
+.case-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
-        .featured-text {
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+.case-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
 
-        .case-category {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #666;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
+.case-image {
+  height: 220px;
+  background: linear-gradient(135deg, #4B1E67 0%, #6B2D87 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
 
-        .featured-text h3 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-        }
+.image-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
 
-        .featured-text p {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            font-size: 1.1rem;
-        }
+.image-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
+}
 
-        .case-metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
+.case-content {
+  padding: 2rem;
+  flex-grow: 1;
+}
 
-        .metric {
-            text-align: left;
-        }
+.case-category {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
 
-        .metric-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-purple);
-            margin-bottom: 0.5rem;
-        }
+.case-content h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
 
-        .metric-desc {
-            font-size: 0.9rem;
-            color: #666;
-            font-weight: 500;
-        }
+.case-content p {
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
 
-        .featured-visual {
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
+.case-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 
-        .visual-content {
-            text-align: center;
-        }
+.stat-item {
+  text-align: center;
+  flex: 1 1 30%;
+}
 
-        .visual-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            color: var(--primary-gold);
-        }
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4B1E67;
+}
 
-        .case-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s;
-        }
+.stat-label {
+  font-size: 0.8rem;
+  color: #666;
+  letter-spacing: 0.05em;
+}
 
-        .case-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-
-        .case-image {
-            height: 220px;
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-        }
-
-        .image-content {
-            text-align: center;
-        }
-
-        .image-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
-        }
-
-        .case-content {
-            padding: 2rem;
-        }
-
-        .case-content h4 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .case-content p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-
-        .case-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-purple);
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
 
         /* ROI Calculator */
         .roi-calculator {
@@ -2315,61 +2263,59 @@ HTML
 
 
         <!-- Case Studies -->
-       <section class="section case-studies fade-in-section" id="case-studies">
-    <div class="container">
+        <section class="case-studies" id="results">
+    <div class="case-studies-container">
         <div class="section-header">
-            <p class="section-eyebrow">Sumeru Success Stories</p>
+            <div class="section-eyebrow">The stories we carry.</div>
             <h2>Proven Results Across Industries</h2>
-<!-- <p>These case studies highlight how leading organizations have achieved measurable business results by leveraging our DCX expertise and proven frameworks.</p>        </div> -->
-
-        <!-- Featured Case Study -->
-        <div class="featured-case">
-            <div class="featured-content">
-                <div class="featured-text">
-                    <div class="case-category">Healthcare Innovation</div>
-                    <h3>Maximizing Access to Diabetes Care Management Devices</h3>
-                    <p>We helped a leading healthcare company create and implement a complete marketing technology solution—one that improved access to diabetes care management devices through targeted digital campaigns and seamless omnichannel experiences.</p>
-                    <div class="case-metrics">
-                        <div class="metric">
-                            <div class="metric-value">18%</div>
-                            <div class="metric-desc">Increase in Customer Satisfaction</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">42%</div>
-                            <div class="metric-desc">Improvement in Email Deliverability</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">25%</div>
-                            <div class="metric-desc">Increase in Open Rate</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="featured-visual">
-                    <div class="visual-content">
-                        <div class="visual-icon">🏥</div>
-                        <div>Healthcare Technology Innovation</div>
-                    </div>
-                </div>
-            </div>
         </div>
-
-        <!-- Case Study Grid -->
+        
         <div class="case-study-grid">
             <div class="case-card">
                 <div class="case-image">
                     <div class="image-content">
-                        <div class="image-icon">📡</div>
-                        <div>Telecom Optimization</div>
+                        <div class="image-icon">
+                            <img src="/placeholder.svg?height=48&width=48&text=Healthcare" alt="Healthcare">
+                        </div>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <div class="case-category">Healthcare Innovation</div>
+                    <h4>Maximizing Access to Diabetes Care Management Devices</h4>
+                    <p>We helped a leading healthcare company create and implement a complete marketing technology solution—one that improved access to diabetes care management devices through targeted digital campaigns and seamless omnichannel experiences.</p>
+                    <div class="case-stat">
+                        <div class="stat-item">
+                            <div class="stat-number">18%</div>
+                            <div class="stat-label">Increase in Customer Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">42%</div>
+                            <div class="stat-label">Improvement in Email Deliverability</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">25%</div>
+                            <div class="stat-label">Increase in Open Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="case-card">
+                <div class="case-image">
+                    <div class="image-content">
+                        <div class="image-icon">
+                            <img src="/placeholder.svg?height=48&width=48&text=Telecom" alt="Telecommunications">
+                        </div>
                     </div>
                 </div>
                 <div class="case-content">
                     <div class="case-category">Telecommunications</div>
                     <h4>Optimizing Broadband Customer Experience</h4>
                     <p>We supported a top Canadian telecom in streamlining their broadband onboarding process, leading to improved customer satisfaction and stronger digital adoption.</p>
-                    <div class="case-stats">
+                    <div class="case-stat">
                         <div class="stat-item">
                             <div class="stat-number">27%</div>
-                            <div class="stat-label">Decrease in service calls</div>
+                            <div class="stat-label">Decrease in Service Calls</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">11%</div>
@@ -2384,36 +2330,88 @@ HTML
             </div>
 
             <div class="case-card">
-                <div class="case-image">
-                    <div class="image-content">
-                        <div class="image-icon">🛍️</div>
-                        <div>Retail Intelligence</div>
-                    </div>
-                </div>
-                <div class="case-content">
-    <div class="case-category">B2B Automation</div>
-    <h4>Automated Lead Scoring for a B2B Marketplace</h4>
-    <p>We streamlined an online job marketplace by unifying disparate channels into a 360° lead scoring system, introducing MQL and automation to help sales prioritize high-intent customers.</p>
-    <div class="case-stats">
-        <div class="stat-item">
-            <div class="stat-number">5%</div>
-            <div class="stat-label">Increase in Deals Generated</div>
+    <div class="case-image">
+        <div class="image-content">
+            <div class="image-icon">
+                <img src="/placeholder.svg?height=48&width=48&text=B2B" alt="B2B Automation">
+            </div>
         </div>
-        <div class="stat-item">
-            <div class="stat-number">10%</div>
-            <div class="stat-label">Decrease in Rep Outreach Time</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">5%</div>
-            <div class="stat-label">Increase in Form Submissions</div>
+    </div>
+    <div class="case-content">
+        <div class="case-category">B2B Automation</div>
+        <h4>Automated Lead Scoring for a B2B Marketplace</h4>
+        <p>We streamlined an online job marketplace by unifying disparate channels into a 360° lead scoring system, introducing MQL and automation to help sales prioritize high-intent customers.</p>
+        <div class="case-stat">
+            <div class="stat-item">
+                <div class="stat-number">5%</div>
+                <div class="stat-label">Increase in Deals Generated</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10%</div>
+                <div class="stat-label">Decrease in Rep Outreach Time</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5%</div>
+                <div class="stat-label">Increase in Form Submissions</div>
+            </div>
         </div>
     </div>
 </div>
+
+            
+            <!-- <div class="case-card">
+                <div class="case-image">
+                    <div class="image-content">
+                        <div class="image-icon">
+                            <img src="/placeholder.svg?height=48&width=48&text=Retail" alt="Retail">
+                        </div>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <div class="case-category">B2B Automation</div>
+                    <h4>Automated Lead Scoring for a B2B Marketplace</h4>
+                    <p>We streamlined an online job marketplace by unifying disparate channels into a 360° lead scoring system, introducing MQL and automation to help sales prioritize high-intent customers.</p>
+                    <div class="case-stat">
+                        <div class="stat-item">
+                            <div class="stat-number">5%</div>
+                            <div class="stat-label">Increase in Deals Generated</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10%</div>
+                            <div class="stat-label">Decrease in Rep Outreach Time</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5%</div>
+                            <div class="stat-label">Increase in Form Submissions</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-          
-
-           
+            <div class="case-card">
+                <div class="case-image">
+                    <div class="image-content">
+                        <div class="image-icon">
+                            <img src="/placeholder.svg?height=48&width=48&text=Aviation" alt="Aviation">
+                        </div>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <div class="case-category">Aviation</div>
+                    <h4>Transformed MarTech for Top LATAM Airline</h4>
+                    <p>Comprehensive marketing technology transformation that enhanced customer engagement and streamlined marketing operations for a leading Latin American airline carrier.</p>
+                    <div class="case-stat">
+                        <div class="stat-item">
+                            <div class="stat-number">35%</div>
+                            <div class="stat-label">Marketing Efficiency</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">28%</div>
+                            <div class="stat-label">Customer Engagement</div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </div>
     </div>
 </section>
