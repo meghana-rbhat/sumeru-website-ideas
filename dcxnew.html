@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Customer Experience Excellence | Sumeru</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary-purple: #4B1E67;
+            --dark-purple: #2D1B69;
+            --primary-gold: #FFBB00;
+            --light-gray: #f8fafc;
+            --text-dark: #1a1a1a;
+            --text-light: #4a5568;
+            --white: #ffffff;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Global Styles */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 8rem 0;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 187, 0, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-purple);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .nav-cta {
+            background: var(--primary-gold);
+            color: var(--primary-purple);
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-cta:hover {
+            background: #e6a600;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: none;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            display: block;
+            position: relative;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 187, 0, 0.02) 0%, rgba(255, 187, 0, 0.08) 100%);
+            clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero-text h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: white;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+
+        .btn-primary {
+            background: var(--primary-gold);
+            color: var(--primary-purple);
+            padding: 1.1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary:hover {
+            background: #e6a600;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1.1rem 0;
+            border-bottom: 2px solid white;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary:hover {
+            border-bottom-color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* AI Visual & Data Visualization */
+        .ai-showcase,
+        .data-visualization {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-network {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin: 2rem 0;
+        }
+
+        .ai-node {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 187, 0, 0.1);
+            border: 2px solid var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            animation: float 3s ease-in-out infinite;
+            color: var(--primary-purple);
+        }
+
+        .ai-node.central {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary-gold);
+            color: var(--primary-purple);
+            width: 100px;
+            height: 100px;
+            font-size: 1.2rem;
+            z-index: 2;
+            font-weight: 700;
+        }
+
+        .ai-node:nth-child(2) { top: 0; left: 50%; transform: translateX(-50%); animation-delay: -0.5s; }
+        .ai-node:nth-child(3) { top: 25%; right: 0; animation-delay: -1s; }
+        .ai-node:nth-child(4) { bottom: 25%; right: 0; animation-delay: -1.5s; }
+        .ai-node:nth-child(5) { bottom: 0; left: 50%; transform: translateX(-50%); animation-delay: -2s; }
+        .ai-node:nth-child(6) { bottom: 25%; left: 0; animation-delay: -2.5s; }
+        .ai-node:nth-child(7) { top: 25%; left: 0; animation-delay: -3s; }
+
+        .ai-showcase h3,
+        .chart-title {
+            color: var(--primary-purple);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .ai-showcase p {
+            color: #666;
+            text-align: center;
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+
+        .chart-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .experience-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--primary-purple);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-trend {
+            color: var(--success-green);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Slider Controls */
+        .slider-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        .slider-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Trust Indicators */
+        .trust-section {
+            background: var(--light-gray);
+            padding: 4rem 0;
+        }
+
+        .trust-title {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .trust-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .trust-item:hover {
+            opacity: 1;
+        }
+
+        .trust-logo {
+            max-height: 40px;
+            max-width: 150px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .trust-item:hover .trust-logo {
+            filter: grayscale(0%);
+        }
+
+        /* Why DCX Section */
+        .why-dcx {
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-card {
+            background: var(--light-gray);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border-top: 4px solid var(--primary-purple);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .stat-card-number {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card-text {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        /* DCX Framework */
+        .dcx-framework {
+            background: var(--light-gray);
+        }
+
+        .framework-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 4rem 0;
+        }
+
+        .framework-diagram {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        /* Digital Suite Section */
+        .digital-suite {
+            background: white;
+        }
+
+        .suite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (min-width: 1200px) {
+            .suite-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .suite-pillar {
+            background: var(--light-gray);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .suite-pillar:nth-child(1) { border-top-color: var(--primary-purple); }
+        .suite-pillar:nth-child(2) { border-top-color: var(--primary-gold); }
+        .suite-pillar:nth-child(3) { border-top-color: var(--primary-purple); }
+        .suite-pillar:nth-child(4) { border-top-color: var(--primary-gold); }
+        .suite-pillar:nth-child(5) { border-top-color: var(--primary-purple); }
+
+        .suite-pillar:hover {
+            background: white;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .suite-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .suite-pillar:nth-child(2) .suite-icon,
+        .suite-pillar:nth-child(4) .suite-icon {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, #e6a600 100%);
+            color: var(--primary-purple);
+        }
+
+        .suite-subtitle {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #999;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .suite-pillar h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .suite-pillar p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .suite-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .suite-features li {
+            padding: 0.5rem 0;
+            color: var(--primary-purple);
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .suite-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-gold);
+            font-weight: 700;
+        }
+
+        /* Journey Timeline */
+        .journey-section {
+            background: var(--light-gray);
+        }
+
+        .journey-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 4rem 0;
+        }
+
+        .journey-timeline {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        /*tech Suite */
+        .tech-expertise-section {
+            padding: 8rem 0;
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* --- TECHNOLOGY GRID STYLES --- */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .tech-logo-container {
+            background-color: var(--light-gray);
+            border-radius: 16px;
+            padding: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 150px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .tech-card img {
+            max-height: 60px;
+            max-width: 100%;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-card:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .tech-card p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        /* Offerings Section */
+        .offerings {
+            background: white;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .offering-card {
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .offering-card:hover {
+            background: white;
+            border-color: var(--primary-purple);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(75, 30, 103, 0.15);
+        }
+
+        .offering-card h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .offering-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .offering-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .offering-features li {
+            padding: 0.75rem 0;
+            color: var(--primary-purple);
+            font-weight: 500;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .offering-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-gold);
+            font-weight: 700;
+        }
+
+        /* Case Studies */
+        .case-studies {
+            background: var(--light-gray);
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .featured-case {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .featured-text {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .case-category {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .featured-text h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .featured-text p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .case-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .metric {
+            text-align: left;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-desc {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .featured-visual {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .visual-content {
+            text-align: center;
+        }
+
+        .visual-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .case-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .image-content {
+            text-align: center;
+        }
+
+        .image-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .case-content {
+            padding: 2rem;
+        }
+
+        .case-content h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .case-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .case-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ROI Calculator */
+        .roi-calculator {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            color: white;
+        }
+
+        .calculator-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .calculator-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            margin-top: 3rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .roi-display {
+            background: rgba(255, 187, 0, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 2px solid var(--primary-gold);
+            display: none;
+        }
+
+        .roi-display h4 {
+            color: var(--primary-gold);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .roi-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .roi-metric {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .roi-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .roi-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .btn-submit {
+            background: var(--primary-gold);
+            color: var(--primary-purple);
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: #e6a600;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 187, 0, 0.3);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--light-gray);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111;
+            color: white;
+            padding: 6rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+
+            .case-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-grid {
+                gap: 2rem;
+            }
+
+            .roi-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .case-metrics {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo">Sumeru</div>
+            <nav class="nav-links">
+                <a href="#why-dcx">Why DCX</a>
+                <a href="#pillars">Approach</a>
+                <a href="#case-studies">Our Work</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="#contact" class="nav-cta">Get In Touch</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Slider -->
+        <section class="hero-slider" id="hero">
+            <!-- Slide 1: Main Value Proposition -->
+            <div class="hero-slide active">
+                <div class="hero">
+                    <div class="container hero-content">
+                        <div class="hero-text">
+                            <div class="hero-eyebrow">Digital Customer Experience Excellence</div>
+                            <h1>We Design Experiences. <br>You See Results.</h1>
+                            <p>From first touch to brand advocacy, Sumeru crafts every interaction for you — intelligently designed to drive real business results and transform how your customers experience your brand.</p>
+                            <div class="hero-cta">
+                                <a href="#contact" class="btn-primary">Get In Touch</a>
+                                <a href="#case-studies" class="btn-secondary">View Our Work</a>
+                            </div>
+                        </div>
+
+                        <div class="hero-visual">
+                            <div class="data-visualization">
+                                <div class="chart-title">Proven DCX Impact</div>
+                                <div class="chart-subtitle">Accelerated customer engagement outcomes</div>
+                                 <a href="https://unsplash.com/s/illustrations/customer-experience-results-monetization-digital-marketing">For designer - Click here to download the image</a>
+                                <div class="experience-metrics">
+                                    <!-- <div class="metric-card">
+                                        <div class="metric-number">42%</div>
+                                        <div class="metric-label">Increase in Customer Satisfaction</div>
+                                        <div class="metric-trend">↗ MarTech Implementation</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-number">27%</div>
+                                        <div class="metric-label">Increase in Digital Adoption</div>
+                                        <div class="metric-trend">↗ Telecom Optimization</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-number">25%</div>
+                                        <div class="metric-label">Increase in Customer Intelligence</div>
+                                        <div class="metric-trend">↗ International Retailer</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-number">18%</div>
+                                        <div class="metric-label">Increase in Access Devices</div>
+                                        <div class="metric-trend">↗ Healthcare Innovation</div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: AI Innovation -->
+            <div class="hero-slide">
+                <div class="hero">
+                    <div class="container hero-content">
+                        <div class="hero-text">
+                            <div class="hero-eyebrow">The Future of Customer Experience</div>
+                            <h1>Powered by the Agentic AI Network</h1>
+                            <p>We’ve woven AI into the fabric of our delivery — from our intelligent concierge to adaptive customer workflows. This isn’t future tech — it’s here, now, driving performance where it counts.</p>
+                            <div class="hero-cta">
+                                <a href="#contact" class="btn-primary">Get In Touch</a>
+                                <a href="#pillars" class="btn-secondary">View Our Work</a>
+                            </div>
+                        </div>
+                        <div class="hero-visual">
+                            <div class="ai-showcase">
+                                <h3>Agentic AI Network</h3>
+                                <div class="ai-network">
+                                    <div class="ai-node central">AI</div>
+                                    <div class="ai-node">Data</div>
+                                    <div class="ai-node">Learn</div>
+                                    <div class="ai-node">Adapt</div>
+                                    <div class="ai-node">Optimize</div>
+                                    <div class="ai-node">Predict</div>
+                                    <div class="ai-node">Scale</div>
+                                </div>
+                                <p>Real-time intelligent decision making across all customer touchpoints</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Controls -->
+            <div class="slider-controls">
+                <div class="slider-dot active" data-slide="1"></div>
+                <div class="slider-dot" data-slide="2"></div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+        </section>
+
+        <!-- Trust Indicators -->
+        <section class="trust-section fade-in-section">
+            <div class="container">
+                <h3 class="trust-title">Trusted by Global Leaders & Technology Partners</h3>
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/1280px-Salesforce.com_logo.svg.png" alt="Salesforce" class="trust-logo">
+                    </div>
+                    <div class="trust-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/1280px-SAP_2011_logo.svg.png" alt="SAP" class="trust-logo">
+                    </div>
+                    <div class="trust-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png" alt="AWS" class="trust-logo">
+                    </div>
+                    <div class="trust-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1280px-Microsoft_logo.svg.png" alt="Microsoft" class="trust-logo">
+                    </div>
+                    <div class="trust-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1280px-Google_2015_logo.svg.png" alt="Google" class="trust-logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why DCX Section -->
+        <section class="section why-dcx fade-in-section" id="why-dcx">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">The State of Modern Marketing</p>
+                    <h2>Why Digital Customer Experience is Crucial</h2>
+                    <p>In today's market, a seamless and emotionally resonant digital experience isn't a luxury—it's a necessity. The data tells a clear story about what customers expect and how businesses must adapt to thrive.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-number">86%</div>
+                        <p class="stat-card-text">of customers say an <strong>emotional connection</strong> makes them continue doing business with a brand.</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-number">33%</div>
+                        <p class="stat-card-text">of marketers are satisfied with their ability to create more <strong>relevant experiences</strong> with customer data.</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-number">4x</div>
+                        <p class="stat-card-text">Customers with a service issue are <strong>four times more likely</strong> to turn to a competitor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DCX Framework -->
+        <section class="section dcx-framework fade-in-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">The Sumeru Framework</p>
+                    <h2>Sumeru's DCX Trifecta</h2>
+                    <p>We synergize Strategic Marketing, Technical Expertise, and Advanced Analytics to unlock quantifiable results.</p>
+                </div>
+                <div class="framework-visual">
+                    <svg class="framework-diagram" viewBox="0 0 800 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="800" height="420" fill="white"/>
+                        <circle cx="400" cy="80" r="100" fill="#2D1B69" fill-opacity="0.8"/>
+                        <text x="400" y="75" fill="white" font-size="16" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Technical</text>
+                        <text x="400" y="95" fill="white" font-size="16" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Expertise</text>
+                        <text x="400" y="115" fill="white" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">Certified MA engineers optimize tech</text>
+                        <text x="400" y="130" fill="white" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">investments for performance,</text>
+                        <text x="400" y="145" fill="white" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">scalability, and efficiency.</text>
+                        
+                        <circle cx="200" cy="260" r="100" fill="#74B3F2" fill-opacity="0.8"/>
+                        <text x="200" y="255" fill="#4B1E67" font-size="16" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Marketing</text>
+                        <text x="200" y="275" fill="#4B1E67" font-size="16" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Expertise</text>
+                        
+                        <circle cx="600" cy="260" r="100" fill="#74B3F2" fill-opacity="0.8"/>
+                        <text x="600" y="255" fill="#4B1E67" font-size="16" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Analytics</text>
+                        <text x="600" y="275" fill="#4B1E67" font-size="16" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Expertise</text>
+                        
+                        <rect x="350" y="180" width="100" height="60" fill="#4B1E67" rx="10"/>
+                        <text x="400" y="205" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Operational</text>
+                        <text x="400" y="225" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Excellence</text>
+                        
+                        <line x1="400" y1="180" x2="400" y2="110" stroke="#FFBB00" stroke-width="3"/>
+                        <line x1="350" y1="210" x2="250" y2="260" stroke="#FFBB00" stroke-width="3"/>
+                        <line x1="450" y1="210" x2="550" y2="260" stroke="#FFBB00" stroke-width="3"/>
+                        
+                        <text x="200" y="370" fill="#666" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">Strategic, human-centered design</text>
+                        <text x="200" y="385" fill="#666" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">builds deep customer connections,</text>
+                        <text x="200" y="400" fill="#666" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">achieving true customer-centricity.</text>
+                        
+                        <text x="400" y="330" fill="#666" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">Integrates marketing, tech, & analytics</text>
+                        <text x="400" y="345" fill="#666" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">for streamlined processes,</text>
+                        <text x="400" y="360" fill="#666" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">efficient execution, and results.</text>
+                        
+                        <text x="600" y="370" fill="#666" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">Robust analytics frameworks provide</text>
+                        <text x="600" y="385" fill="#666" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">actionable intelligence for insight-driven</text>
+                        <text x="600" y="400" fill="#666" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">strategies and continuous optimization.</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Digital Suite Section -->
+        <section class="section digital-suite fade-in-section" id="pillars">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Creating Real Momentum</p>
+                    <h2>End-to-end Digital Solutions</h2>
+                    <p>We help brands grow by turning every customer interaction into an opportunity. From understanding your audience to designing meaningful moments and driving measurable results, our approach uses a unified Customer 360° platform to deliver adaptive, high-impact experiences.</p>
+                </div>
+
+                <div class="suite-grid">
+                    <!-- Strategy -->
+                    <div class="suite-pillar">
+                        <div class="suite-icon">🧭</div>
+                        <h3>Strategy</h3>
+                        <div class="suite-subtitle">Understand & Plan</div>
+                        <p>It all starts with insight. We work alongside your team to uncover what matters to your customers, define campaign goals, and shape a roadmap that aligns with your business and brand vision.</p>
+                        <!-- <ul class="suite-features">
+                            <li>Customer Research & Segmentation</li>
+                            <li>Persona & Journey Mapping</li>
+                            <li>Experience & Content Strategy</li>
+                            <li>Digital Roadmap Development</li>
+                        </ul> -->
+                    </div>
+
+                    <!-- Design -->
+                    <div class="suite-pillar">
+                        <div class="suite-icon">🎨</div>
+                        <h3>Design</h3>
+                        <div class="suite-subtitle">Design & Prototype</div>
+                        <p>Design is more than aesthetics — it’s about action. We craft clear, intuitive interfaces that engage users and guide them toward meaningful outcomes, across every screen and channel.
+
+</p>
+                        <!-- <ul class="suite-features">
+                            <li>UX/UI Design for Web & Mobile</li>
+                            <li>Wireframes, Prototypes & Testing</li>
+                            <li>Conversion-Driven Design</li>
+                            <li>Design Systems & Brand Application</li>
+                        </ul> -->
+                    </div>
+
+                    <!-- Tech -->
+                    <div class="suite-pillar">
+                        <div class="suite-icon">⚙️</div>
+                        <h3>Technology Implementation</h3>
+                        <div class="suite-subtitle">Build & Integrate</div>
+                        <p>Modern platforms are at the core of everything we do. Whether integrating with your existing systems or building from the ground up, we ensure seamless, scalable, and personalized experiences from day one.</p>
+                        <!-- <ul class="suite-features">
+                            <li>Front-end & Back-end Development</li>
+                            <li>CMS, Commerce & CRM Integration</li>
+                            <li>MarTech Stack Implementation</li>
+                            <li>API Integration & Automation</li>
+                        </ul> -->
+                    </div>
+
+                    <!-- Data -->
+                    <div class="suite-pillar">
+                        <div class="suite-icon">📊</div>
+                        <h3>Data Analytics & Intelligence</h3>
+                        <div class="suite-subtitle">Launch & Optimize</div>
+                        <p>Once live, the work doesn’t stop. We turn campaign and customer data into actionable insights — constantly optimizing experiences to stay one step ahead of customer needs.</p>
+                        <!-- <ul class="suite-features">
+                            <li>Marketing Performance Dashboards</li>
+                            <li>Customer & Channel Attribution</li>
+                            <li>Real-time Data Pipelines</li>
+                            <li>Personalization & Predictive Insights</li>
+                        </ul> -->
+                    </div>
+
+                    <!-- Operations & Governance -->
+                    <div class="suite-pillar">
+                        <div class="suite-icon">🛡️</div>
+                        <h3>Operations & Governance</h3>
+                        <div class="suite-subtitle">Run & Scale</div>
+                        <p>Stability, security, and scalability are baked into every solution. From governance to performance, we ensure your digital ecosystem runs smoothly — and grows with you.
+
+</p>
+                        <!-- <ul class="suite-features">
+                            <li>Platform Monitoring & Support</li>
+                            <li>Accessibility & Regulatory Compliance</li>
+                            <li>Performance Optimization</li>
+                            <li>Marketing Operations Enablement</li>
+                        </ul> -->
+                    </div>
+                </div>
+
+                <!-- Journey Timeline -->
+                <div class="journey-visual">
+                    <p>For designer: This section is optional - is there a way we can optimise this dersign?</p>
+                    <svg class="journey-timeline" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background -->
+                        <rect width="1200" height="400" fill="white"/>
+
+                        <!-- Customer Journey Stages -->
+                        <rect x="50" y="50" width="180" height="40" fill="#1e3a8a" rx="4"/>
+                        <text x="140" y="73" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Awareness</text>
+
+                        <rect x="270" y="50" width="180" height="40" fill="#0d9488" rx="4"/>
+                        <text x="360" y="73" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Consideration</text>
+
+                        <rect x="490" y="50" width="180" height="40" fill="#7c2d12" rx="4"/>
+                        <text x="580" y="73" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Purchase</text>
+
+                        <rect x="710" y="50" width="180" height="40" fill="#7c3aed" rx="4"/>
+                        <text x="800" y="73" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Service</text>
+
+                        <rect x="930" y="50" width="180" height="40" fill="#1f2937" rx="4"/>
+                        <text x="1020" y="73" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Loyalty</text>
+
+                        <!-- Arrows -->
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#FFBB00" />
+                            </marker>
+                        </defs>
+                        <path d="M230 70L270 70" stroke="#FFBB00" stroke-width="3" marker-end="url(#arrow)"/>
+                        <path d="M450 70L490 70" stroke="#FFBB00" stroke-width="3" marker-end="url(#arrow)"/>
+                        <path d="M670 70L710 70" stroke="#FFBB00" stroke-width="3" marker-end="url(#arrow)"/>
+                        <path d="M890 70L930 70" stroke="#FFBB00" stroke-width="3" marker-end="url(#arrow)"/>
+
+                        <!-- Touchpoints -->
+                        <circle cx="100" cy="130" r="8" fill="#1e3a8a"/>
+                        <text x="100" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Online Display</text>
+                        <circle cx="180" cy="130" r="8" fill="#1e3a8a"/>
+                        <text x="180" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Word of Mouth</text>
+
+                        <circle cx="320" cy="130" r="8" fill="#0d9488"/>
+                        <text x="320" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Email</text>
+                        <circle cx="400" cy="130" r="8" fill="#0d9488"/>
+                        <text x="400" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Landing Page</text>
+
+                        <circle cx="540" cy="130" r="8" fill="#7c2d12"/>
+                        <text x="540" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Chat</text>
+                        <circle cx="620" cy="130" r="8" fill="#7c2d12"/>
+                        <text x="620" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Community</text>
+
+                        <circle cx="760" cy="130" r="8" fill="#7c3aed"/>
+                        <text x="760" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Retargeting</text>
+                        <circle cx="840" cy="130" r="8" fill="#7c3aed"/>
+                        <text x="840" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Social</text>
+
+                        <circle cx="980" cy="130" r="8" fill="#1f2937"/>
+                        <text x="980" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Survey</text>
+                        <circle cx="1060" cy="130" r="8" fill="#1f2937"/>
+                        <text x="1060" y="150" fill="#333" font-size="10" text-anchor="middle" font-family="Inter, sans-serif">Loyalty Program</text>
+
+                        <!-- Technology Foundation Layers -->
+                        <rect x="50" y="200" width="1060" height="30" fill="#FFBB00" rx="4"/>
+                        <text x="580" y="218" fill="#4B1E67" font-size="12" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Agentic AI</text>
+
+                        <rect x="50" y="240" width="1060" height="25" fill="#c084fc" rx="4"/>
+                        <text x="580" y="255" fill="white" font-size="11" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Customer 360 (CDP)</text>
+
+                        <rect x="50" y="275" width="353" height="25" fill="#fb923c" rx="4"/>
+                        <text x="226" y="290" fill="white" font-size="10" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Marketing</text>
+
+                        <rect x="423" y="275" width="354" height="25" fill="#3b82f6" rx="4"/>
+                        <text x="600" y="290" fill="white" font-size="10" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Technology</text>
+
+                        <rect x="797" y="275" width="313" height="25" fill="#8b5cf6" rx="4"/>
+                        <text x="953" y="290" fill="white" font-size="10" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Analytics</text>
+
+                        <!-- Operational Excellence Layer -->
+                        <rect x="50" y="310" width="1060" height="30" fill="#1a1a1a" rx="4"/>
+                        <text x="580" y="328" fill="white" font-size="12" font-weight="bold" text-anchor="middle" font-family="Inter, sans-serif">Operational Excellence</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+<!-- Tech Suite Section -->
+         <section class="tech-expertise-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Our Technology Stack</p>
+                <h2>Mastery of Core DCX Platforms</h2>
+                <p>Our team of over 300 certified professionals possesses deep technical knowledge across the world's leading marketing, cloud, and CRM platforms, allowing us to architect the perfect stack for your unique business needs.</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-logo-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/1280px-Salesforce.com_logo.svg.png" alt="Salesforce Logo">
+                    </div>
+                    <p>Salesforce</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Adobe_Experience_Cloud_logo.svg/1280px-Adobe_Experience_Cloud_logo.svg.png" alt="Adobe Experience Cloud Logo">
+                    </div>
+                    <p>Adobe Experience Cloud</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png" alt="AWS Logo">
+                    </div>
+                    <p>Amazon Web Services</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1280px-Google_Cloud_logo.svg.png" alt="Google Cloud Platform Logo">
+                    </div>
+                    <p>Google Cloud Platform</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/HubSpot_Logo.svg/1280px-HubSpot_Logo.svg.png" alt="HubSpot Logo">
+                    </div>
+                    <p>HubSpot</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Offerings Section -->
+       <section class="section offerings fade-in-section" id="services">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-eyebrow">What We Offer</p>
+            <h2>Flexible Solutions, Built Around You</h2>
+            <p>Whether you’re looking for expert guidance, full-scale implementation, or hands-on support to keep things running smoothly, our engagement models are designed to meet you where you are — and take you where you want to go.</p>
+        </div>
+
+        <div class="offerings-grid">
+            <div class="offering-card">
+                <h3>Strategic Consulting</h3>
+                <p>Turn complexity into clarity. We help you define the right path forward with practical insights, aligned planning, and expert advisory.</p>
+                <ul class="offering-features">
+                    <li>Technology Audits & Opportunity Assessments</li>
+                    <li>Digital Roadmap Development Aligned to Business Goals</li>
+                    <li>Executive Strategy Sessions for Transformation & Growth</li>
+                </ul>
+            </div>
+
+            <div class="offering-card">
+                <h3>Project Implementation</h3>
+                <p>From vision to launch, we handle the heavy lifting — delivering seamless, end-to-end digital solutions that work from day one.</p>
+                <ul class="offering-features">
+                    <li>Full-Stack Platform Implementation</li>
+                    <li>Custom Development & Systems Integration</li>
+                    <li>Data Migration, Setup & Launch Support</li>
+                </ul>
+            </div>
+
+            <div class="offering-card">
+                <h3>Managed Services</h3>
+                <p>We stay with you post-launch — monitoring, optimizing, and evolving your digital stack to ensure sustained performance and ROI.</p>
+                <ul class="offering-features">
+                    <li>24/7 Platform Support & Maintenance</li>
+                    <li>Continuous Experience & Performance Optimization</li>
+                    <li>Insightful Analytics, Reporting & Recommendations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Case Studies -->
+       <section class="section case-studies fade-in-section" id="case-studies">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-eyebrow">Sumeru Success Stories</p>
+            <h2>Proven Results Across Industries</h2>
+            <p>Since 2003, we’ve delivered over 700 successful projects. Here are real-world transformation stories from leading organizations, each showing measurable business impact made possible through our DCX expertise and proven frameworks.</p>
+        </div>
+
+        <!-- Featured Case Study -->
+        <div class="featured-case">
+            <div class="featured-content">
+                <div class="featured-text">
+                    <div class="case-category">Healthcare Innovation</div>
+                    <h3>Maximizing Access to Diabetes Care Management Devices</h3>
+                    <p>We helped a leading healthcare company create and implement a complete marketing technology solution—one that improved access to diabetes care management devices through targeted digital campaigns and seamless omnichannel experiences.</p>
+                    <div class="case-metrics">
+                        <div class="metric">
+                            <div class="metric-value">18%</div>
+                            <div class="metric-desc">Increase in Customer Satisfaction</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">42%</div>
+                            <div class="metric-desc">Improvement in Email Deliverability</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">25%</div>
+                            <div class="metric-desc">Increase in Open Rate</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-visual">
+                    <div class="visual-content">
+                        <div class="visual-icon">🏥</div>
+                        <div>Healthcare Technology Innovation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study Grid -->
+        <div class="case-study-grid">
+            <div class="case-card">
+                <div class="case-image">
+                    <div class="image-content">
+                        <div class="image-icon">📡</div>
+                        <div>Telecom Optimization</div>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <div class="case-category">Telecommunications</div>
+                    <h4>Optimizing Broadband Customer Experience</h4>
+                    <p>We supported a top Canadian telecom in streamlining their broadband onboarding process, leading to improved customer satisfaction and stronger digital adoption.</p>
+                    <div class="case-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">27%</div>
+                            <div class="stat-label">Digital Adoption</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">11%</div>
+                            <div class="stat-label">Customer Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-image">
+                    <div class="image-content">
+                        <div class="image-icon">🛍️</div>
+                        <div>Retail Intelligence</div>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <div class="case-category">International Retail</div>
+                    <h4>Driving Customer Intelligence for a Global Retailer</h4>
+                    <p>We enhanced customer intelligence capabilities for a major international retailer, enabling smarter decision-making and personalized experiences across every touchpoint.</p>
+                    <div class="case-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">25%</div>
+                            <div class="stat-label">Customer Intelligence</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8%</div>
+                            <div class="stat-label">Operational Efficiency</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-image">
+                    <div class="image-content">
+                        <div class="image-icon">✈️</div>
+                        <div>Aviation MarTech</div>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <div class="case-category">Aviation</div>
+                    <h4>Transforming MarTech for a Leading LATAM Airline</h4>
+                    <p>A complete marketing technology transformation enhanced engagement and streamlined operations for one of Latin America's top airline carriers.</p>
+                    <div class="case-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">35%</div>
+                            <div class="stat-label">Marketing Efficiency</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">28%</div>
+                            <div class="stat-label">Customer Engagement</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-image">
+                    <div class="image-content">
+                        <div class="image-icon">⚙️</div>
+                        <div>Tech Stack Innovation</div>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <div class="case-category">Technology</div>
+                    <h4>Advanced Tech Stack Implementation</h4>
+                    <p>We deployed cutting-edge technology solutions that enabled real-time insights and personalized experiences across key customer journeys and channels.</p>
+                    <div class="case-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">45%</div>
+                            <div class="stat-label">Processing Speed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">32%</div>
+                            <div class="stat-label">Data Accuracy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+        <!-- Testimonials -->
+        <!-- <section class="section testimonials fade-in-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow">Client Success</p>
+                    <h2>What Our Clients Say</h2>
+                    <p>Hear directly from the leaders who have transformed their customer experiences with Sumeru.</p>
+                </div>
+                
+                <div class="testimonial-slider">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Sumeru's approach to digital customer experience transformation has been game-changing for our organization. Their ability to integrate strategy, technology, and analytics into a cohesive solution delivered results beyond our expectations."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>VP of Digital Marketing, Healthcare Leader</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- Contact Section -->
+        <section class="section roi-calculator" id="contact">
+    <div class="container calculator-container">
+        <div class="section-header">
+            <h2 style="color: white;">Work With Us</h2>
+            <h4>For designer - Common form goes here</h4>
+            <p style="color: rgba(255,255,255,0.8);">
+                Share your challenges with us, and we’ll explore how to turn them into opportunities for meaningful growth and transformation.
+            </p>
+        </div>
+        
+        <form class="calculator-form" action="#" method="POST">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="contact-name">Full Name</label>
+                    <input type="text" id="contact-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Work Email</label>
+                    <input type="email" id="contact-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-company">Company</label>
+                    <input type="text" id="contact-company" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-role">Your Role</label>
+                    <select id="contact-role" name="role" required>
+                        <option value="">Select your role</option>
+                        <option value="cmo">Chief Marketing Officer</option>
+                        <option value="cto">Chief Technology Officer</option>
+                        <option value="cdo">Chief Digital Officer</option>
+                        <option value="vp-marketing">VP Marketing</option>
+                        <option value="director">Director</option>
+                        <option value="manager">Manager</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group full-width">
+                <label for="contact-message">How Can We Help?</label>
+                <textarea id="contact-message" name="message" placeholder="Tell us about your current challenges, goals, or areas you want to improve in your customer experience..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit">Schedule a Call</button>
+        </form>
+    </div>
+</section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>For designer - common footer goes in here</h3>
+                    <p>Marketing Reimagined. Technology Perfected. A global IT services, consulting, and marketing technology company headquartered in Los Angeles, dedicated to transforming digital customer experiences.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="#pillars">Digital Customer Experience</a></li>
+                        <li><a href="#">Agentic AI & Innovation</a></li>
+                        <li><a href="#">Marketing Technology</a></li>
+                        <li><a href="#">Data & Analytics</a></li>
+                        <li><a href="#">Cybersecurity</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Industries</h4>
+                    <ul>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Financial Services</a></li>
+                        <li><a href="#">Telecommunications</a></li>
+                        <li><a href="#">Retail & E-commerce</a></li>
+                        <li><a href="#">Technology</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sumeru. All Rights Reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hero Slider Class
+        class HeroSlider {
+            constructor() {
+                this.slides = document.querySelectorAll('.hero-slide');
+                this.dots = document.querySelectorAll('.slider-dot');
+                this.progressFill = document.querySelector('.progress-fill');
+                this.currentSlide = 0;
+                this.slideInterval = null;
+                this.progressInterval = null;
+                this.slideDelay = 8000; // 8 seconds
+                this.progressSteps = 100;
+                this.progressDelay = this.slideDelay / this.progressSteps;
+                
+                this.init();
+            }
+
+            init() {
+                // Hide all slides except the first one initially
+                this.slides.forEach((slide, index) => {
+                    if (index !== 0) {
+                        slide.style.display = 'none';
+                        slide.classList.remove('active');
+                    }
+                });
+
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        this.goToSlide(index);
+                    });
+                });
+                
+                this.startSlider();
+            }
+
+            goToSlide(slideIndex) {
+                this.stopSlider();
+                
+                // Hide all slides first
+                this.slides.forEach(slide => {
+                    slide.classList.remove('active');
+                    slide.style.display = 'none';
+                });
+                this.dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Show the target slide
+                this.slides[slideIndex].style.display = 'block';
+                setTimeout(() => {
+                    this.slides[slideIndex].classList.add('active');
+                }, 10);
+                this.dots[slideIndex].classList.add('active');
+                
+                this.currentSlide = slideIndex;
+                this.progressFill.style.width = '0%';
+                
+                this.startSlider();
+            }
+
+            nextSlide() {
+                const nextIndex = (this.currentSlide + 1) % this.slides.length;
+                this.goToSlide(nextIndex);
+            }
+
+            startSlider() {
+                let progressWidth = 0;
+                
+                this.progressInterval = setInterval(() => {
+                    progressWidth += (100 / this.progressSteps);
+                    this.progressFill.style.width = progressWidth + '%';
+                    
+                    if (progressWidth >= 100) {
+                        clearInterval(this.progressInterval);
+                    }
+                }, this.progressDelay);
+                
+                this.slideInterval = setTimeout(() => {
+                    this.nextSlide();
+                }, this.slideDelay);
+            }
+
+            stopSlider() {
+                if (this.slideInterval) {
+                    clearTimeout(this.slideInterval);
+                    this.slideInterval = null;
+                }
+                if (this.progressInterval) {
+                    clearInterval(this.progressInterval);
+                    this.progressInterval = null;
+                }
+            }
+
+            pauseSlider() {
+                this.stopSlider();
+            }
+
+            resumeSlider() {
+                this.startSlider();
+            }
+        }
+
+        // ROI Calculator
+        function calculateROI() {
+            const industry = document.getElementById('industry').value;
+            const revenue = document.getElementById('revenue').value;
+            const display = document.getElementById('roiDisplay');
+            
+            if (industry && revenue) {
+                display.style.display = 'block';
+                
+                // ROI calculation based on industry benchmarks and revenue
+                const roiData = {
+                    healthcare: {
+                        multiplier: 4.2,
+                        revenueIncrease: 0.18,
+                        payback: 8
+                    },
+                    finance: {
+                        multiplier: 3.8,
+                        revenueIncrease: 0.15,
+                        payback: 10
+                    },
+                    retail: {
+                        multiplier: 5.1,
+                        revenueIncrease: 0.22,
+                        payback: 6
+                    },
+                    telecom: {
+                        multiplier: 3.5,
+                        revenueIncrease: 0.16,
+                        payback: 9
+                    },
+                    technology: {
+                        multiplier: 6.2,
+                        revenueIncrease: 0.28,
+                        payback: 5
+                    },
+                    education: {
+                        multiplier: 2.8,
+                        revenueIncrease: 0.12,
+                        payback: 12
+                    }
+                };
+                
+                const data = roiData[industry];
+                const revenueNum = parseInt(revenue);
+                
+                // Calculate estimated values
+                const roiPercent = Math.round(data.multiplier * 100);
+                const revenueIncreasePercent = Math.round(data.revenueIncrease * 100);
+                const paybackMonths = data.payback;
+                
+                // Update display
+                document.getElementById('roiValue').textContent = roiPercent + '%';
+                document.getElementById('revenueIncrease').textContent = revenueIncreasePercent + '%';
+                document.getElementById('paybackPeriod').textContent = paybackMonths + ' months';
+                
+                // Update description
+                const description = `Based on ${industry} industry benchmarks and similar implementations, your organization could see significant returns on DCX investment.`;
+                document.getElementById('roiDescription').textContent = description;
+            } else {
+                display.style.display = 'none';
+            }
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    
+                    // Trigger counter animations for metrics
+                    const counters = entry.target.querySelectorAll('.metric-number, .stat-card-number, .metric-value, .stat-number');
+                    if (counters.length > 0) {
+                        setTimeout(() => {
+                            counters.forEach(counter => {
+                                animateCounter(counter);
+                            });
+                        }, 300);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Counter animation function
+        function animateCounter(element) {
+            const target = parseInt(element.textContent.replace(/[^\d]/g, ''));
+            if (target > 0) {
+                const increment = target / 50;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = element.textContent.replace(/\d+/, target);
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = element.textContent.replace(/\d+/, Math.floor(current));
+                    }
+                }, 30);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        function initSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Form submission handlers
+        function initFormHandlers() {
+            // ROI Calculator form
+            const roiForm = document.getElementById('roiCalculator');
+            if (roiForm) {
+                roiForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    
+                    alert(`Thank you ${data.company}! We'll send your detailed ROI report to ${data.email} within 24 hours.`);
+                });
+            }
+
+            // Contact form
+            const contactForm = document.querySelector('#contact form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    
+                    alert(`Thank you ${data.name}! We'll be in touch within 24 hours to discuss your customer experience transformation.`);
+                });
+            }
+        }
+
+        // Header scroll effect
+        function initHeaderScroll() {
+            const header = document.querySelector('.header');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = 'none';
+                }
+                
+                lastScrollY = currentScrollY;
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize hero slider
+            const slider = new HeroSlider();
+            
+            // Pause slider on hover
+            const sliderContainer = document.querySelector('.hero-slider');
+            if (sliderContainer) {
+                sliderContainer.addEventListener('mouseenter', () => {
+                    slider.pauseSlider();
+                });
+                
+                sliderContainer.addEventListener('mouseleave', () => {
+                    slider.resumeSlider();
+                });
+            }
+
+            // Initialize other features
+            initSmoothScrolling();
+            initFormHandlers();
+            initHeaderScroll();
+
+            // Observe elements for animations
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add interactive hover effects
+            document.querySelectorAll('.suite-pillar, .case-card, .stat-card, .offering-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+
+        // Performance optimizations
+        window.addEventListener('load', () => {
+            // Lazy load images
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.classList.remove('lazy');
+                                imageObserver.unobserve(img);
+                            }
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
